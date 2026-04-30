@@ -452,18 +452,6 @@ export default function App() {
           </div>
         </div>
         <div className="topbar-actions">
-          <button className="btn-ghost" data-on={solveAllowTwoHand ? '1' : '0'}
-                  onClick={() => setSolveAllowTwoHand(v => !v)}>
-            Two-hand
-          </button>
-          <button className="btn-ghost" data-on={solveAllowRune ? '1' : '0'}
-                  onClick={() => setSolveAllowRune(v => !v)}>
-            Great Rune
-          </button>
-          <button className="btn-ghost" data-on={solveAllowTear ? '1' : '0'}
-                  onClick={() => setSolveAllowTear(v => !v)}>
-            Crystal Tear
-          </button>
           <button className="btn-ghost" onClick={clearAll}>Clear</button>
           <button className="btn-primary" onClick={handleSolve} disabled={!solveResult.solvable}>
             {solveResult.solvable ? 'Auto-solve' : 'No solution'}
@@ -554,6 +542,24 @@ export default function App() {
         </div>
 
         <aside className="totals">
+          <div className="solve-options">
+            <div className="solve-options-hd">Modifiers</div>
+            <button className="solve-toggle" data-on={solveAllowRune ? '1' : '0'}
+                    onClick={() => setSolveAllowRune(v => !v)}>
+              <span>Use Great Rune</span>
+              <span className="solve-toggle-state">{solveAllowRune ? 'On' : 'Off'}</span>
+            </button>
+            <button className="solve-toggle" data-on={solveAllowTear ? '1' : '0'}
+                    onClick={() => setSolveAllowTear(v => !v)}>
+              <span>Drink Mixed Physick</span>
+              <span className="solve-toggle-state">{solveAllowTear ? 'On' : 'Off'}</span>
+            </button>
+            <button className="solve-toggle" data-on={solveAllowTwoHand ? '1' : '0'}
+                    onClick={() => setSolveAllowTwoHand(v => !v)}>
+              <span>Two-Hand Weapon</span>
+              <span className="solve-toggle-state">{solveAllowTwoHand ? 'On' : 'Off'}</span>
+            </button>
+          </div>
           <button className="btn-primary" style={{ width: '100%' }} onClick={handleSolve} disabled={!solveResult.solvable}>
             {solveResult.solvable ? 'Auto-solve' : 'No solution'}
           </button>
