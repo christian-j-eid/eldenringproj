@@ -102,6 +102,7 @@ function scoreCost(loadout) {
 function solve(weapon, { allowTwoHand = true, allowGreatRune = true, allowTear = true } = {}) {
   const req = weapon.req
   let best = null
+  let bestAttempt = null
 
   const runePool = allowGreatRune ? RUNES : [RUNES[0]]
   const thOptions = allowTwoHand ? [false, true] : [false]
@@ -161,11 +162,21 @@ function solve(weapon, { allowTwoHand = true, allowGreatRune = true, allowTear =
       const finalEff = applyTwoHand(have, th)
       const ok = STATS.every(k => finalEff[k] >= (req[k] || 0))
       const sc = scoreCost(chosen)
-      if (ok && (!best || sc < best.score)) best = { ...chosen, score: sc }
+      if (ok && (!best || sc < best.score)) {
+        best = { ...chosen, score: sc }
+      } else if (!ok) {
+        const remaining = Object.values(shortfall(have, req, th)).reduce((a, b) => a + b, 0)
+        if (!bestAttempt || remaining < bestAttempt.remaining ||
+            (remaining === bestAttempt.remaining && sc < bestAttempt.score)) {
+          bestAttempt = { ...chosen, score: sc, remaining }
+        }
+      }
     }
   }
 
-  return best ? { solvable: true, loadout: best } : { solvable: false, loadout: null }
+  return best
+    ? { solvable: true, loadout: best }
+    : { solvable: false, loadout: null, bestAttempt }
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -417,14 +428,14 @@ export default function App() {
     setTwoHand(false)
   }
 
+  useEffect(() => { if (twoHand) setSolveAllowTwoHand(true) }, [twoHand])
+
   const solveResult = useMemo(
     () => solve(weapon, { allowTwoHand: solveAllowTwoHand, allowGreatRune: solveAllowRune, allowTear: solveAllowTear }),
     [weapon, solveAllowTwoHand, solveAllowRune, solveAllowTear]
   )
 
-  const handleSolve = () => {
-    if (!solveResult.solvable) return
-    const lo = solveResult.loadout
+  const applyLoadout = (lo) => {
     setRune(lo.rune)
     setTwoHand(lo.twoHand)
     const tals = [null, null, null, null]
@@ -436,6 +447,16 @@ export default function App() {
     const arm = { head: null, chest: null, arms: null, legs: null }
     lo.armor.forEach(it => { arm[it.slot] = it })
     setArmor(arm)
+  }
+
+  const handleSolve = () => {
+    if (!solveResult.solvable) return
+    applyLoadout(solveResult.loadout)
+  }
+
+  const handleSolveClosest = () => {
+    if (solveResult.solvable) applyLoadout(solveResult.loadout)
+    else if (solveResult.bestAttempt) applyLoadout(solveResult.bestAttempt)
   }
 
   const hasModifiers = equippedItems.length > 0 || twoHand || rune.id !== 'rune_none'
@@ -452,9 +473,14 @@ export default function App() {
           </div>
         </div>
         <div className="topbar-actions">
-          <button className="btn-ghost" onClick={clearAll}>Clear</button>
+          <button className="btn-ghost" onClick={clearAll} style={{ fontSize: '11px', letterSpacing: '0.1em', fontWeight: 600, textTransform: 'uppercase' }}>Clear</button>
           <button className="btn-primary" onClick={handleSolve} disabled={!solveResult.solvable}>
-            {solveResult.solvable ? 'Auto-solve' : 'No solution'}
+            {solveResult.solvable ? (
+              <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1px' }}>
+                <span>Solution Found</span>
+                <span style={{ fontSize: '6px', letterSpacing: '0.12em', opacity: 0.7, lineHeight: 1 }}>VIEW</span>
+              </span>
+            ) : 'No Solution'}
           </button>
         </div>
       </header>
@@ -570,8 +596,8 @@ export default function App() {
               </span>
             </button>
           </div>
-          <button className="btn-primary" style={{ width: '100%' }} onClick={handleSolve} disabled={!solveResult.solvable}>
-            {solveResult.solvable ? 'Auto-solve' : 'No solution'}
+          <button className="btn-primary" style={{ width: '100%' }} onClick={handleSolveClosest}>
+            Auto-solve
           </button>
           <div className={`verdict ${meetsAll ? 'verdict-ok' : 'verdict-no'}`}>
             <div className="verdict-mark">{meetsAll ? '✓' : '✕'}</div>
