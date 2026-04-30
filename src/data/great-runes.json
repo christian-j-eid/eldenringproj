@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Godrick's Great Rune",
+    "effect": "Boosts all stats by +5.",
+    "note": "Requires Rune Arc to activate",
+    "boosts": {
+      "str": 5,
+      "dex": 5,
+      "int": 5,
+      "fai": 5,
+      "arc": 5
+    }
+  },
+  {
+    "name": "Radahn's Great Rune",
+    "effect": "Raises maximum HP, FP, and Stamina",
+    "note": "Requires Rune Arc to activate"
+  },
+  {
+    "name": "Rykard's Great Rune",
+    "effect": "Restores HP upon kill.",
+    "note": "Requires Rune Arc to activate"
+  },
+  {
+    "name": "Morgott's Great Rune",
+    "effect": "Greatly raises maximum HP",
+    "note": "Requires Rune Arc to activate"
+  },
+  {
+    "name": "Malenia's Great Rune",
+    "effect": "HP is recovered with each successive hit",
+    "note": "Requires Rune Arc to activate"
+  },
+  {
+    "name": "Mohg's Great Rune",
+    "effect": "Grants a blessing of blood upon a phantom's death",
+    "note": "Requires Rune Arc to activate"
+  },
+  {
+    "name": "Miquella's Great Rune",
+    "effect": "Dissipates Miquella's charm",
+    "note": "Requires Rune Arc to activate"
+  }
+]

@@ -1,0 +1,184 @@
+[
+  {
+    "name": "Commoner's Garb",
+    "slot": "Chest",
+    "boosts": {
+      "fai": 1
+    }
+  },
+  {
+    "name": "Commoner's Garb  (altered)",
+    "slot": "Chest",
+    "boosts": {
+      "fai": 1
+    }
+  },
+  {
+    "name": "Thiollier's Garb",
+    "slot": "Chest",
+    "boosts": {
+      "arc": 2
+    }
+  },
+  {
+    "name": "Circlet of Light",
+    "slot": "Head",
+    "boosts": {
+      "int": 1,
+      "fai": 1,
+      "arc": 1
+    }
+  },
+  {
+    "name": "Curseblade Mask",
+    "slot": "Head",
+    "boosts": {
+      "dex": 5
+    }
+  },
+  {
+    "name": "Divine Beast Head",
+    "slot": "Head",
+    "boosts": {
+      "str": 4,
+      "dex": 4
+    }
+  },
+  {
+    "name": "Divine Beast Helm",
+    "slot": "Head",
+    "boosts": {
+      "str": 3,
+      "dex": 3
+    }
+  },
+  {
+    "name": "Divine Bird Helm",
+    "slot": "Head",
+    "boosts": {
+      "str": 3,
+      "dex": 4
+    }
+  },
+  {
+    "name": "Greathood",
+    "slot": "Head",
+    "boosts": {
+      "int": 2,
+      "fai": 2
+    }
+  },
+  {
+    "name": "High Priest Hat",
+    "slot": "Head",
+    "boosts": {
+      "int": 1,
+      "arc": 1
+    }
+  },
+  {
+    "name": "Horned Warrior Helm",
+    "slot": "Head",
+    "boosts": {
+      "str": 5
+    }
+  },
+  {
+    "name": "Imp Head (Cat)",
+    "slot": "Head",
+    "boosts": {
+      "int": 2
+    }
+  },
+  {
+    "name": "Imp Head (Corpse)",
+    "slot": "Head",
+    "boosts": {
+      "fai": 2
+    }
+  },
+  {
+    "name": "Imp Head (Elder)",
+    "slot": "Head",
+    "boosts": {
+      "arc": 2
+    }
+  },
+  {
+    "name": "Imp Head (Fanged)",
+    "slot": "Head",
+    "boosts": {
+      "str": 2
+    }
+  },
+  {
+    "name": "Imp Head (Long-Tongued)",
+    "slot": "Head",
+    "boosts": {
+      "dex": 2
+    }
+  },
+  {
+    "name": "Karolos Glintstone Crown",
+    "slot": "Head",
+    "boosts": {
+      "int": 3
+    }
+  },
+  {
+    "name": "Mask of Confidence",
+    "slot": "Head",
+    "boosts": {
+      "arc": 3
+    }
+  },
+  {
+    "name": "Olivinus Glintstone Crown",
+    "slot": "Head",
+    "boosts": {
+      "int": 3
+    }
+  },
+  {
+    "name": "Omensmirk Mask",
+    "slot": "Head",
+    "boosts": {
+      "str": 2
+    }
+  },
+  {
+    "name": "Queen's Crescent Crown",
+    "slot": "Head",
+    "boosts": {
+      "int": 3
+    }
+  },
+  {
+    "name": "Sacred Crown Helm",
+    "slot": "Head",
+    "boosts": {
+      "fai": 1
+    }
+  },
+  {
+    "name": "Salza's Hood",
+    "slot": "Head",
+    "boosts": {
+      "int": 2
+    }
+  },
+  {
+    "name": "Thiollier's Mask",
+    "slot": "Head",
+    "boosts": {
+      "arc": 3
+    }
+  },
+  {
+    "name": "Twinsage Glintstone Crown",
+    "slot": "Head",
+    "boosts": {
+      "int": 6
+    }
+  }
+]

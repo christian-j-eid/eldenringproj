@@ -1,0 +1,164 @@
+[
+  {
+    "name": "Bloodsucking Cracked Tear",
+    "effect": "Enhances attacks at the cost of HP in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Cerulean Crystal Tear",
+    "effect": "Restores half of total FP in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Cerulean Hidden Tear",
+    "effect": "Eliminates all FP consumption in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Cerulean-Sapping Cracked Tear",
+    "effect": "Grants attacks FP-restoring effect in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Crimson Crystal Tear",
+    "effect": "Restores half of total HP in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Crimson-Sapping Cracked Tear",
+    "effect": "Grants attacks HP-restoring effect in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Crimsonburst Crystal Tear",
+    "effect": "Steadily restores HP for a time in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Crimsonburst Dried Tear",
+    "effect": "Steadily restores HP of nearby allies for a time in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Crimsonspill Crystal Tear",
+    "effect": "Temporarily boosts max HP in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Crimsonwhorl Bubbletear",
+    "effect": "Converts damage received into HP in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Deflecting Hardtear",
+    "effect": "Enhances spontaneous guard in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Dexterity-knot Crystal Tear",
+    "effect": "Temporarily boosts dexterity in mixed physick",
+    "temporary": true,
+    "boosts": {
+      "dex": 10
+    }
+  },
+  {
+    "name": "Faith-knot Crystal Tear",
+    "effect": "Temporarily boosts faith in mixed physick",
+    "temporary": true,
+    "boosts": {
+      "fai": 10
+    }
+  },
+  {
+    "name": "Glovewort Crystal Tear",
+    "effect": "Enhances attacks of spirits in mixed physick.",
+    "temporary": true
+  },
+  {
+    "name": "Greenburst Crystal Tear",
+    "effect": "Temporarily boosts stamina recovery speed in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Greenspill Crystal Tear",
+    "effect": "Temporarily boosts stamina in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Holy-Shrouding Cracked Tear",
+    "effect": "Temporarily boosts holy attacks in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Intelligence-knot Crystal Tear",
+    "effect": "Temporarily boosts intelligence in mixed physick",
+    "temporary": true,
+    "boosts": {
+      "int": 10
+    }
+  },
+  {
+    "name": "Lightning-Shrouding   Cracked Tear",
+    "effect": "Temporarily boosts lightning attacks in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Magic-Shrouding Cracked Tear",
+    "effect": "Temporarily boosts magic attacks in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Oil-Soaked Tear",
+    "effect": "Coats nearby enemies with oil in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Opaline Bubbletear",
+    "effect": "Significantly negates damage in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Purifying Crystal Tear",
+    "effect": "Cures the curse of Mohg, Lord of Blood",
+    "temporary": true
+  },
+  {
+    "name": "Ruptured Crystal Tear",
+    "effect": "Causes concoction to explode in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Ruptured Crystal Tear",
+    "effect": "Causes concoction to explode in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Speckled Hardtear",
+    "effect": "Boosts resistance and heals status in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Spiked Cracked Tear",
+    "effect": "Enhances charged attacks for a time in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Strength-knot Crystal Tear",
+    "effect": "Temporarily boosts strength in mixed physick",
+    "temporary": true,
+    "boosts": {
+      "str": 10
+    }
+  },
+  {
+    "name": "Viridian Hidden Tear",
+    "effect": "Eliminates all stamina consumption in mixed physick",
+    "temporary": true
+  },
+  {
+    "name": "Windy Crystal Tear",
+    "effect": "Enhances dodge rolls for a time in mixed physick",
+    "temporary": true
+  }
+]

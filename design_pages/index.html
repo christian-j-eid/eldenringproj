@@ -1,0 +1,1674 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RL1 Weapon Audit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+/* RL1 Weapon Audit — styles
+   Themes: dark (default), parchment, utility */
+
+:root {
+  --bg: #0e0d0a;
+  --bg-2: #16140f;
+  --bg-3: #1d1a14;
+  --line: rgba(196, 165, 99, 0.14);
+  --line-strong: rgba(196, 165, 99, 0.28);
+  --ink: #e7dcc1;
+  --ink-2: rgba(231, 220, 193, 0.72);
+  --ink-3: rgba(231, 220, 193, 0.45);
+  --ink-4: rgba(231, 220, 193, 0.22);
+  --gold: #c4a563;
+  --gold-2: #ddbd72;
+  --gold-dim: rgba(196, 165, 99, 0.5);
+  --ok: #8ec07a;
+  --no: #c46a5a;
+  --shadow-1: 0 1px 0 rgba(255,255,255,0.04) inset;
+  --shadow-2: 0 24px 60px rgba(0,0,0,0.5);
+  --serif: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
+  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+[data-theme="parchment"] {
+  --bg: #f3ead7;
+  --bg-2: #ece2c9;
+  --bg-3: #e3d7b9;
+  --line: rgba(80, 50, 20, 0.16);
+  --line-strong: rgba(80, 50, 20, 0.32);
+  --ink: #2a1f0f;
+  --ink-2: rgba(42, 31, 15, 0.72);
+  --ink-3: rgba(42, 31, 15, 0.5);
+  --ink-4: rgba(42, 31, 15, 0.22);
+  --gold: #8a6a2a;
+  --gold-2: #6e5320;
+  --gold-dim: rgba(138, 106, 42, 0.4);
+  --ok: #4a7338;
+  --no: #9a3e2a;
+  --shadow-2: 0 10px 30px rgba(80, 50, 20, 0.18);
+}
+
+[data-theme="utility"] {
+  --bg: #fafaf9;
+  --bg-2: #f3f3f1;
+  --bg-3: #ebebe8;
+  --line: rgba(0, 0, 0, 0.08);
+  --line-strong: rgba(0, 0, 0, 0.18);
+  --ink: #1a1a1a;
+  --ink-2: rgba(26, 26, 26, 0.72);
+  --ink-3: rgba(26, 26, 26, 0.5);
+  --ink-4: rgba(26, 26, 26, 0.18);
+  --gold: #1a1a1a;
+  --gold-2: #000;
+  --gold-dim: rgba(0,0,0,0.4);
+  --ok: #357a3a;
+  --no: #b3341e;
+  --serif: 'Inter Tight', sans-serif;
+  --shadow-2: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* dark theme: vignetted bg with subtle parchment grain */
+[data-theme="dark"] body, .app[data-theme="dark"] {
+  background:
+    radial-gradient(circle at 50% 0%, #1c1812 0%, #0e0d0a 55%, #07060500 100%),
+    var(--bg);
+}
+
+.app {
+  min-height: 100vh;
+  background: inherit;
+}
+.app[data-theme="dark"] {
+  background:
+    radial-gradient(circle at 50% -10%, #1f1a12 0%, #0e0d0a 60%);
+}
+
+/* ── topbar ─────────────────────────────────────────────────────── */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 36px; border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--bg-2), transparent 30%), transparent);
+  position: sticky; top: 0; z-index: 5; backdrop-filter: blur(8px);
+}
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand-mark {
+  width: 36px; height: 36px; display: grid; place-items: center;
+  font-family: var(--serif); font-size: 22px; color: var(--gold);
+  border: 1px solid var(--line-strong); border-radius: 4px;
+  background: linear-gradient(180deg, var(--bg-3), var(--bg-2));
+}
+.brand-title {
+  font-family: var(--serif); font-size: 22px; font-weight: 500;
+  letter-spacing: 0.01em; color: var(--ink);
+}
+.brand-sub {
+  font-family: var(--mono); font-size: 11px; color: var(--ink-3);
+  letter-spacing: 0.05em; text-transform: uppercase;
+}
+
+.topbar-actions { display: flex; gap: 10px; }
+.btn-ghost, .btn-primary {
+  appearance: none; border: 1px solid var(--line-strong);
+  background: transparent; color: var(--ink-2);
+  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  letter-spacing: 0.02em; padding: 9px 16px; border-radius: 2px;
+  cursor: pointer; transition: all 0.15s;
+}
+.btn-ghost:hover { color: var(--ink); border-color: var(--gold-dim); }
+.btn-primary {
+  background: linear-gradient(180deg, var(--gold-2), var(--gold));
+  color: #1a1408; border-color: var(--gold);
+  text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em;
+  padding: 10px 20px; font-weight: 600;
+}
+[data-theme="utility"] .btn-primary { background: #1a1a1a; color: #fff; }
+.btn-primary:hover:not(:disabled) { filter: brightness(1.1); }
+.btn-primary:disabled {
+  background: transparent; color: var(--no); border-color: var(--no);
+  cursor: not-allowed; opacity: 0.6;
+}
+
+/* ── weapon bar ─────────────────────────────────────────────────── */
+.weapon-bar {
+  display: grid; grid-template-columns: 1.2fr 1fr;
+  gap: 32px; padding: 28px 36px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--bg-2), transparent 50%), transparent);
+}
+.weapon-bar-eyebrow {
+  font-family: var(--mono); font-size: 10px; color: var(--ink-3);
+  text-transform: uppercase; letter-spacing: 0.16em; margin-bottom: 8px;
+}
+.weapon-picker { position: relative; }
+.weapon-picker-btn {
+  width: 100%; display: flex; align-items: baseline; gap: 14px;
+  padding: 6px 0; background: none; border: 0; color: inherit;
+  text-align: left; cursor: pointer;
+  border-bottom: 1px solid var(--line-strong);
+}
+.weapon-picker-cat {
+  font-family: var(--mono); font-size: 11px; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 0.14em;
+}
+.weapon-picker-name {
+  flex: 1; font-family: var(--serif); font-size: 32px; font-weight: 500;
+  letter-spacing: 0.005em; color: var(--ink);
+}
+.weapon-picker-caret { color: var(--ink-3); font-size: 14px; }
+
+.weapon-picker-pop {
+  position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 20;
+  background: var(--bg-2); border: 1px solid var(--line-strong);
+  border-radius: 4px; box-shadow: var(--shadow-2);
+  display: flex; flex-direction: column; max-height: 60vh; overflow: hidden;
+}
+.weapon-picker-search {
+  border: 0; background: var(--bg-3); color: var(--ink);
+  padding: 12px 16px; font: inherit; outline: none;
+  border-bottom: 1px solid var(--line);
+}
+.weapon-picker-search::placeholder { color: var(--ink-3); }
+.weapon-picker-list { overflow: auto; }
+.weapon-picker-row {
+  display: grid; grid-template-columns: 1.5fr 1fr 1.4fr; gap: 14px; align-items: center;
+  width: 100%; padding: 10px 16px; background: none; border: 0;
+  color: inherit; text-align: left; cursor: pointer;
+  border-bottom: 1px solid var(--line);
+}
+.weapon-picker-row:hover { background: var(--bg-3); }
+.weapon-picker-row[data-active="1"] { background: color-mix(in oklab, var(--gold) 10%, transparent); }
+.wp-name { font-family: var(--serif); font-size: 17px; }
+.wp-cat { font-family: var(--mono); font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.1em; }
+.wp-req { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.wp-req-pill {
+  font-family: var(--mono); font-size: 10px; padding: 2px 6px;
+  border: 1px solid color-mix(in oklab, oklch(0.78 0.14 var(--hue, 50)), transparent 60%);
+  color: oklch(0.78 0.14 var(--hue, 50));
+  border-radius: 2px; letter-spacing: 0.04em;
+}
+
+.req-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-start; padding-top: 8px; }
+.req-chip {
+  display: inline-flex; align-items: baseline; gap: 8px;
+  padding: 8px 14px; border: 1px solid color-mix(in oklab, oklch(0.78 0.14 var(--hue)), transparent 65%);
+  background: color-mix(in oklab, oklch(0.78 0.14 var(--hue)), transparent 92%);
+  border-radius: 2px;
+}
+.req-chip-stat {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+  color: oklch(0.78 0.14 var(--hue)); text-transform: uppercase;
+}
+.req-chip-num {
+  font-family: var(--serif); font-size: 22px; font-weight: 500;
+  color: oklch(0.85 0.12 var(--hue));
+}
+
+/* ── main grid ──────────────────────────────────────────────────── */
+.main-grid {
+  display: grid; grid-template-columns: 1fr 360px;
+  gap: 32px; padding: 28px 36px 60px;
+  align-items: start;
+}
+
+@media (max-width: 1100px) {
+  .main-grid { grid-template-columns: 1fr; }
+}
+
+/* ── slot regions ──────────────────────────────────────────────── */
+.slot-region { display: flex; flex-direction: column; gap: 28px; }
+.region-hd {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding-bottom: 10px; margin-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.region h3 {
+  margin: 0; font-family: var(--serif); font-weight: 500;
+  font-size: 20px; letter-spacing: 0.01em;
+}
+.region-aside { color: var(--ink-3); font-size: 14px; font-style: italic; font-family: var(--serif); }
+.region-meta {
+  font-family: var(--mono); font-size: 11px; color: var(--ink-3);
+  letter-spacing: 0.08em;
+}
+
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+@media (max-width: 760px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── slot card ─────────────────────────────────────────────────── */
+.slot {
+  appearance: none; border: 0; padding: 0; background: none;
+  color: inherit; text-align: left; cursor: pointer; width: 100%;
+  font-family: inherit;
+}
+.slot-frame {
+  position: relative; padding: 16px 14px; min-height: 140px;
+  background: linear-gradient(180deg, var(--bg-2), var(--bg));
+  border: 1px solid var(--line);
+  transition: all 0.15s;
+}
+.slot:hover .slot-frame {
+  border-color: var(--gold-dim);
+  background: linear-gradient(180deg, var(--bg-3), var(--bg-2));
+}
+.slot[data-empty="1"] .slot-frame { border-style: dashed; }
+
+.slot-corner {
+  position: absolute; width: 8px; height: 8px;
+  border-color: var(--gold-dim); border-style: solid; border-width: 0;
+}
+.slot-corner.tl { top: 4px; left: 4px; border-top-width: 1px; border-left-width: 1px; }
+.slot-corner.tr { top: 4px; right: 4px; border-top-width: 1px; border-right-width: 1px; }
+.slot-corner.bl { bottom: 4px; left: 4px; border-bottom-width: 1px; border-left-width: 1px; }
+.slot-corner.br { bottom: 4px; right: 4px; border-bottom-width: 1px; border-right-width: 1px; }
+
+.slot-empty {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  height: 100%; min-height: 110px; gap: 8px; color: var(--ink-3);
+}
+.slot-icon {
+  width: 26px; height: 26px; border: 1px solid var(--ink-4);
+  position: relative;
+}
+.slot-icon[data-kind="talisman"] { border-radius: 50%; }
+.slot-icon[data-kind="tear"] {
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  border-color: var(--ink-4);
+}
+.slot-icon[data-kind="armor"] {
+  border-radius: 0; transform: rotate(45deg);
+  width: 22px; height: 22px;
+}
+.slot-empty-label {
+  font-family: var(--mono); font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.14em; color: var(--ink-3);
+}
+.slot-empty-hint { font-size: 11px; color: var(--ink-4); font-style: italic; }
+
+.slot-filled { display: flex; flex-direction: column; gap: 6px; height: 100%; }
+.slot-name {
+  font-family: var(--serif); font-size: 17px; font-weight: 500;
+  color: var(--ink); line-height: 1.2; letter-spacing: 0.005em;
+}
+.slot-bonus {
+  font-family: var(--mono); font-size: 10.5px; color: var(--gold);
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.slot-flavor {
+  font-family: var(--serif); font-style: italic; font-size: 12.5px;
+  color: var(--ink-3); line-height: 1.4; margin-top: 2px;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.slot-actions { margin-top: auto; padding-top: 6px; }
+.slot-clear {
+  font-family: var(--mono); font-size: 10px; color: var(--ink-3);
+  text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer;
+}
+.slot-clear:hover { color: var(--no); }
+
+/* ── modifier row ───────────────────────────────────────────────── */
+.modifier-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.mod-card {
+  appearance: none; background: var(--bg-2); border: 1px solid var(--line);
+  padding: 14px 16px; text-align: left; color: inherit; cursor: pointer;
+  display: flex; flex-direction: column; gap: 4px;
+  font-family: inherit;
+}
+.mod-card[data-on="1"] {
+  border-color: var(--gold);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--gold) 12%, var(--bg-2)), var(--bg-2));
+}
+.mod-card-title { font-family: var(--serif); font-size: 16px; }
+.mod-card-sub { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); letter-spacing: 0.08em; text-transform: uppercase; }
+.mod-card-state {
+  margin-top: 6px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+  color: var(--ink-2);
+}
+.mod-card[data-on="1"] .mod-card-state { color: var(--gold); }
+.mod-rune { cursor: default; }
+.rune-select {
+  margin-top: 6px;
+  appearance: none; -webkit-appearance: none;
+  background: var(--bg-3); color: var(--ink);
+  border: 1px solid var(--line); padding: 7px 10px; font: inherit; font-size: 13px;
+  font-family: var(--serif); cursor: pointer; border-radius: 0;
+}
+
+/* ── totals (right rail) ───────────────────────────────────────── */
+.totals {
+  position: sticky; top: 100px;
+  display: flex; flex-direction: column; gap: 18px;
+}
+.verdict {
+  display: flex; gap: 14px; padding: 18px 18px;
+  border: 1px solid var(--line-strong); align-items: center;
+}
+.verdict-ok {
+  border-color: color-mix(in oklab, var(--ok), transparent 50%);
+  background: color-mix(in oklab, var(--ok), transparent 92%);
+}
+.verdict-no {
+  border-color: color-mix(in oklab, var(--no), transparent 50%);
+  background: color-mix(in oklab, var(--no), transparent 92%);
+}
+.verdict-mark {
+  width: 40px; height: 40px; display: grid; place-items: center;
+  font-size: 22px; flex-shrink: 0;
+  border: 1px solid currentColor; border-radius: 50%;
+}
+.verdict-ok .verdict-mark { color: var(--ok); }
+.verdict-no .verdict-mark { color: var(--no); }
+.verdict-line1 {
+  font-family: var(--serif); font-size: 22px; line-height: 1.1;
+}
+.verdict-line2 {
+  font-size: 12.5px; color: var(--ink-2); margin-top: 2px;
+}
+
+.totals-block {
+  border: 1px solid var(--line); padding: 14px 16px;
+  background: var(--bg-2);
+}
+.totals-hd {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px;
+  padding-bottom: 8px; border-bottom: 1px solid var(--line);
+}
+.stat-pips {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px;
+}
+.stat-pip {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 8px 4px; border: 1px solid var(--line); border-radius: 2px;
+  background: var(--bg);
+}
+.stat-pip[data-ok="0"] {
+  border-color: color-mix(in oklab, var(--no), transparent 60%);
+  background: color-mix(in oklab, var(--no), transparent 92%);
+}
+.stat-pip-label {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.12em;
+  color: var(--ink-3);
+}
+.stat-pip-num {
+  font-family: var(--serif); font-size: 18px; line-height: 1;
+}
+.stat-eff { font-weight: 500; }
+.stat-need { color: var(--ink-3); font-size: 12px; }
+.stat-pip-bonus {
+  font-family: var(--mono); font-size: 8.5px; color: var(--ok);
+  letter-spacing: 0.06em;
+}
+
+.breakdown { font-size: 12.5px; }
+.breakdown-row {
+  display: flex; justify-content: space-between; gap: 10px;
+  padding: 5px 0; border-bottom: 1px dashed var(--line);
+  color: var(--ink-2);
+}
+.breakdown-row:last-child { border-bottom: 0; }
+.breakdown-row span:last-child {
+  font-family: var(--mono); font-size: 11px; color: var(--gold);
+  letter-spacing: 0.04em; text-align: right;
+}
+.breakdown-row.breakdown-mult span:last-child { color: var(--ok); }
+.breakdown-row.breakdown-empty span:last-child { color: var(--ink-3); }
+
+.totals-foot {
+  font-family: var(--serif); font-style: italic; font-size: 12.5px;
+  color: var(--ink-3); padding: 0 4px;
+}
+.totals-foot-no { color: var(--no); }
+
+/* ── picker modal ──────────────────────────────────────────────── */
+.picker-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+  display: grid; place-items: center; z-index: 50;
+  backdrop-filter: blur(4px);
+  animation: fadein 0.15s ease;
+}
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+.picker {
+  width: min(560px, 90vw); max-height: 80vh;
+  display: flex; flex-direction: column;
+  background: var(--bg-2); border: 1px solid var(--line-strong);
+  box-shadow: var(--shadow-2);
+}
+.picker-hd {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; border-bottom: 1px solid var(--line);
+}
+.picker-title {
+  font-family: var(--serif); font-size: 18px;
+}
+.picker-x {
+  appearance: none; background: none; border: 0; color: var(--ink-3);
+  font-size: 16px; cursor: pointer; padding: 4px 8px;
+}
+.picker-x:hover { color: var(--ink); }
+.picker-body {
+  overflow: auto; padding: 12px; display: flex; flex-direction: column; gap: 6px;
+}
+.picker-empty {
+  padding: 30px; text-align: center; color: var(--ink-3); font-style: italic;
+}
+.picker-item {
+  appearance: none; background: var(--bg); border: 1px solid var(--line);
+  padding: 12px 14px; cursor: pointer; color: inherit; text-align: left;
+  display: flex; flex-direction: column; gap: 4px; font: inherit;
+  transition: all 0.1s;
+}
+.picker-item:hover {
+  border-color: var(--gold-dim);
+  background: var(--bg-3);
+}
+.picker-item-name { font-family: var(--serif); font-size: 16px; }
+.picker-item-bonus {
+  font-family: var(--mono); font-size: 10.5px; color: var(--gold);
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.picker-item-flavor {
+  font-family: var(--serif); font-style: italic; font-size: 12.5px;
+  color: var(--ink-3); line-height: 1.4;
+}
+
+</style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script>
+// RL1 Weapon Requirement Solver — data
+// Stat-boost item names are generic descriptors (not proprietary names).
+// Bonus values reflect commonly-known gameplay mechanics so the math is useful.
+
+const STATS = ['STR', 'DEX', 'INT', 'FTH', 'ARC'];
+
+// ── TALISMANS ───────────────────────────────────────────────────────────────
+// 4 slots. +5 to a single stat, or +3 to two stats (compound).
+const TALISMANS = [
+  { id: 't_str',  name: 'Bull-Sigil Charm',         bonus: { STR: 5 }, flavor: 'A bronze sigil cast in the shape of a horned beast. Lends raw might to its bearer.' },
+  { id: 't_dex',  name: 'Wing-Quill Token',         bonus: { DEX: 5 }, flavor: 'A pinion sealed in resin. Fingers move quicker around it.' },
+  { id: 't_int',  name: 'Scholar\u2019s Eye',       bonus: { INT: 5 }, flavor: 'A glass lens fogged with old breath. Sharpens the mind\u2019s edge.' },
+  { id: 't_fth',  name: 'Pilgrim\u2019s Bell-Bead', bonus: { FTH: 5 }, flavor: 'A small chime worn against the chest. Steadies the prayer behind the strike.' },
+  { id: 't_arc',  name: 'Bone-Dice Pendant',        bonus: { ARC: 5 }, flavor: 'Knucklebones strung on red cord. Bends fortune toward the curious.' },
+  { id: 't_str_dex', name: 'Twin-Edge Locket',      bonus: { STR: 3, DEX: 3 }, flavor: 'A locket forged with two thorned halves. Splits its favor between hand and arm.' },
+  { id: 't_int_fth', name: 'Mirror-and-Bead',       bonus: { INT: 3, FTH: 3 }, flavor: 'A mirror stitched to a prayer-bead. Reflects two truths at once.' },
+];
+
+// ── PHYSICK TEARS ───────────────────────────────────────────────────────────
+// 2 tears mixed into the flask. ~10 minutes of effect (we treat as on/off).
+const TEARS = [
+  { id: 'tear_str', name: 'Tear of Vigor',     bonus: { STR: 10 }, duration: '3 min', flavor: 'A bright, copper-tasting droplet. The arms fill with sudden weight.' },
+  { id: 'tear_dex', name: 'Tear of Quickness', bonus: { DEX: 10 }, duration: '3 min', flavor: 'Bitter and cold. The fingers feel longer than they are.' },
+  { id: 'tear_int', name: 'Tear of Insight',   bonus: { INT: 10 }, duration: '3 min', flavor: 'Tastes like a memory you cannot quite place. Old languages surface.' },
+  { id: 'tear_fth', name: 'Tear of Conviction',bonus: { FTH: 10 }, duration: '3 min', flavor: 'Warm at the back of the throat. Doubt thins, briefly.' },
+  { id: 'tear_arc', name: 'Tear of Strange Luck', bonus: { ARC: 10 }, duration: '3 min', flavor: 'Iridescent. Coincidences crowd in.' },
+];
+
+// ── ARMOR (4 slots: head / chest / arms / legs) ─────────────────────────────
+// Most armor in this kind of game gives no stats; a small handful do.
+// We model "stat-bearing" sets only — generic descriptors of the archetype.
+const ARMOR = [
+  // STR-flavored heavies
+  { id: 'a_warlord_h', slot: 'head',  name: 'Warlord\u2019s Crown',  bonus: { STR: 1 }, flavor: 'A blunt iron diadem. Commanders wore them dented, never replaced.' },
+  { id: 'a_warlord_c', slot: 'chest', name: 'Warlord\u2019s Cuirass',bonus: { STR: 2 }, flavor: 'Battered plate. Each scar is somebody\u2019s last conversation.' },
+  { id: 'a_warlord_a', slot: 'arms',  name: 'Warlord\u2019s Gauntlets', bonus: { STR: 1 }, flavor: 'Knuckles still smell of smoke.' },
+  { id: 'a_warlord_l', slot: 'legs',  name: 'Warlord\u2019s Greaves',   bonus: { STR: 1 }, flavor: 'Heavy enough to plant you in any wind.' },
+
+  // DEX-flavored skirmisher
+  { id: 'a_scout_h',  slot: 'head',  name: 'Skirmisher Cowl',     bonus: { DEX: 1 }, flavor: 'Patched cloth. Smells of pine and quick decisions.' },
+  { id: 'a_scout_c',  slot: 'chest', name: 'Skirmisher Jerkin',   bonus: { DEX: 2 }, flavor: 'Lighter than it looks. Built for the second strike.' },
+  { id: 'a_scout_a',  slot: 'arms',  name: 'Skirmisher Bracers',  bonus: { DEX: 1 }, flavor: 'Worn smooth at the wrists.' },
+  { id: 'a_scout_l',  slot: 'legs',  name: 'Skirmisher Boots',    bonus: { DEX: 1 }, flavor: 'Soft heels. Designed not to be heard.' },
+
+  // INT-flavored scholar
+  { id: 'a_savant_h', slot: 'head',  name: 'Savant\u2019s Hood',    bonus: { INT: 2 }, flavor: 'Lined with pages. The wearer dreams in footnotes.' },
+  { id: 'a_savant_c', slot: 'chest', name: 'Savant\u2019s Robe',    bonus: { INT: 1 }, flavor: 'Stained with ink no one can identify.' },
+
+  // FTH-flavored prelate
+  { id: 'a_prelate_h', slot: 'head', name: 'Prelate\u2019s Mitre',   bonus: { FTH: 2 }, flavor: 'Heavy with stitched verses. The mitre listens.' },
+  { id: 'a_prelate_c', slot: 'chest',name: 'Prelate\u2019s Mantle',  bonus: { FTH: 1 }, flavor: 'Smells of cold candles.' },
+
+  // ARC-flavored vagrant
+  { id: 'a_vagrant_h', slot: 'head', name: 'Vagrant\u2019s Cap',     bonus: { ARC: 1 }, flavor: 'A cap stitched from seven kinds of luck.' },
+  { id: 'a_vagrant_c', slot: 'chest',name: 'Vagrant\u2019s Coat',    bonus: { ARC: 1 }, flavor: 'Pockets that do not stop.' },
+  { id: 'a_vagrant_a', slot: 'arms', name: 'Vagrant\u2019s Wraps',   bonus: { ARC: 1 }, flavor: 'Bound at the thumb with red string.' },
+
+  // Mixed
+  { id: 'a_haligknight_c', slot: 'chest', name: 'Sworn Knight Plate', bonus: { STR: 1, DEX: 1 }, flavor: 'A vow inscribed on the inside, never the outside.' },
+];
+
+// ── GREAT RUNES ─────────────────────────────────────────────────────────────
+const RUNES = [
+  { id: 'rune_none',     name: 'No rune',                bonus: {} },
+  { id: 'rune_allstat5', name: 'Rune of the First King', bonus: { STR: 5, DEX: 5, INT: 5, FTH: 5, ARC: 5 }, flavor: '+5 to all stats. The crown remembers every name it has worn.' },
+  { id: 'rune_hp',       name: 'Rune of the Lion',       bonus: {}, flavor: 'Boosts HP only — no stat help here.' },
+];
+
+// ── WEAPONS ─────────────────────────────────────────────────────────────────
+// Generic archetypes spanning the requirement spectrum.
+const WEAPONS = [
+  { id: 'w_dagger',      name: 'Hooked Dagger',          cat: 'Dagger',         req: { STR: 6,  DEX: 9,  INT: 0,  FTH: 0,  ARC: 0 } },
+  { id: 'w_shortsword',  name: 'Travelling Shortsword',  cat: 'Straight Sword', req: { STR: 8,  DEX: 10, INT: 0,  FTH: 0,  ARC: 0 } },
+  { id: 'w_longsword',   name: 'Pale Longsword',         cat: 'Straight Sword', req: { STR: 10, DEX: 10, INT: 0,  FTH: 0,  ARC: 0 } },
+  { id: 'w_estoc',       name: 'Needling Estoc',         cat: 'Thrusting Sword',req: { STR: 8,  DEX: 14, INT: 0,  FTH: 0,  ARC: 0 } },
+  { id: 'w_katana',      name: 'Wandering Katana',       cat: 'Katana',         req: { STR: 12, DEX: 15, INT: 0,  FTH: 0,  ARC: 0 } },
+  { id: 'w_curvedgs',    name: 'Crescent Greatsword',    cat: 'Curved Greatsword', req: { STR: 22, DEX: 14, INT: 0, FTH: 0, ARC: 0 } },
+  { id: 'w_zwei',        name: 'Two-Hander',             cat: 'Greatsword',     req: { STR: 19, DEX: 11, INT: 0, FTH: 0, ARC: 0 } },
+  { id: 'w_colossus',    name: 'Colossal Cleaver',       cat: 'Colossal Sword', req: { STR: 30, DEX: 12, INT: 0, FTH: 0, ARC: 0 } },
+  { id: 'w_giantcrush',  name: 'Mountain-Splitter',      cat: 'Colossal Weapon',req: { STR: 38, DEX: 12, INT: 0, FTH: 0, ARC: 0 } },
+  { id: 'w_flail',       name: 'Bloodied Flail',         cat: 'Flail',          req: { STR: 14, DEX: 14, INT: 0, FTH: 0, ARC: 8 } },
+  { id: 'w_whip',        name: 'Thorn-Whip',             cat: 'Whip',           req: { STR: 7,  DEX: 14, INT: 0, FTH: 0, ARC: 0 } },
+  { id: 'w_glintstaff',  name: 'Glintstone Staff',       cat: 'Staff',          req: { STR: 6,  DEX: 8,  INT: 18, FTH: 0, ARC: 0 } },
+  { id: 'w_scholarstaff',name: 'Scholar\u2019s Caduceus',cat: 'Staff',          req: { STR: 6,  DEX: 8,  INT: 27, FTH: 0, ARC: 0 } },
+  { id: 'w_sealfth',     name: 'Prelate\u2019s Seal',    cat: 'Sacred Seal',    req: { STR: 4,  DEX: 4,  INT: 0,  FTH: 22, ARC: 0 } },
+  { id: 'w_seal_dragon', name: 'Dragon-Tongue Seal',     cat: 'Sacred Seal',    req: { STR: 10, DEX: 0,  INT: 0,  FTH: 25, ARC: 0 } },
+  { id: 'w_arcsword',    name: 'Cursemark Sword',        cat: 'Curved Sword',   req: { STR: 12, DEX: 16, INT: 0, FTH: 0, ARC: 14 } },
+  { id: 'w_int_fth',     name: 'Twinned Sigil-Blade',    cat: 'Greatsword',     req: { STR: 14, DEX: 14, INT: 16, FTH: 16, ARC: 0 } },
+  { id: 'w_dex_fth',     name: 'Sun-Forged Spear',       cat: 'Spear',          req: { STR: 10, DEX: 18, INT: 0,  FTH: 16, ARC: 0 } },
+  { id: 'w_bow',         name: 'Hunter\u2019s Longbow',  cat: 'Bow',            req: { STR: 9,  DEX: 14, INT: 0,  FTH: 0, ARC: 0 } },
+  { id: 'w_greatbow',    name: 'Siege Greatbow',         cat: 'Greatbow',       req: { STR: 24, DEX: 18, INT: 0,  FTH: 0, ARC: 0 } },
+];
+
+window.RL1 = { STATS, TALISMANS, TEARS, ARMOR, RUNES, WEAPONS };
+
+</script>
+  <script>
+// Solver — given a weapon's requirements, find the simplest loadout that meets them.
+// "Simplest" = fewest equipped items first, then fewest stat-boost slots used.
+
+(function () {
+  const { TALISMANS, TEARS, ARMOR, RUNES } = window.RL1;
+  const STATS = ['STR', 'DEX', 'INT', 'FTH', 'ARC'];
+
+  // Apply two-hand to a stat block in-place: STR is multiplied by 1.5 (rounded down).
+  function applyTwoHand(have, twoHand) {
+    if (!twoHand) return have;
+    return { ...have, STR: Math.floor(have.STR * 1.5) };
+  }
+
+  function sumBonus(items) {
+    const out = { STR: 0, DEX: 0, INT: 0, FTH: 0, ARC: 0 };
+    for (const it of items) {
+      if (!it || !it.bonus) continue;
+      for (const k of STATS) if (it.bonus[k]) out[k] += it.bonus[k];
+    }
+    return out;
+  }
+
+  function meets(have, req, twoHand) {
+    const eff = applyTwoHand(have, twoHand);
+    return STATS.every((k) => eff[k] >= (req[k] || 0));
+  }
+
+  function shortfall(have, req, twoHand) {
+    const eff = applyTwoHand(have, twoHand);
+    const out = {};
+    for (const k of STATS) {
+      const d = (req[k] || 0) - eff[k];
+      if (d > 0) out[k] = d;
+    }
+    return out;
+  }
+
+  // Score a candidate loadout: lower is "simpler".
+  // Penalize each item; tear is cheaper than talisman (consumable but easy);
+  // talisman cheaper than armor (armor takes a slot you might want for defense).
+  function score(loadout) {
+    const w = { rune: 0.5, twoHand: 0.1, tear: 1, talisman: 1.2, armor: 1.5 };
+    let s = 0;
+    if (loadout.rune && loadout.rune.id !== 'rune_none') s += w.rune;
+    if (loadout.twoHand) s += w.twoHand;
+    s += (loadout.tears?.length || 0) * w.tear;
+    s += (loadout.talismans?.length || 0) * w.talisman;
+    s += (loadout.armor?.length || 0) * w.armor;
+    return s;
+  }
+
+  // Greedy + bounded search. Strategy:
+  //   For each rune option, for twoHand ∈ {given, !given if STR>0 in req}:
+  //     greedily fill slots in order: tears(2) → talismans(4) → armor(4 unique slots)
+  //     pick the item that maximizes coverage of remaining shortfall per slot used.
+  //   Keep the lowest-score successful loadout.
+  function solve(weapon, opts = {}) {
+    const baseStats = { STR: 10, DEX: 10, INT: 10, FTH: 10, ARC: 10 };
+    const req = weapon.req;
+    const forceTwoHand = opts.forceTwoHand;
+
+    const runeOptions = RUNES;
+    const twoHandOptions = forceTwoHand !== undefined ? [!!forceTwoHand] : [false, true];
+
+    let best = null;
+
+    for (const rune of runeOptions) {
+      for (const th of twoHandOptions) {
+        // Skip 2H if weapon has 0 STR req — pointless cost
+        if (th && (!req.STR || req.STR <= baseStats.STR)) continue;
+
+        const baseEquipped = [{ bonus: baseStats }, { bonus: rune.bonus || {} }];
+        const haveBase = sumBonus(baseEquipped);
+
+        // Greedy slot-filling
+        const chosen = { tears: [], talismans: [], armor: [], rune, twoHand: th };
+        let have = { ...haveBase };
+
+        const need = () => shortfall(have, req, th);
+        const stillNeed = () => Object.keys(need()).length > 0;
+
+        // Helper: pick from a pool the best item per remaining shortfall.
+        // "Best" = greatest sum of (bonus[k] capped at need[k]) over needed stats.
+        function pickBest(pool, excludeIds = new Set(), filter = () => true) {
+          const sf = need();
+          let bestItem = null;
+          let bestVal = 0;
+          for (const it of pool) {
+            if (excludeIds.has(it.id)) continue;
+            if (!filter(it)) continue;
+            let v = 0;
+            for (const k of STATS) {
+              if (sf[k] && it.bonus[k]) v += Math.min(it.bonus[k], sf[k]);
+            }
+            // Tiny secondary preference: smaller items when tie
+            const totalBonus = STATS.reduce((a,k) => a + (it.bonus[k]||0), 0);
+            v = v * 100 - totalBonus * 0.01;
+            if (v > bestVal) { bestVal = v; bestItem = it; }
+          }
+          return bestItem;
+        }
+
+        // 1) Tears (max 2)
+        const usedTears = new Set();
+        for (let i = 0; i < 2 && stillNeed(); i++) {
+          const it = pickBest(TEARS, usedTears);
+          if (!it) break;
+          usedTears.add(it.id);
+          chosen.tears.push(it);
+          have = sumBonus([{bonus: haveBase}, ...chosen.tears, ...chosen.talismans, ...chosen.armor]);
+        }
+
+        // 2) Talismans (max 4)
+        const usedTal = new Set();
+        for (let i = 0; i < 4 && stillNeed(); i++) {
+          const it = pickBest(TALISMANS, usedTal);
+          if (!it) break;
+          usedTal.add(it.id);
+          chosen.talismans.push(it);
+          have = sumBonus([{bonus: haveBase}, ...chosen.tears, ...chosen.talismans, ...chosen.armor]);
+        }
+
+        // 3) Armor (max 1 per slot; 4 slots: head/chest/arms/legs)
+        const filledSlots = new Set();
+        for (let i = 0; i < 4 && stillNeed(); i++) {
+          const it = pickBest(ARMOR, new Set(), (a) => !filledSlots.has(a.slot));
+          if (!it) break;
+          filledSlots.add(it.slot);
+          chosen.armor.push(it);
+          have = sumBonus([{bonus: haveBase}, ...chosen.tears, ...chosen.talismans, ...chosen.armor]);
+        }
+
+        const finalEff = applyTwoHand(have, th);
+        const ok = STATS.every((k) => finalEff[k] >= (req[k] || 0));
+        const sc = score(chosen);
+        if (ok && (!best || sc < best.score)) {
+          best = { ...chosen, score: sc, finalStats: finalEff, shortfall: {} };
+        }
+      }
+    }
+
+    if (best) return { solvable: true, loadout: best };
+
+    // Compute the best impossible attempt for diagnostics
+    return { solvable: false, loadout: null };
+  }
+
+  // Compute resulting effective stats for a manually chosen loadout
+  function compute(loadout) {
+    const baseStats = { STR: 10, DEX: 10, INT: 10, FTH: 10, ARC: 10 };
+    const items = [
+      { bonus: baseStats },
+      { bonus: loadout.rune?.bonus || {} },
+      ...(loadout.tears || []),
+      ...(loadout.talismans || []),
+      ...(loadout.armor || []),
+    ];
+    const have = sumBonus(items);
+    return applyTwoHand(have, !!loadout.twoHand);
+  }
+
+  window.RL1Solver = { solve, compute, applyTwoHand, sumBonus };
+})();
+
+</script>
+  <script type="text/jsx-pending">
+
+// tweaks-panel.jsx
+// Reusable Tweaks shell + form-control helpers.
+//
+// Owns the host protocol (listens for __activate_edit_mode / __deactivate_edit_mode,
+// posts __edit_mode_available / __edit_mode_set_keys / __edit_mode_dismissed) so
+// individual prototypes don't re-roll it. Ships a consistent set of controls so you
+// don't hand-draw <input type="range">, segmented radios, steppers, etc.
+//
+// Usage (in an HTML file that loads React + Babel):
+//
+//   const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+//     "primaryColor": "#D97757",
+//     "fontSize": 16,
+//     "density": "regular",
+//     "dark": false
+//   }/*EDITMODE-END*/;
+//
+//   function App() {
+//     const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+//     return (
+//       <div style={{ fontSize: t.fontSize, color: t.primaryColor }}>
+//         Hello
+//         <TweaksPanel>
+//           <TweakSection label="Typography" />
+//           <TweakSlider label="Font size" value={t.fontSize} min={10} max={32} unit="px"
+//                        onChange={(v) => setTweak('fontSize', v)} />
+//           <TweakRadio  label="Density" value={t.density}
+//                        options={['compact', 'regular', 'comfy']}
+//                        onChange={(v) => setTweak('density', v)} />
+//           <TweakSection label="Theme" />
+//           <TweakColor  label="Primary" value={t.primaryColor}
+//                        onChange={(v) => setTweak('primaryColor', v)} />
+//           <TweakToggle label="Dark mode" value={t.dark}
+//                        onChange={(v) => setTweak('dark', v)} />
+//         </TweaksPanel>
+//       </div>
+//     );
+//   }
+//
+// ─────────────────────────────────────────────────────────────────────────────
+
+const __TWEAKS_STYLE = `
+  .twk-panel{position:fixed;right:16px;bottom:16px;z-index:2147483646;width:280px;
+    max-height:calc(100vh - 32px);display:flex;flex-direction:column;
+    background:rgba(250,249,247,.78);color:#29261b;
+    -webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
+    border:.5px solid rgba(255,255,255,.6);border-radius:14px;
+    box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 12px 40px rgba(0,0,0,.18);
+    font:11.5px/1.4 ui-sans-serif,system-ui,-apple-system,sans-serif;overflow:hidden}
+  .twk-hd{display:flex;align-items:center;justify-content:space-between;
+    padding:10px 8px 10px 14px;cursor:move;user-select:none}
+  .twk-hd b{font-size:12px;font-weight:600;letter-spacing:.01em}
+  .twk-x{appearance:none;border:0;background:transparent;color:rgba(41,38,27,.55);
+    width:22px;height:22px;border-radius:6px;cursor:default;font-size:13px;line-height:1}
+  .twk-x:hover{background:rgba(0,0,0,.06);color:#29261b}
+  .twk-body{padding:2px 14px 14px;display:flex;flex-direction:column;gap:10px;
+    overflow-y:auto;overflow-x:hidden;min-height:0;
+    scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.15) transparent}
+  .twk-body::-webkit-scrollbar{width:8px}
+  .twk-body::-webkit-scrollbar-track{background:transparent;margin:2px}
+  .twk-body::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:4px;
+    border:2px solid transparent;background-clip:content-box}
+  .twk-body::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.25);
+    border:2px solid transparent;background-clip:content-box}
+  .twk-row{display:flex;flex-direction:column;gap:5px}
+  .twk-row-h{flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
+  .twk-lbl{display:flex;justify-content:space-between;align-items:baseline;
+    color:rgba(41,38,27,.72)}
+  .twk-lbl>span:first-child{font-weight:500}
+  .twk-val{color:rgba(41,38,27,.5);font-variant-numeric:tabular-nums}
+
+  .twk-sect{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:rgba(41,38,27,.45);padding:10px 0 0}
+  .twk-sect:first-child{padding-top:0}
+
+  .twk-field{appearance:none;width:100%;height:26px;padding:0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;
+    background:rgba(255,255,255,.6);color:inherit;font:inherit;outline:none}
+  .twk-field:focus{border-color:rgba(0,0,0,.25);background:rgba(255,255,255,.85)}
+  select.twk-field{padding-right:22px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='rgba(0,0,0,.5)' d='M0 0h10L5 6z'/></svg>");
+    background-repeat:no-repeat;background-position:right 8px center}
+
+  .twk-slider{appearance:none;-webkit-appearance:none;width:100%;height:4px;margin:6px 0;
+    border-radius:999px;background:rgba(0,0,0,.12);outline:none}
+  .twk-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
+    width:14px;height:14px;border-radius:50%;background:#fff;
+    border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+  .twk-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;
+    background:#fff;border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+
+  .twk-seg{position:relative;display:flex;padding:2px;border-radius:8px;
+    background:rgba(0,0,0,.06);user-select:none}
+  .twk-seg-thumb{position:absolute;top:2px;bottom:2px;border-radius:6px;
+    background:rgba(255,255,255,.9);box-shadow:0 1px 2px rgba(0,0,0,.12);
+    transition:left .15s cubic-bezier(.3,.7,.4,1),width .15s}
+  .twk-seg.dragging .twk-seg-thumb{transition:none}
+  .twk-seg button{appearance:none;position:relative;z-index:1;flex:1;border:0;
+    background:transparent;color:inherit;font:inherit;font-weight:500;min-height:22px;
+    border-radius:6px;cursor:default;padding:4px 6px;line-height:1.2;
+    overflow-wrap:anywhere}
+
+  .twk-toggle{position:relative;width:32px;height:18px;border:0;border-radius:999px;
+    background:rgba(0,0,0,.15);transition:background .15s;cursor:default;padding:0}
+  .twk-toggle[data-on="1"]{background:#34c759}
+  .twk-toggle i{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;
+    background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
+  .twk-toggle[data-on="1"] i{transform:translateX(14px)}
+
+  .twk-num{display:flex;align-items:center;height:26px;padding:0 0 0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;background:rgba(255,255,255,.6)}
+  .twk-num-lbl{font-weight:500;color:rgba(41,38,27,.6);cursor:ew-resize;
+    user-select:none;padding-right:8px}
+  .twk-num input{flex:1;min-width:0;height:100%;border:0;background:transparent;
+    font:inherit;font-variant-numeric:tabular-nums;text-align:right;padding:0 8px 0 0;
+    outline:none;color:inherit;-moz-appearance:textfield}
+  .twk-num input::-webkit-inner-spin-button,.twk-num input::-webkit-outer-spin-button{
+    -webkit-appearance:none;margin:0}
+  .twk-num-unit{padding-right:8px;color:rgba(41,38,27,.45)}
+
+  .twk-btn{appearance:none;height:26px;padding:0 12px;border:0;border-radius:7px;
+    background:rgba(0,0,0,.78);color:#fff;font:inherit;font-weight:500;cursor:default}
+  .twk-btn:hover{background:rgba(0,0,0,.88)}
+  .twk-btn.secondary{background:rgba(0,0,0,.06);color:inherit}
+  .twk-btn.secondary:hover{background:rgba(0,0,0,.1)}
+
+  .twk-swatch{appearance:none;-webkit-appearance:none;width:56px;height:22px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:6px;padding:0;cursor:default;
+    background:transparent;flex-shrink:0}
+  .twk-swatch::-webkit-color-swatch-wrapper{padding:0}
+  .twk-swatch::-webkit-color-swatch{border:0;border-radius:5.5px}
+  .twk-swatch::-moz-color-swatch{border:0;border-radius:5.5px}
+`;
+
+// ── useTweaks ───────────────────────────────────────────────────────────────
+// Single source of truth for tweak values. setTweak persists via the host
+// (__edit_mode_set_keys → host rewrites the EDITMODE block on disk).
+function useTweaks(defaults) {
+  const [values, setValues] = React.useState(defaults);
+  // Accepts either setTweak('key', value) or setTweak({ key: value, ... }) so a
+  // useState-style call doesn't write a "[object Object]" key into the persisted
+  // JSON block.
+  const setTweak = React.useCallback((keyOrEdits, val) => {
+    const edits = typeof keyOrEdits === 'object' && keyOrEdits !== null
+      ? keyOrEdits : { [keyOrEdits]: val };
+    setValues((prev) => ({ ...prev, ...edits }));
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*');
+  }, []);
+  return [values, setTweak];
+}
+
+// ── TweaksPanel ─────────────────────────────────────────────────────────────
+// Floating shell. Registers the protocol listener BEFORE announcing
+// availability — if the announce ran first, the host's activate could land
+// before our handler exists and the toolbar toggle would silently no-op.
+// The close button posts __edit_mode_dismissed so the host's toolbar toggle
+// flips off in lockstep; the host echoes __deactivate_edit_mode back which
+// is what actually hides the panel.
+function TweaksPanel({ title = 'Tweaks', children }) {
+  const [open, setOpen] = React.useState(false);
+  const dragRef = React.useRef(null);
+  const offsetRef = React.useRef({ x: 16, y: 16 });
+  const PAD = 16;
+
+  const clampToViewport = React.useCallback(() => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const w = panel.offsetWidth, h = panel.offsetHeight;
+    const maxRight = Math.max(PAD, window.innerWidth - w - PAD);
+    const maxBottom = Math.max(PAD, window.innerHeight - h - PAD);
+    offsetRef.current = {
+      x: Math.min(maxRight, Math.max(PAD, offsetRef.current.x)),
+      y: Math.min(maxBottom, Math.max(PAD, offsetRef.current.y)),
+    };
+    panel.style.right = offsetRef.current.x + 'px';
+    panel.style.bottom = offsetRef.current.y + 'px';
+  }, []);
+
+  React.useEffect(() => {
+    if (!open) return;
+    clampToViewport();
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', clampToViewport);
+      return () => window.removeEventListener('resize', clampToViewport);
+    }
+    const ro = new ResizeObserver(clampToViewport);
+    ro.observe(document.documentElement);
+    return () => ro.disconnect();
+  }, [open, clampToViewport]);
+
+  React.useEffect(() => {
+    const onMsg = (e) => {
+      const t = e?.data?.type;
+      if (t === '__activate_edit_mode') setOpen(true);
+      else if (t === '__deactivate_edit_mode') setOpen(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+
+  const dismiss = () => {
+    setOpen(false);
+    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+  };
+
+  const onDragStart = (e) => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const r = panel.getBoundingClientRect();
+    const sx = e.clientX, sy = e.clientY;
+    const startRight = window.innerWidth - r.right;
+    const startBottom = window.innerHeight - r.bottom;
+    const move = (ev) => {
+      offsetRef.current = {
+        x: startRight - (ev.clientX - sx),
+        y: startBottom - (ev.clientY - sy),
+      };
+      clampToViewport();
+    };
+    const up = () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', up);
+    };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+  };
+
+  if (!open) return null;
+  return (
+    <>
+      <style>{__TWEAKS_STYLE}</style>
+      <div ref={dragRef} className="twk-panel" data-noncommentable=""
+           style={{ right: offsetRef.current.x, bottom: offsetRef.current.y }}>
+        <div className="twk-hd" onMouseDown={onDragStart}>
+          <b>{title}</b>
+          <button className="twk-x" aria-label="Close tweaks"
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onClick={dismiss}>✕</button>
+        </div>
+        <div className="twk-body">{children}</div>
+      </div>
+    </>
+  );
+}
+
+// ── Layout helpers ──────────────────────────────────────────────────────────
+
+function TweakSection({ label, children }) {
+  return (
+    <>
+      <div className="twk-sect">{label}</div>
+      {children}
+    </>
+  );
+}
+
+function TweakRow({ label, value, children, inline = false }) {
+  return (
+    <div className={inline ? 'twk-row twk-row-h' : 'twk-row'}>
+      <div className="twk-lbl">
+        <span>{label}</span>
+        {value != null && <span className="twk-val">{value}</span>}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+// ── Controls ────────────────────────────────────────────────────────────────
+
+function TweakSlider({ label, value, min = 0, max = 100, step = 1, unit = '', onChange }) {
+  return (
+    <TweakRow label={label} value={`${value}${unit}`}>
+      <input type="range" className="twk-slider" min={min} max={max} step={step}
+             value={value} onChange={(e) => onChange(Number(e.target.value))} />
+    </TweakRow>
+  );
+}
+
+function TweakToggle({ label, value, onChange }) {
+  return (
+    <div className="twk-row twk-row-h">
+      <div className="twk-lbl"><span>{label}</span></div>
+      <button type="button" className="twk-toggle" data-on={value ? '1' : '0'}
+              role="switch" aria-checked={!!value}
+              onClick={() => onChange(!value)}><i /></button>
+    </div>
+  );
+}
+
+function TweakRadio({ label, value, options, onChange }) {
+  const trackRef = React.useRef(null);
+  const [dragging, setDragging] = React.useState(false);
+  const opts = options.map((o) => (typeof o === 'object' ? o : { value: o, label: o }));
+  const idx = Math.max(0, opts.findIndex((o) => o.value === value));
+  const n = opts.length;
+
+  // The active value is read by pointer-move handlers attached for the lifetime
+  // of a drag — ref it so a stale closure doesn't fire onChange for every move.
+  const valueRef = React.useRef(value);
+  valueRef.current = value;
+
+  const segAt = (clientX) => {
+    const r = trackRef.current.getBoundingClientRect();
+    const inner = r.width - 4;
+    const i = Math.floor(((clientX - r.left - 2) / inner) * n);
+    return opts[Math.max(0, Math.min(n - 1, i))].value;
+  };
+
+  const onPointerDown = (e) => {
+    setDragging(true);
+    const v0 = segAt(e.clientX);
+    if (v0 !== valueRef.current) onChange(v0);
+    const move = (ev) => {
+      if (!trackRef.current) return;
+      const v = segAt(ev.clientX);
+      if (v !== valueRef.current) onChange(v);
+    };
+    const up = () => {
+      setDragging(false);
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+
+  return (
+    <TweakRow label={label}>
+      <div ref={trackRef} role="radiogroup" onPointerDown={onPointerDown}
+           className={dragging ? 'twk-seg dragging' : 'twk-seg'}>
+        <div className="twk-seg-thumb"
+             style={{ left: `calc(2px + ${idx} * (100% - 4px) / ${n})`,
+                      width: `calc((100% - 4px) / ${n})` }} />
+        {opts.map((o) => (
+          <button key={o.value} type="button" role="radio" aria-checked={o.value === value}>
+            {o.label}
+          </button>
+        ))}
+      </div>
+    </TweakRow>
+  );
+}
+
+function TweakSelect({ label, value, options, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <select className="twk-field" value={value} onChange={(e) => onChange(e.target.value)}>
+        {options.map((o) => {
+          const v = typeof o === 'object' ? o.value : o;
+          const l = typeof o === 'object' ? o.label : o;
+          return <option key={v} value={v}>{l}</option>;
+        })}
+      </select>
+    </TweakRow>
+  );
+}
+
+function TweakText({ label, value, placeholder, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <input className="twk-field" type="text" value={value} placeholder={placeholder}
+             onChange={(e) => onChange(e.target.value)} />
+    </TweakRow>
+  );
+}
+
+function TweakNumber({ label, value, min, max, step = 1, unit = '', onChange }) {
+  const clamp = (n) => {
+    if (min != null && n < min) return min;
+    if (max != null && n > max) return max;
+    return n;
+  };
+  const startRef = React.useRef({ x: 0, val: 0 });
+  const onScrubStart = (e) => {
+    e.preventDefault();
+    startRef.current = { x: e.clientX, val: value };
+    const decimals = (String(step).split('.')[1] || '').length;
+    const move = (ev) => {
+      const dx = ev.clientX - startRef.current.x;
+      const raw = startRef.current.val + dx * step;
+      const snapped = Math.round(raw / step) * step;
+      onChange(clamp(Number(snapped.toFixed(decimals))));
+    };
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+  return (
+    <div className="twk-num">
+      <span className="twk-num-lbl" onPointerDown={onScrubStart}>{label}</span>
+      <input type="number" value={value} min={min} max={max} step={step}
+             onChange={(e) => onChange(clamp(Number(e.target.value)))} />
+      {unit && <span className="twk-num-unit">{unit}</span>}
+    </div>
+  );
+}
+
+function TweakColor({ label, value, onChange }) {
+  return (
+    <div className="twk-row twk-row-h">
+      <div className="twk-lbl"><span>{label}</span></div>
+      <input type="color" className="twk-swatch" value={value}
+             onChange={(e) => onChange(e.target.value)} />
+    </div>
+  );
+}
+
+function TweakButton({ label, onClick, secondary = false }) {
+  return (
+    <button type="button" className={secondary ? 'twk-btn secondary' : 'twk-btn'}
+            onClick={onClick}>{label}</button>
+  );
+}
+
+Object.assign(window, {
+  useTweaks, TweaksPanel, TweakSection, TweakRow,
+  TweakSlider, TweakToggle, TweakRadio, TweakSelect,
+  TweakText, TweakNumber, TweakColor, TweakButton,
+});
+
+</script>
+  <script type="text/jsx-pending">
+// Main app — RL1 Weapon Requirement Solver
+// Single-page layout: weapon picker top, slot grid below, live totals on the right.
+
+const { useState, useMemo, useEffect, useRef } = React;
+const { WEAPONS, TALISMANS, TEARS, ARMOR, RUNES, STATS } = window.RL1;
+const { solve, compute } = window.RL1Solver;
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "theme": "dark",
+  "showFlavor": true,
+  "twoHandGlobal": false
+}/*EDITMODE-END*/;
+
+const STAT_HUE = {
+  STR: 28,   // amber
+  DEX: 145,  // moss
+  INT: 220,  // cold blue
+  FTH: 50,   // pale gold
+  ARC: 305,  // violet
+};
+const STAT_LABEL = { STR: 'Strength', DEX: 'Dexterity', INT: 'Intelligence', FTH: 'Faith', ARC: 'Arcane' };
+const BASE_STATS = { STR: 10, DEX: 10, INT: 10, FTH: 10, ARC: 10 };
+
+// ── helpers ─────────────────────────────────────────────────────────────────
+function fmtBonus(bonus) {
+  return STATS.filter(k => bonus[k]).map(k => `+${bonus[k]} ${k}`).join(' · ');
+}
+
+function sumLoadout(items) {
+  const out = { STR: 0, DEX: 0, INT: 0, FTH: 0, ARC: 0 };
+  for (const it of items) {
+    if (!it || !it.bonus) continue;
+    for (const k of STATS) if (it.bonus[k]) out[k] += it.bonus[k];
+  }
+  return out;
+}
+
+// ── Stat pip — small bar showing have/need ──────────────────────────────────
+function StatPip({ stat, have, need, twoHand }) {
+  const eff = stat === 'STR' && twoHand ? Math.floor(have * 1.5) : have;
+  const ok = eff >= need;
+  const bonus = eff - 10;
+  const hue = STAT_HUE[stat];
+  return (
+    <div className="stat-pip" data-ok={ok ? '1' : '0'}>
+      <div className="stat-pip-label">{stat}</div>
+      <div className="stat-pip-num">
+        <span className="stat-eff" style={{ color: `oklch(0.78 0.14 ${hue})` }}>{eff}</span>
+        <span className="stat-need"> / {need || '—'}</span>
+      </div>
+      {bonus > 0 && <div className="stat-pip-bonus">+{bonus}{stat==='STR'&&twoHand?' (2H)':''}</div>}
+    </div>
+  );
+}
+
+// ── Slot card — for talisman/tear/armor slots ───────────────────────────────
+function SlotCard({ kind, item, onClear, onClick, locked, showFlavor }) {
+  const empty = !item;
+  const slotLabel = kind === 'talisman' ? 'Talisman' : kind === 'tear' ? 'Crystal Tear' :
+                    kind === 'armor' ? `Armor · ${locked || 'any'}` : kind;
+  return (
+    <button className="slot" data-empty={empty?'1':'0'} data-kind={kind} onClick={onClick}>
+      <div className="slot-frame">
+        <div className="slot-corner tl" /><div className="slot-corner tr" />
+        <div className="slot-corner bl" /><div className="slot-corner br" />
+        {empty ? (
+          <div className="slot-empty">
+            <div className="slot-icon" data-kind={kind} />
+            <div className="slot-empty-label">{slotLabel}</div>
+            <div className="slot-empty-hint">tap to equip</div>
+          </div>
+        ) : (
+          <div className="slot-filled">
+            <div className="slot-name">{item.name}</div>
+            <div className="slot-bonus">{fmtBonus(item.bonus)}</div>
+            {showFlavor && item.flavor && <div className="slot-flavor">{item.flavor}</div>}
+            <div className="slot-actions">
+              <span className="slot-clear" onClick={(e) => { e.stopPropagation(); onClear(); }}>remove</span>
+            </div>
+          </div>
+        )}
+      </div>
+    </button>
+  );
+}
+
+// ── Picker modal — choose an item for a slot ────────────────────────────────
+function Picker({ open, kind, slotConstraint, excludeIds, onPick, onClose }) {
+  if (!open) return null;
+  let pool = [];
+  if (kind === 'talisman') pool = TALISMANS;
+  else if (kind === 'tear') pool = TEARS;
+  else if (kind === 'armor') pool = ARMOR.filter(a => !slotConstraint || a.slot === slotConstraint);
+
+  const grouped = pool.filter(it => !excludeIds.has(it.id));
+
+  return (
+    <div className="picker-backdrop" onClick={onClose}>
+      <div className="picker" onClick={(e) => e.stopPropagation()}>
+        <div className="picker-hd">
+          <div className="picker-title">
+            Equip {kind === 'tear' ? 'Crystal Tear' : kind === 'talisman' ? 'Talisman' : `${slotConstraint || 'Armor'}`}
+          </div>
+          <button className="picker-x" onClick={onClose}>✕</button>
+        </div>
+        <div className="picker-body">
+          {grouped.length === 0 && <div className="picker-empty">No items match this slot.</div>}
+          {grouped.map(it => (
+            <button key={it.id} className="picker-item" onClick={() => onPick(it)}>
+              <div className="picker-item-name">{it.name}</div>
+              <div className="picker-item-bonus">{fmtBonus(it.bonus)}</div>
+              {it.flavor && <div className="picker-item-flavor">{it.flavor}</div>}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Weapon picker — searchable dropdown ─────────────────────────────────────
+function WeaponPicker({ weapon, onChange }) {
+  const [open, setOpen] = useState(false);
+  const [q, setQ] = useState('');
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDoc = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    document.addEventListener('mousedown', onDoc);
+    return () => document.removeEventListener('mousedown', onDoc);
+  }, [open]);
+
+  const filtered = q.trim()
+    ? WEAPONS.filter(w => (w.name + ' ' + w.cat).toLowerCase().includes(q.toLowerCase()))
+    : WEAPONS;
+
+  return (
+    <div className="weapon-picker" ref={ref}>
+      <button className="weapon-picker-btn" onClick={() => setOpen(!open)}>
+        <div className="weapon-picker-cat">{weapon.cat}</div>
+        <div className="weapon-picker-name">{weapon.name}</div>
+        <div className="weapon-picker-caret">▾</div>
+      </button>
+      {open && (
+        <div className="weapon-picker-pop">
+          <input className="weapon-picker-search" placeholder="Search weapons…"
+                 value={q} onChange={(e) => setQ(e.target.value)} autoFocus />
+          <div className="weapon-picker-list">
+            {filtered.map(w => (
+              <button key={w.id} className="weapon-picker-row"
+                      data-active={w.id === weapon.id ? '1' : '0'}
+                      onClick={() => { onChange(w); setOpen(false); setQ(''); }}>
+                <div className="wp-name">{w.name}</div>
+                <div className="wp-cat">{w.cat}</div>
+                <div className="wp-req">
+                  {STATS.filter(k => w.req[k]).map(k => (
+                    <span key={k} className="wp-req-pill" style={{ '--hue': STAT_HUE[k] }}>
+                      {w.req[k]} {k}
+                    </span>
+                  ))}
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Main app ────────────────────────────────────────────────────────────────
+function App() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const [weapon, setWeapon] = useState(WEAPONS[5]); // greatsword by default for interesting math
+  const [twoHand, setTwoHand] = useState(false);
+  const [rune, setRune] = useState(RUNES[0]);
+  const [talismans, setTalismans] = useState([null, null, null, null]);
+  const [tears, setTears] = useState([null, null]);
+  const [armor, setArmor] = useState({ head: null, chest: null, arms: null, legs: null });
+  const [picker, setPicker] = useState(null); // { kind, slot, idx }
+
+  // Sync global two-hand tweak → state
+  useEffect(() => { setTwoHand(t.twoHandGlobal); }, [t.twoHandGlobal]);
+
+  const equippedItems = [
+    ...talismans.filter(Boolean),
+    ...tears.filter(Boolean),
+    ...Object.values(armor).filter(Boolean),
+  ];
+
+  const haveStats = useMemo(() => {
+    const total = sumLoadout([
+      { bonus: BASE_STATS },
+      { bonus: rune.bonus || {} },
+      ...equippedItems,
+    ]);
+    return total;
+  }, [rune, talismans, tears, armor]);
+
+  const meetsAll = STATS.every(k => {
+    const eff = k === 'STR' && twoHand ? Math.floor(haveStats[k] * 1.5) : haveStats[k];
+    return eff >= (weapon.req[k] || 0);
+  });
+
+  const usedTalismanIds = new Set(talismans.filter(Boolean).map(x => x.id));
+  const usedTearIds = new Set(tears.filter(Boolean).map(x => x.id));
+
+  // Open the picker
+  const openPicker = (kind, slot, idx) => setPicker({ kind, slot, idx });
+  const closePicker = () => setPicker(null);
+  const handlePick = (item) => {
+    const { kind, slot, idx } = picker;
+    if (kind === 'talisman') {
+      const next = [...talismans]; next[idx] = item; setTalismans(next);
+    } else if (kind === 'tear') {
+      const next = [...tears]; next[idx] = item; setTears(next);
+    } else if (kind === 'armor') {
+      setArmor({ ...armor, [slot]: item });
+    }
+    closePicker();
+  };
+
+  const clearTalisman = (idx) => { const n = [...talismans]; n[idx] = null; setTalismans(n); };
+  const clearTear = (idx) => { const n = [...tears]; n[idx] = null; setTears(n); };
+  const clearArmor = (slot) => setArmor({ ...armor, [slot]: null });
+
+  const clearAll = () => {
+    setTalismans([null, null, null, null]);
+    setTears([null, null]);
+    setArmor({ head: null, chest: null, arms: null, legs: null });
+    setRune(RUNES[0]);
+    setTwoHand(t.twoHandGlobal);
+  };
+
+  // Auto-solve
+  const handleSolve = () => {
+    const result = solve(weapon, { forceTwoHand: t.twoHandGlobal ? true : undefined });
+    if (!result.solvable) {
+      // tag visually — can't satisfy
+      return;
+    }
+    const lo = result.loadout;
+    setRune(lo.rune);
+    setTwoHand(lo.twoHand);
+    const tals = [null, null, null, null];
+    lo.talismans.forEach((it, i) => { tals[i] = it; });
+    setTalismans(tals);
+    const trs = [null, null];
+    lo.tears.forEach((it, i) => { trs[i] = it; });
+    setTears(trs);
+    const arm = { head: null, chest: null, arms: null, legs: null };
+    lo.armor.forEach((it) => { arm[it.slot] = it; });
+    setArmor(arm);
+  };
+
+  const solveCheck = useMemo(() => solve(weapon, { forceTwoHand: t.twoHandGlobal ? true : undefined }), [weapon, t.twoHandGlobal]);
+
+  return (
+    <div className="app" data-theme={t.theme}>
+      <header className="topbar">
+        <div className="brand">
+          <div className="brand-mark">◇</div>
+          <div className="brand-text">
+            <div className="brand-title">RL1 Weapon Audit</div>
+            <div className="brand-sub">Rune Level 1 · base stats 10/10/10/10/10</div>
+          </div>
+        </div>
+        <div className="topbar-actions">
+          <button className="btn-ghost" onClick={clearAll}>Clear</button>
+          <button className="btn-primary" onClick={handleSolve} disabled={!solveCheck.solvable}>
+            {solveCheck.solvable ? 'Auto-solve' : 'No solution'}
+          </button>
+        </div>
+      </header>
+
+      <section className="weapon-bar">
+        <div className="weapon-bar-left">
+          <div className="weapon-bar-eyebrow">Weapon under audit</div>
+          <WeaponPicker weapon={weapon} onChange={setWeapon} />
+        </div>
+        <div className="weapon-bar-right">
+          <div className="weapon-bar-eyebrow">Requirements</div>
+          <div className="req-row">
+            {STATS.map(k => weapon.req[k] ? (
+              <div key={k} className="req-chip" style={{ '--hue': STAT_HUE[k] }}>
+                <span className="req-chip-stat">{k}</span>
+                <span className="req-chip-num">{weapon.req[k]}</span>
+              </div>
+            ) : null)}
+          </div>
+        </div>
+      </section>
+
+      <main className="main-grid">
+        {/* LEFT: slot grid */}
+        <div className="slot-region">
+          <div className="region">
+            <div className="region-hd">
+              <h3>Talismans</h3>
+              <div className="region-meta">{talismans.filter(Boolean).length}/4</div>
+            </div>
+            <div className="grid-4">
+              {talismans.map((it, i) => (
+                <SlotCard key={i} kind="talisman" item={it} showFlavor={t.showFlavor}
+                          onClick={() => openPicker('talisman', null, i)}
+                          onClear={() => clearTalisman(i)} />
+              ))}
+            </div>
+          </div>
+
+          <div className="region">
+            <div className="region-hd">
+              <h3>Crystal Tears <span className="region-aside">— mixed into the flask</span></h3>
+              <div className="region-meta">{tears.filter(Boolean).length}/2</div>
+            </div>
+            <div className="grid-2">
+              {tears.map((it, i) => (
+                <SlotCard key={i} kind="tear" item={it} showFlavor={t.showFlavor}
+                          onClick={() => openPicker('tear', null, i)}
+                          onClear={() => clearTear(i)} />
+              ))}
+            </div>
+          </div>
+
+          <div className="region">
+            <div className="region-hd">
+              <h3>Armor <span className="region-aside">— stat-bearing pieces only</span></h3>
+              <div className="region-meta">{Object.values(armor).filter(Boolean).length}/4</div>
+            </div>
+            <div className="grid-4">
+              {['head','chest','arms','legs'].map(slot => (
+                <SlotCard key={slot} kind="armor" locked={slot} item={armor[slot]} showFlavor={t.showFlavor}
+                          onClick={() => openPicker('armor', slot, null)}
+                          onClear={() => clearArmor(slot)} />
+              ))}
+            </div>
+          </div>
+
+          <div className="region">
+            <div className="region-hd"><h3>Modifiers</h3></div>
+            <div className="modifier-row">
+              <button className="mod-card" data-on={twoHand ? '1' : '0'} onClick={() => setTwoHand(!twoHand)}>
+                <div className="mod-card-title">Two-handing</div>
+                <div className="mod-card-sub">×1.5 STR (rounded down)</div>
+                <div className="mod-card-state">{twoHand ? 'On' : 'Off'}</div>
+              </button>
+              <div className="mod-card mod-rune">
+                <div className="mod-card-title">Great Rune</div>
+                <select className="rune-select" value={rune.id}
+                        onChange={(e) => setRune(RUNES.find(r => r.id === e.target.value))}>
+                  {RUNES.map(r => (
+                    <option key={r.id} value={r.id}>
+                      {r.name}{r.bonus && Object.keys(r.bonus).length ? ` (${fmtBonus(r.bonus)})` : ''}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT: live totals */}
+        <aside className="totals">
+          <div className={`verdict ${meetsAll ? 'verdict-ok' : 'verdict-no'}`}>
+            <div className="verdict-mark">{meetsAll ? '✓' : '✕'}</div>
+            <div className="verdict-text">
+              <div className="verdict-line1">{meetsAll ? 'Wieldable' : 'Cannot wield'}</div>
+              <div className="verdict-line2">
+                {meetsAll
+                  ? 'All requirements met with current loadout.'
+                  : `Short on ${STATS.filter(k => {
+                      const eff = k==='STR'&&twoHand ? Math.floor(haveStats[k]*1.5) : haveStats[k];
+                      return eff < (weapon.req[k]||0);
+                    }).join(', ')}.`}
+              </div>
+            </div>
+          </div>
+
+          <div className="totals-block">
+            <div className="totals-hd">Effective stats</div>
+            <div className="stat-pips">
+              {STATS.map(k => (
+                <StatPip key={k} stat={k} have={haveStats[k]} need={weapon.req[k] || 0} twoHand={twoHand} />
+              ))}
+            </div>
+          </div>
+
+          <div className="totals-block breakdown">
+            <div className="totals-hd">Breakdown</div>
+            <div className="breakdown-row"><span>Base (RL1)</span><span>10 / 10 / 10 / 10 / 10</span></div>
+            {rune.bonus && Object.keys(rune.bonus).length > 0 && (
+              <div className="breakdown-row"><span>{rune.name}</span><span>{fmtBonus(rune.bonus)}</span></div>
+            )}
+            {tears.filter(Boolean).map((it, i) => (
+              <div key={'t'+i} className="breakdown-row"><span>{it.name}</span><span>{fmtBonus(it.bonus)}</span></div>
+            ))}
+            {talismans.filter(Boolean).map((it, i) => (
+              <div key={'tl'+i} className="breakdown-row"><span>{it.name}</span><span>{fmtBonus(it.bonus)}</span></div>
+            ))}
+            {Object.values(armor).filter(Boolean).map((it, i) => (
+              <div key={'a'+i} className="breakdown-row"><span>{it.name}</span><span>{fmtBonus(it.bonus)}</span></div>
+            ))}
+            {twoHand && weapon.req.STR > 0 && (
+              <div className="breakdown-row breakdown-mult">
+                <span>Two-handing</span><span>STR × 1.5</span>
+              </div>
+            )}
+            {equippedItems.length === 0 && !twoHand && rune.id === 'rune_none' && (
+              <div className="breakdown-row breakdown-empty"><span>No modifiers active</span><span>—</span></div>
+            )}
+          </div>
+
+          <div className="totals-foot">
+            {solveCheck.solvable
+              ? <span>A valid loadout exists for this weapon at RL1.</span>
+              : <span className="totals-foot-no">No combination of slots can meet this weapon's requirements at RL1.</span>}
+          </div>
+        </aside>
+      </main>
+
+      <Picker open={!!picker}
+              kind={picker?.kind}
+              slotConstraint={picker?.slot}
+              excludeIds={picker?.kind === 'talisman' ? usedTalismanIds : picker?.kind === 'tear' ? usedTearIds : new Set()}
+              onPick={handlePick}
+              onClose={closePicker} />
+
+      <TweaksPanel title="Tweaks">
+        <TweakSection label="Theme" />
+        <TweakRadio label="Color theme" value={t.theme}
+                    options={['dark','parchment','utility']}
+                    onChange={(v) => setTweak('theme', v)} />
+        <TweakSection label="Display" />
+        <TweakToggle label="Show flavor text" value={t.showFlavor}
+                     onChange={(v) => setTweak('showFlavor', v)} />
+        <TweakSection label="Defaults" />
+        <TweakToggle label="Two-hand by default" value={t.twoHandGlobal}
+                     onChange={(v) => setTweak('twoHandGlobal', v)} />
+      </TweaksPanel>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+</script>
+
+<script>
+// Suppress benign ResizeObserver loop warning that fires from the tweaks panel
+window.addEventListener('error', (e) => {
+  if (e.message && e.message.includes('ResizeObserver loop')) {
+    e.stopImmediatePropagation();
+  }
+});
+(function () {
+  if (window.__rl1_bootstrapped) return;
+  window.__rl1_bootstrapped = true;
+  function run() {
+    if (!window.Babel) { setTimeout(run, 30); return; }
+    const scripts = document.querySelectorAll('script[type="text/jsx-pending"]');
+    let combined = '';
+    for (const s of scripts) {
+      if (s.dataset.done) continue;
+      s.dataset.done = '1';
+      try { combined += Babel.transform(s.textContent, { presets: ['react'] }).code + '\n;\n'; }
+      catch (e) { console.error('Babel error:', e); return; }
+    }
+    if (!combined) return;
+    // Wrap in IIFE to keep top-level consts out of global scope, and expose what we need
+    const ns = document.createElement('script');
+    ns.textContent = '(function(){\n' + combined + '\n})();';
+    document.body.appendChild(ns);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+  else run();
+})();
+</script>
+</body>
+</html>

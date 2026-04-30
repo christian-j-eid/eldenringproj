@@ -1,0 +1,1057 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RL1 — Design Components</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+/* RL1 Weapon Audit — styles
+   Themes: dark (default), parchment, utility */
+
+:root {
+  --bg: #0e0d0a;
+  --bg-2: #16140f;
+  --bg-3: #1d1a14;
+  --line: rgba(196, 165, 99, 0.14);
+  --line-strong: rgba(196, 165, 99, 0.28);
+  --ink: #e7dcc1;
+  --ink-2: rgba(231, 220, 193, 0.72);
+  --ink-3: rgba(231, 220, 193, 0.45);
+  --ink-4: rgba(231, 220, 193, 0.22);
+  --gold: #c4a563;
+  --gold-2: #ddbd72;
+  --gold-dim: rgba(196, 165, 99, 0.5);
+  --ok: #8ec07a;
+  --no: #c46a5a;
+  --shadow-1: 0 1px 0 rgba(255,255,255,0.04) inset;
+  --shadow-2: 0 24px 60px rgba(0,0,0,0.5);
+  --serif: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
+  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+[data-theme="parchment"] {
+  --bg: #f3ead7;
+  --bg-2: #ece2c9;
+  --bg-3: #e3d7b9;
+  --line: rgba(80, 50, 20, 0.16);
+  --line-strong: rgba(80, 50, 20, 0.32);
+  --ink: #2a1f0f;
+  --ink-2: rgba(42, 31, 15, 0.72);
+  --ink-3: rgba(42, 31, 15, 0.5);
+  --ink-4: rgba(42, 31, 15, 0.22);
+  --gold: #8a6a2a;
+  --gold-2: #6e5320;
+  --gold-dim: rgba(138, 106, 42, 0.4);
+  --ok: #4a7338;
+  --no: #9a3e2a;
+  --shadow-2: 0 10px 30px rgba(80, 50, 20, 0.18);
+}
+
+[data-theme="utility"] {
+  --bg: #fafaf9;
+  --bg-2: #f3f3f1;
+  --bg-3: #ebebe8;
+  --line: rgba(0, 0, 0, 0.08);
+  --line-strong: rgba(0, 0, 0, 0.18);
+  --ink: #1a1a1a;
+  --ink-2: rgba(26, 26, 26, 0.72);
+  --ink-3: rgba(26, 26, 26, 0.5);
+  --ink-4: rgba(26, 26, 26, 0.18);
+  --gold: #1a1a1a;
+  --gold-2: #000;
+  --gold-dim: rgba(0,0,0,0.4);
+  --ok: #357a3a;
+  --no: #b3341e;
+  --serif: 'Inter Tight', sans-serif;
+  --shadow-2: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* dark theme: vignetted bg with subtle parchment grain */
+[data-theme="dark"] body, .app[data-theme="dark"] {
+  background:
+    radial-gradient(circle at 50% 0%, #1c1812 0%, #0e0d0a 55%, #07060500 100%),
+    var(--bg);
+}
+
+.app {
+  min-height: 100vh;
+  background: inherit;
+}
+.app[data-theme="dark"] {
+  background:
+    radial-gradient(circle at 50% -10%, #1f1a12 0%, #0e0d0a 60%);
+}
+
+/* ── topbar ─────────────────────────────────────────────────────── */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 36px; border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--bg-2), transparent 30%), transparent);
+  position: sticky; top: 0; z-index: 5; backdrop-filter: blur(8px);
+}
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand-mark {
+  width: 36px; height: 36px; display: grid; place-items: center;
+  font-family: var(--serif); font-size: 22px; color: var(--gold);
+  border: 1px solid var(--line-strong); border-radius: 4px;
+  background: linear-gradient(180deg, var(--bg-3), var(--bg-2));
+}
+.brand-title {
+  font-family: var(--serif); font-size: 22px; font-weight: 500;
+  letter-spacing: 0.01em; color: var(--ink);
+}
+.brand-sub {
+  font-family: var(--mono); font-size: 11px; color: var(--ink-3);
+  letter-spacing: 0.05em; text-transform: uppercase;
+}
+
+.topbar-actions { display: flex; gap: 10px; }
+.btn-ghost, .btn-primary {
+  appearance: none; border: 1px solid var(--line-strong);
+  background: transparent; color: var(--ink-2);
+  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  letter-spacing: 0.02em; padding: 9px 16px; border-radius: 2px;
+  cursor: pointer; transition: all 0.15s;
+}
+.btn-ghost:hover { color: var(--ink); border-color: var(--gold-dim); }
+.btn-primary {
+  background: linear-gradient(180deg, var(--gold-2), var(--gold));
+  color: #1a1408; border-color: var(--gold);
+  text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em;
+  padding: 10px 20px; font-weight: 600;
+}
+[data-theme="utility"] .btn-primary { background: #1a1a1a; color: #fff; }
+.btn-primary:hover:not(:disabled) { filter: brightness(1.1); }
+.btn-primary:disabled {
+  background: transparent; color: var(--no); border-color: var(--no);
+  cursor: not-allowed; opacity: 0.6;
+}
+
+/* ── weapon bar ─────────────────────────────────────────────────── */
+.weapon-bar {
+  display: grid; grid-template-columns: 1.2fr 1fr;
+  gap: 32px; padding: 28px 36px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--bg-2), transparent 50%), transparent);
+}
+.weapon-bar-eyebrow {
+  font-family: var(--mono); font-size: 10px; color: var(--ink-3);
+  text-transform: uppercase; letter-spacing: 0.16em; margin-bottom: 8px;
+}
+.weapon-picker { position: relative; }
+.weapon-picker-btn {
+  width: 100%; display: flex; align-items: baseline; gap: 14px;
+  padding: 6px 0; background: none; border: 0; color: inherit;
+  text-align: left; cursor: pointer;
+  border-bottom: 1px solid var(--line-strong);
+}
+.weapon-picker-cat {
+  font-family: var(--mono); font-size: 11px; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 0.14em;
+}
+.weapon-picker-name {
+  flex: 1; font-family: var(--serif); font-size: 32px; font-weight: 500;
+  letter-spacing: 0.005em; color: var(--ink);
+}
+.weapon-picker-caret { color: var(--ink-3); font-size: 14px; }
+
+.weapon-picker-pop {
+  position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 20;
+  background: var(--bg-2); border: 1px solid var(--line-strong);
+  border-radius: 4px; box-shadow: var(--shadow-2);
+  display: flex; flex-direction: column; max-height: 60vh; overflow: hidden;
+}
+.weapon-picker-search {
+  border: 0; background: var(--bg-3); color: var(--ink);
+  padding: 12px 16px; font: inherit; outline: none;
+  border-bottom: 1px solid var(--line);
+}
+.weapon-picker-search::placeholder { color: var(--ink-3); }
+.weapon-picker-list { overflow: auto; }
+.weapon-picker-row {
+  display: grid; grid-template-columns: 1.5fr 1fr 1.4fr; gap: 14px; align-items: center;
+  width: 100%; padding: 10px 16px; background: none; border: 0;
+  color: inherit; text-align: left; cursor: pointer;
+  border-bottom: 1px solid var(--line);
+}
+.weapon-picker-row:hover { background: var(--bg-3); }
+.weapon-picker-row[data-active="1"] { background: color-mix(in oklab, var(--gold) 10%, transparent); }
+.wp-name { font-family: var(--serif); font-size: 17px; }
+.wp-cat { font-family: var(--mono); font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.1em; }
+.wp-req { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.wp-req-pill {
+  font-family: var(--mono); font-size: 10px; padding: 2px 6px;
+  border: 1px solid color-mix(in oklab, oklch(0.78 0.14 var(--hue, 50)), transparent 60%);
+  color: oklch(0.78 0.14 var(--hue, 50));
+  border-radius: 2px; letter-spacing: 0.04em;
+}
+
+.req-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-start; padding-top: 8px; }
+.req-chip {
+  display: inline-flex; align-items: baseline; gap: 8px;
+  padding: 8px 14px; border: 1px solid color-mix(in oklab, oklch(0.78 0.14 var(--hue)), transparent 65%);
+  background: color-mix(in oklab, oklch(0.78 0.14 var(--hue)), transparent 92%);
+  border-radius: 2px;
+}
+.req-chip-stat {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+  color: oklch(0.78 0.14 var(--hue)); text-transform: uppercase;
+}
+.req-chip-num {
+  font-family: var(--serif); font-size: 22px; font-weight: 500;
+  color: oklch(0.85 0.12 var(--hue));
+}
+
+/* ── main grid ──────────────────────────────────────────────────── */
+.main-grid {
+  display: grid; grid-template-columns: 1fr 360px;
+  gap: 32px; padding: 28px 36px 60px;
+  align-items: start;
+}
+
+@media (max-width: 1100px) {
+  .main-grid { grid-template-columns: 1fr; }
+}
+
+/* ── slot regions ──────────────────────────────────────────────── */
+.slot-region { display: flex; flex-direction: column; gap: 28px; }
+.region-hd {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding-bottom: 10px; margin-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.region h3 {
+  margin: 0; font-family: var(--serif); font-weight: 500;
+  font-size: 20px; letter-spacing: 0.01em;
+}
+.region-aside { color: var(--ink-3); font-size: 14px; font-style: italic; font-family: var(--serif); }
+.region-meta {
+  font-family: var(--mono); font-size: 11px; color: var(--ink-3);
+  letter-spacing: 0.08em;
+}
+
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+@media (max-width: 760px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── slot card ─────────────────────────────────────────────────── */
+.slot {
+  appearance: none; border: 0; padding: 0; background: none;
+  color: inherit; text-align: left; cursor: pointer; width: 100%;
+  font-family: inherit;
+}
+.slot-frame {
+  position: relative; padding: 16px 14px; min-height: 140px;
+  background: linear-gradient(180deg, var(--bg-2), var(--bg));
+  border: 1px solid var(--line);
+  transition: all 0.15s;
+}
+.slot:hover .slot-frame {
+  border-color: var(--gold-dim);
+  background: linear-gradient(180deg, var(--bg-3), var(--bg-2));
+}
+.slot[data-empty="1"] .slot-frame { border-style: dashed; }
+
+.slot-corner {
+  position: absolute; width: 8px; height: 8px;
+  border-color: var(--gold-dim); border-style: solid; border-width: 0;
+}
+.slot-corner.tl { top: 4px; left: 4px; border-top-width: 1px; border-left-width: 1px; }
+.slot-corner.tr { top: 4px; right: 4px; border-top-width: 1px; border-right-width: 1px; }
+.slot-corner.bl { bottom: 4px; left: 4px; border-bottom-width: 1px; border-left-width: 1px; }
+.slot-corner.br { bottom: 4px; right: 4px; border-bottom-width: 1px; border-right-width: 1px; }
+
+.slot-empty {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  height: 100%; min-height: 110px; gap: 8px; color: var(--ink-3);
+}
+.slot-icon {
+  width: 26px; height: 26px; border: 1px solid var(--ink-4);
+  position: relative;
+}
+.slot-icon[data-kind="talisman"] { border-radius: 50%; }
+.slot-icon[data-kind="tear"] {
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  border-color: var(--ink-4);
+}
+.slot-icon[data-kind="armor"] {
+  border-radius: 0; transform: rotate(45deg);
+  width: 22px; height: 22px;
+}
+.slot-empty-label {
+  font-family: var(--mono); font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.14em; color: var(--ink-3);
+}
+.slot-empty-hint { font-size: 11px; color: var(--ink-4); font-style: italic; }
+
+.slot-filled { display: flex; flex-direction: column; gap: 6px; height: 100%; }
+.slot-name {
+  font-family: var(--serif); font-size: 17px; font-weight: 500;
+  color: var(--ink); line-height: 1.2; letter-spacing: 0.005em;
+}
+.slot-bonus {
+  font-family: var(--mono); font-size: 10.5px; color: var(--gold);
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.slot-flavor {
+  font-family: var(--serif); font-style: italic; font-size: 12.5px;
+  color: var(--ink-3); line-height: 1.4; margin-top: 2px;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.slot-actions { margin-top: auto; padding-top: 6px; }
+.slot-clear {
+  font-family: var(--mono); font-size: 10px; color: var(--ink-3);
+  text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer;
+}
+.slot-clear:hover { color: var(--no); }
+
+/* ── modifier row ───────────────────────────────────────────────── */
+.modifier-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.mod-card {
+  appearance: none; background: var(--bg-2); border: 1px solid var(--line);
+  padding: 14px 16px; text-align: left; color: inherit; cursor: pointer;
+  display: flex; flex-direction: column; gap: 4px;
+  font-family: inherit;
+}
+.mod-card[data-on="1"] {
+  border-color: var(--gold);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--gold) 12%, var(--bg-2)), var(--bg-2));
+}
+.mod-card-title { font-family: var(--serif); font-size: 16px; }
+.mod-card-sub { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); letter-spacing: 0.08em; text-transform: uppercase; }
+.mod-card-state {
+  margin-top: 6px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+  color: var(--ink-2);
+}
+.mod-card[data-on="1"] .mod-card-state { color: var(--gold); }
+.mod-rune { cursor: default; }
+.rune-select {
+  margin-top: 6px;
+  appearance: none; -webkit-appearance: none;
+  background: var(--bg-3); color: var(--ink);
+  border: 1px solid var(--line); padding: 7px 10px; font: inherit; font-size: 13px;
+  font-family: var(--serif); cursor: pointer; border-radius: 0;
+}
+
+/* ── totals (right rail) ───────────────────────────────────────── */
+.totals {
+  position: sticky; top: 100px;
+  display: flex; flex-direction: column; gap: 18px;
+}
+.verdict {
+  display: flex; gap: 14px; padding: 18px 18px;
+  border: 1px solid var(--line-strong); align-items: center;
+}
+.verdict-ok {
+  border-color: color-mix(in oklab, var(--ok), transparent 50%);
+  background: color-mix(in oklab, var(--ok), transparent 92%);
+}
+.verdict-no {
+  border-color: color-mix(in oklab, var(--no), transparent 50%);
+  background: color-mix(in oklab, var(--no), transparent 92%);
+}
+.verdict-mark {
+  width: 40px; height: 40px; display: grid; place-items: center;
+  font-size: 22px; flex-shrink: 0;
+  border: 1px solid currentColor; border-radius: 50%;
+}
+.verdict-ok .verdict-mark { color: var(--ok); }
+.verdict-no .verdict-mark { color: var(--no); }
+.verdict-line1 {
+  font-family: var(--serif); font-size: 22px; line-height: 1.1;
+}
+.verdict-line2 {
+  font-size: 12.5px; color: var(--ink-2); margin-top: 2px;
+}
+
+.totals-block {
+  border: 1px solid var(--line); padding: 14px 16px;
+  background: var(--bg-2);
+}
+.totals-hd {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px;
+  padding-bottom: 8px; border-bottom: 1px solid var(--line);
+}
+.stat-pips {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px;
+}
+.stat-pip {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 8px 4px; border: 1px solid var(--line); border-radius: 2px;
+  background: var(--bg);
+}
+.stat-pip[data-ok="0"] {
+  border-color: color-mix(in oklab, var(--no), transparent 60%);
+  background: color-mix(in oklab, var(--no), transparent 92%);
+}
+.stat-pip-label {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.12em;
+  color: var(--ink-3);
+}
+.stat-pip-num {
+  font-family: var(--serif); font-size: 18px; line-height: 1;
+}
+.stat-eff { font-weight: 500; }
+.stat-need { color: var(--ink-3); font-size: 12px; }
+.stat-pip-bonus {
+  font-family: var(--mono); font-size: 8.5px; color: var(--ok);
+  letter-spacing: 0.06em;
+}
+
+.breakdown { font-size: 12.5px; }
+.breakdown-row {
+  display: flex; justify-content: space-between; gap: 10px;
+  padding: 5px 0; border-bottom: 1px dashed var(--line);
+  color: var(--ink-2);
+}
+.breakdown-row:last-child { border-bottom: 0; }
+.breakdown-row span:last-child {
+  font-family: var(--mono); font-size: 11px; color: var(--gold);
+  letter-spacing: 0.04em; text-align: right;
+}
+.breakdown-row.breakdown-mult span:last-child { color: var(--ok); }
+.breakdown-row.breakdown-empty span:last-child { color: var(--ink-3); }
+
+.totals-foot {
+  font-family: var(--serif); font-style: italic; font-size: 12.5px;
+  color: var(--ink-3); padding: 0 4px;
+}
+.totals-foot-no { color: var(--no); }
+
+/* ── picker modal ──────────────────────────────────────────────── */
+.picker-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+  display: grid; place-items: center; z-index: 50;
+  backdrop-filter: blur(4px);
+  animation: fadein 0.15s ease;
+}
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+.picker {
+  width: min(560px, 90vw); max-height: 80vh;
+  display: flex; flex-direction: column;
+  background: var(--bg-2); border: 1px solid var(--line-strong);
+  box-shadow: var(--shadow-2);
+}
+.picker-hd {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; border-bottom: 1px solid var(--line);
+}
+.picker-title {
+  font-family: var(--serif); font-size: 18px;
+}
+.picker-x {
+  appearance: none; background: none; border: 0; color: var(--ink-3);
+  font-size: 16px; cursor: pointer; padding: 4px 8px;
+}
+.picker-x:hover { color: var(--ink); }
+.picker-body {
+  overflow: auto; padding: 12px; display: flex; flex-direction: column; gap: 6px;
+}
+.picker-empty {
+  padding: 30px; text-align: center; color: var(--ink-3); font-style: italic;
+}
+.picker-item {
+  appearance: none; background: var(--bg); border: 1px solid var(--line);
+  padding: 12px 14px; cursor: pointer; color: inherit; text-align: left;
+  display: flex; flex-direction: column; gap: 4px; font: inherit;
+  transition: all 0.1s;
+}
+.picker-item:hover {
+  border-color: var(--gold-dim);
+  background: var(--bg-3);
+}
+.picker-item-name { font-family: var(--serif); font-size: 16px; }
+.picker-item-bonus {
+  font-family: var(--mono); font-size: 10.5px; color: var(--gold);
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.picker-item-flavor {
+  font-family: var(--serif); font-style: italic; font-size: 12.5px;
+  color: var(--ink-3); line-height: 1.4;
+}
+
+</style>
+  <style>
+    /* showcase-only chrome */
+    body { padding: 0; }
+    .showcase {
+      max-width: 1080px; margin: 0 auto; padding: 56px 36px 120px;
+    }
+    .showcase-hd {
+      padding-bottom: 28px; margin-bottom: 40px; border-bottom: 1px solid var(--line);
+    }
+    .showcase-hd h1 {
+      font-family: var(--serif); font-weight: 500; font-size: 40px;
+      margin: 0 0 8px; letter-spacing: 0.005em;
+    }
+    .showcase-hd p {
+      margin: 0; font-family: var(--serif); font-style: italic;
+      color: var(--ink-2); font-size: 16px; max-width: 60ch;
+    }
+    .theme-switcher {
+      display: flex; gap: 8px; margin-top: 18px;
+    }
+    .theme-switcher button {
+      appearance: none; border: 1px solid var(--line-strong);
+      background: transparent; color: var(--ink-2);
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 7px 14px; border-radius: 2px;
+      cursor: pointer;
+    }
+    .theme-switcher button[data-active="1"] {
+      background: var(--gold); color: #1a1408; border-color: var(--gold);
+    }
+    .toc {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px;
+    }
+    .toc a {
+      font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--ink-3); text-decoration: none;
+      padding: 4px 10px; border: 1px solid var(--line); border-radius: 2px;
+    }
+    .toc a:hover { color: var(--gold); border-color: var(--gold-dim); }
+
+    .comp { margin-bottom: 56px; }
+    .comp-hd {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 16px; padding-bottom: 12px; margin-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .comp-hd h2 {
+      margin: 0; font-family: var(--serif); font-weight: 500;
+      font-size: 22px; letter-spacing: 0.005em;
+    }
+    .comp-hd .comp-id {
+      font-family: var(--mono); font-size: 10.5px; color: var(--ink-3);
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .comp-desc {
+      font-family: var(--serif); font-style: italic; font-size: 14.5px;
+      color: var(--ink-2); margin: 0 0 18px; max-width: 70ch;
+    }
+    .comp-stage {
+      padding: 28px 24px; border: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, transparent 49.5%, var(--line) 49.5%, var(--line) 50.5%, transparent 50.5%) 0 0/12px 12px,
+        var(--bg-2);
+      border-radius: 2px;
+      position: relative;
+    }
+    [data-theme="utility"] .comp-stage,
+    [data-theme="parchment"] .comp-stage {
+      background:
+        linear-gradient(135deg, transparent 49.5%, var(--line) 49.5%, var(--line) 50.5%, transparent 50.5%) 0 0/12px 12px,
+        var(--bg-2);
+    }
+    .comp-stage[data-bg="plain"] { background: var(--bg-2); }
+
+    /* code block */
+    .comp-code-wrap {
+      margin-top: 14px; border: 1px solid var(--line);
+      background: var(--bg);
+    }
+    .comp-code-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 12px; border-bottom: 1px solid var(--line);
+    }
+    .comp-code-hd span {
+      font-family: var(--mono); font-size: 10px; color: var(--ink-3);
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .copy-btn {
+      appearance: none; background: transparent; border: 1px solid var(--line-strong);
+      color: var(--ink-2); font-family: var(--mono); font-size: 10px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 2px; cursor: pointer;
+    }
+    .copy-btn:hover { color: var(--gold); border-color: var(--gold-dim); }
+    .copy-btn[data-copied="1"] { color: var(--ok); border-color: var(--ok); }
+    pre.comp-code {
+      margin: 0; padding: 14px 16px; overflow: auto;
+      font-family: var(--mono); font-size: 11.5px; line-height: 1.55;
+      color: var(--ink-2); max-height: 280px;
+    }
+    .comp-code .tag { color: oklch(0.78 0.14 220); }
+    .comp-code .attr { color: oklch(0.78 0.14 145); }
+    .comp-code .str { color: oklch(0.85 0.12 50); }
+
+    /* token grid */
+    .token-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 10px;
+    }
+    .token-card {
+      border: 1px solid var(--line); padding: 10px 12px;
+      background: var(--bg);
+    }
+    .token-swatch {
+      height: 48px; border: 1px solid var(--line); border-radius: 2px;
+      margin-bottom: 8px;
+    }
+    .token-name {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--ink); letter-spacing: 0.04em;
+    }
+    .token-val {
+      font-family: var(--mono); font-size: 10px; color: var(--ink-3);
+      margin-top: 2px;
+    }
+
+    .type-row {
+      display: flex; align-items: baseline; gap: 24px;
+      padding: 14px 0; border-bottom: 1px dashed var(--line);
+    }
+    .type-row:last-child { border-bottom: 0; }
+    .type-meta {
+      flex-shrink: 0; width: 220px;
+      font-family: var(--mono); font-size: 11px; color: var(--ink-3);
+      letter-spacing: 0.04em;
+    }
+    .type-sample { color: var(--ink); }
+
+    /* showcase utility — variant rows */
+    .variants {
+      display: flex; flex-wrap: wrap; gap: 12px;
+    }
+    .variants > * { min-width: 0; }
+    .grid-stage-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .grid-stage-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .grid-stage-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
+
+    /* hover-pop label for stages */
+    .stage-label {
+      position: absolute; top: 8px; left: 12px;
+      font-family: var(--mono); font-size: 9.5px; color: var(--ink-3);
+      letter-spacing: 0.12em; text-transform: uppercase;
+    }
+  </style>
+</head>
+<body data-theme="dark">
+  <main class="showcase">
+    <header class="showcase-hd">
+      <h1>Design Components</h1>
+      <p>The reusable building blocks behind RL1 Weapon Audit. Each component is shown standalone with its markup — copy any block and drop it into your own project. Include <code style="font-family:var(--mono);font-size:12px">styles.css</code> (or just the relevant rules) and you're set.</p>
+      <div class="theme-switcher" id="themeSwitch">
+        <button data-theme="dark" data-active="1">Dark</button>
+        <button data-theme="parchment">Parchment</button>
+        <button data-theme="utility">Utility</button>
+      </div>
+      <div class="toc">
+        <a href="#tokens">Tokens</a>
+        <a href="#typography">Typography</a>
+        <a href="#buttons">Buttons</a>
+        <a href="#req-chip">Req chip</a>
+        <a href="#stat-pip">Stat pip</a>
+        <a href="#slot-card">Slot card</a>
+        <a href="#mod-card">Modifier card</a>
+        <a href="#verdict">Verdict banner</a>
+        <a href="#breakdown">Breakdown list</a>
+        <a href="#weapon-picker">Weapon picker</a>
+        <a href="#picker-modal">Picker modal</a>
+      </div>
+    </header>
+
+    <!-- ── TOKENS ──────────────────────────────────────────────── -->
+    <section class="comp" id="tokens">
+      <div class="comp-hd">
+        <h2>Color tokens</h2>
+        <span class="comp-id">:root vars · per theme</span>
+      </div>
+      <p class="comp-desc">All colors flow from CSS variables on <code style="font-family:var(--mono)">:root</code>. Switching <code style="font-family:var(--mono)">data-theme</code> on the app root remaps every token. The accent gold is the only saturated color in the palette; everything else is a tinted neutral.</p>
+      <div class="comp-stage" data-bg="plain">
+        <div class="token-grid" id="tokenGrid"></div>
+      </div>
+    </section>
+
+    <!-- ── TYPOGRAPHY ──────────────────────────────────────────── -->
+    <section class="comp" id="typography">
+      <div class="comp-hd">
+        <h2>Typography</h2>
+        <span class="comp-id">cormorant · inter tight · jetbrains mono</span>
+      </div>
+      <p class="comp-desc">A serif/sans/mono triad. The serif (Cormorant Garamond) carries titles and item names. The sans (Inter Tight) is body and UI. The mono (JetBrains Mono) is for stat labels, requirement values, and any "system" text — small, all-caps, wide letter-spacing.</p>
+      <div class="comp-stage" data-bg="plain">
+        <div class="type-row">
+          <div class="type-meta">Display · Cormorant 40/1.1</div>
+          <div class="type-sample" style="font-family:var(--serif);font-size:40px;line-height:1.1;font-weight:500">Crescent Greatsword</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">Title · Cormorant 22/1.1</div>
+          <div class="type-sample" style="font-family:var(--serif);font-size:22px;line-height:1.1;font-weight:500">Bull-Sigil Charm</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">Body · Inter Tight 14/1.5</div>
+          <div class="type-sample" style="font-family:var(--sans);font-size:14px;line-height:1.5">Fewest items first, then fewest stat-boost slots.</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">Label · JetBrains Mono 11/.16em up</div>
+          <div class="type-sample" style="font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-3)">Requirements</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">Flavor · Cormorant italic 13</div>
+          <div class="type-sample" style="font-family:var(--serif);font-style:italic;font-size:13px;color:var(--ink-3)">A bronze sigil cast in the shape of a horned beast.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BUTTONS ─────────────────────────────────────────────── -->
+    <section class="comp" id="buttons">
+      <div class="comp-hd"><h2>Buttons</h2><span class="comp-id">.btn-primary · .btn-ghost</span></div>
+      <p class="comp-desc">Primary uses the gold gradient and uppercase mono label — reserved for the dominant action. Ghost is a hairline outline that picks up the accent on hover.</p>
+      <div class="comp-stage">
+        <div class="variants" style="align-items:center">
+          <button class="btn-primary">Auto-solve</button>
+          <button class="btn-primary" disabled>No solution</button>
+          <button class="btn-ghost">Clear</button>
+        </div>
+      </div>
+      <div class="comp-code-wrap">
+        <div class="comp-code-hd"><span>html</span><button class="copy-btn">Copy</button></div>
+        <pre class="comp-code">&lt;button class="btn-primary"&gt;Auto-solve&lt;/button&gt;
+&lt;button class="btn-primary" disabled&gt;No solution&lt;/button&gt;
+&lt;button class="btn-ghost"&gt;Clear&lt;/button&gt;</pre>
+      </div>
+    </section>
+
+    <!-- ── REQ CHIP ─────────────────────────────────────────────── -->
+    <section class="comp" id="req-chip">
+      <div class="comp-hd"><h2>Requirement chip</h2><span class="comp-id">.req-chip</span></div>
+      <p class="comp-desc">A small bordered chip showing one stat requirement. Color is driven by a single <code style="font-family:var(--mono)">--hue</code> custom property that maps STR/DEX/INT/FTH/ARC to amber/moss/blue/gold/violet.</p>
+      <div class="comp-stage">
+        <div class="req-row" style="padding-top:0">
+          <div class="req-chip" style="--hue:28"><span class="req-chip-stat">STR</span><span class="req-chip-num">22</span></div>
+          <div class="req-chip" style="--hue:145"><span class="req-chip-stat">DEX</span><span class="req-chip-num">14</span></div>
+          <div class="req-chip" style="--hue:220"><span class="req-chip-stat">INT</span><span class="req-chip-num">18</span></div>
+          <div class="req-chip" style="--hue:50"><span class="req-chip-stat">FTH</span><span class="req-chip-num">22</span></div>
+          <div class="req-chip" style="--hue:305"><span class="req-chip-stat">ARC</span><span class="req-chip-num">14</span></div>
+        </div>
+      </div>
+      <div class="comp-code-wrap">
+        <div class="comp-code-hd"><span>html</span><button class="copy-btn">Copy</button></div>
+        <pre class="comp-code">&lt;div class="req-chip" style="--hue:28"&gt;
+  &lt;span class="req-chip-stat"&gt;STR&lt;/span&gt;
+  &lt;span class="req-chip-num"&gt;22&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- hues: STR 28 · DEX 145 · INT 220 · FTH 50 · ARC 305 --&gt;</pre>
+      </div>
+    </section>
+
+    <!-- ── STAT PIP ─────────────────────────────────────────────── -->
+    <section class="comp" id="stat-pip">
+      <div class="comp-hd"><h2>Stat pip</h2><span class="comp-id">.stat-pip</span></div>
+      <p class="comp-desc">A vertical pill showing effective vs. required stat. <code style="font-family:var(--mono)">data-ok="0"</code> turns the frame red when the stat falls short.</p>
+      <div class="comp-stage">
+        <div class="grid-stage-5">
+          <div class="stat-pip" data-ok="1">
+            <div class="stat-pip-label">STR</div>
+            <div class="stat-pip-num"><span class="stat-eff" style="color:oklch(0.78 0.14 28)">15</span><span class="stat-need"> / 14</span></div>
+            <div class="stat-pip-bonus">+5</div>
+          </div>
+          <div class="stat-pip" data-ok="1">
+            <div class="stat-pip-label">DEX</div>
+            <div class="stat-pip-num"><span class="stat-eff" style="color:oklch(0.78 0.14 145)">16</span><span class="stat-need"> / 14</span></div>
+            <div class="stat-pip-bonus">+6</div>
+          </div>
+          <div class="stat-pip" data-ok="0">
+            <div class="stat-pip-label">INT</div>
+            <div class="stat-pip-num"><span class="stat-eff" style="color:oklch(0.78 0.14 220)">10</span><span class="stat-need"> / 18</span></div>
+          </div>
+          <div class="stat-pip" data-ok="1">
+            <div class="stat-pip-label">FTH</div>
+            <div class="stat-pip-num"><span class="stat-eff" style="color:oklch(0.78 0.14 50)">10</span><span class="stat-need"> / —</span></div>
+          </div>
+          <div class="stat-pip" data-ok="1">
+            <div class="stat-pip-label">ARC</div>
+            <div class="stat-pip-num"><span class="stat-eff" style="color:oklch(0.78 0.14 305)">10</span><span class="stat-need"> / —</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="comp-code-wrap">
+        <div class="comp-code-hd"><span>html</span><button class="copy-btn">Copy</button></div>
+        <pre class="comp-code">&lt;div class="stat-pip" data-ok="1"&gt;
+  &lt;div class="stat-pip-label"&gt;STR&lt;/div&gt;
+  &lt;div class="stat-pip-num"&gt;
+    &lt;span class="stat-eff" style="color:oklch(0.78 0.14 28)"&gt;15&lt;/span&gt;
+    &lt;span class="stat-need"&gt; / 14&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="stat-pip-bonus"&gt;+5&lt;/div&gt;
+&lt;/div&gt;</pre>
+      </div>
+    </section>
+
+    <!-- ── SLOT CARD ────────────────────────────────────────────── -->
+    <section class="comp" id="slot-card">
+      <div class="comp-hd"><h2>Slot card</h2><span class="comp-id">.slot · empty &amp; filled</span></div>
+      <p class="comp-desc">The core inventory tile. Bracketed corner serifs on every state, dashed border when empty, solid when filled. The icon lozenge swaps shape per slot kind: circle = talisman, teardrop = tear, diamond = armor.</p>
+      <div class="comp-stage">
+        <div class="grid-stage-4">
+          <button class="slot" data-empty="1" data-kind="talisman">
+            <div class="slot-frame">
+              <div class="slot-corner tl"></div><div class="slot-corner tr"></div>
+              <div class="slot-corner bl"></div><div class="slot-corner br"></div>
+              <div class="slot-empty">
+                <div class="slot-icon" data-kind="talisman"></div>
+                <div class="slot-empty-label">Talisman</div>
+                <div class="slot-empty-hint">tap to equip</div>
+              </div>
+            </div>
+          </button>
+          <button class="slot" data-empty="1" data-kind="tear">
+            <div class="slot-frame">
+              <div class="slot-corner tl"></div><div class="slot-corner tr"></div>
+              <div class="slot-corner bl"></div><div class="slot-corner br"></div>
+              <div class="slot-empty">
+                <div class="slot-icon" data-kind="tear"></div>
+                <div class="slot-empty-label">Crystal Tear</div>
+                <div class="slot-empty-hint">tap to equip</div>
+              </div>
+            </div>
+          </button>
+          <button class="slot" data-empty="1" data-kind="armor">
+            <div class="slot-frame">
+              <div class="slot-corner tl"></div><div class="slot-corner tr"></div>
+              <div class="slot-corner bl"></div><div class="slot-corner br"></div>
+              <div class="slot-empty">
+                <div class="slot-icon" data-kind="armor"></div>
+                <div class="slot-empty-label">Armor · head</div>
+                <div class="slot-empty-hint">tap to equip</div>
+              </div>
+            </div>
+          </button>
+          <button class="slot" data-empty="0" data-kind="talisman">
+            <div class="slot-frame">
+              <div class="slot-corner tl"></div><div class="slot-corner tr"></div>
+              <div class="slot-corner bl"></div><div class="slot-corner br"></div>
+              <div class="slot-filled">
+                <div class="slot-name">Bull-Sigil Charm</div>
+                <div class="slot-bonus">+5 STR</div>
+                <div class="slot-flavor">A bronze sigil cast in the shape of a horned beast. Lends raw might to its bearer.</div>
+                <div class="slot-actions"><span class="slot-clear">remove</span></div>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div class="comp-code-wrap">
+        <div class="comp-code-hd"><span>html · empty</span><button class="copy-btn">Copy</button></div>
+        <pre class="comp-code">&lt;button class="slot" data-empty="1" data-kind="talisman"&gt;
+  &lt;div class="slot-frame"&gt;
+    &lt;div class="slot-corner tl"&gt;&lt;/div&gt;&lt;div class="slot-corner tr"&gt;&lt;/div&gt;
+    &lt;div class="slot-corner bl"&gt;&lt;/div&gt;&lt;div class="slot-corner br"&gt;&lt;/div&gt;
+    &lt;div class="slot-empty"&gt;
+      &lt;div class="slot-icon" data-kind="talisman"&gt;&lt;/div&gt;
+      &lt;div class="slot-empty-label"&gt;Talisman&lt;/div&gt;
+      &lt;div class="slot-empty-hint"&gt;tap to equip&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/button&gt;</pre>
+      </div>
+      <div class="comp-code-wrap">
+        <div class="comp-code-hd"><span>html · filled</span><button class="copy-btn">Copy</button></div>
+        <pre class="comp-code">&lt;button class="slot" data-empty="0" data-kind="talisman"&gt;
+  &lt;div class="slot-frame"&gt;
+    &lt;div class="slot-corner tl"&gt;&lt;/div&gt;&lt;div class="slot-corner tr"&gt;&lt;/div&gt;
+    &lt;div class="slot-corner bl"&gt;&lt;/div&gt;&lt;div class="slot-corner br"&gt;&lt;/div&gt;
+    &lt;div class="slot-filled"&gt;
+      &lt;div class="slot-name"&gt;Bull-Sigil Charm&lt;/div&gt;
+      &lt;div class="slot-bonus"&gt;+5 STR&lt;/div&gt;
+      &lt;div class="slot-flavor"&gt;A bronze sigil cast …&lt;/div&gt;
+      &lt;div class="slot-actions"&gt;&lt;span class="slot-clear"&gt;remove&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/button&gt;</pre>
+      </div>
+    </section>
+
+    <!-- ── MOD CARD ─────────────────────────────────────────────── -->
+    <section class="comp" id="mod-card">
+      <div class="comp-hd"><h2>Modifier card</h2><span class="comp-id">.mod-card</span></div>
+      <p class="comp-desc">A two-line tile for a binary or selectable modifier. The active state lifts the border to gold and tints the background.</p>
+      <div class="comp-stage">
+        <div class="modifier-row">
+          <button class="mod-card" data-on="1">
+            <div class="mod-card-title">Two-handing</div>
+            <div class="mod-card-sub">×1.5 STR (rounded down)</div>
+            <div class="mod-card-state">On</div>
+          </button>
+          <div class="mod-card mod-rune">
+            <div class="mod-card-title">Great Rune</div>
+            <select class="rune-select">
+              <option>No rune</option>
+              <option>Rune of the First King (+5 to all stats)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── VERDICT ─────────────────────────────────────────────── -->
+    <section class="comp" id="verdict">
+      <div class="comp-hd"><h2>Verdict banner</h2><span class="comp-id">.verdict</span></div>
+      <p class="comp-desc">Top of the right rail. Two states — wieldable / can't wield — colored against the muted neutral palette so it never feels like a generic toast.</p>
+      <div class="comp-stage">
+        <div style="display:flex;flex-direction:column;gap:12px;max-width:360px">
+          <div class="verdict verdict-ok">
+            <div class="verdict-mark">✓</div>
+            <div class="verdict-text">
+              <div class="verdict-line1">Wieldable</div>
+              <div class="verdict-line2">All requirements met with current loadout.</div>
+            </div>
+          </div>
+          <div class="verdict verdict-no">
+            <div class="verdict-mark">✕</div>
+            <div class="verdict-text">
+              <div class="verdict-line1">Cannot wield</div>
+              <div class="verdict-line2">Short on STR, INT.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BREAKDOWN ───────────────────────────────────────────── -->
+    <section class="comp" id="breakdown">
+      <div class="comp-hd"><h2>Breakdown list</h2><span class="comp-id">.totals-block .breakdown</span></div>
+      <p class="comp-desc">Receipt-style ledger of every stat contribution, dashed dividers between rows. Mono right column, serif-styled labels left.</p>
+      <div class="comp-stage">
+        <div class="totals-block breakdown" style="max-width:360px">
+          <div class="totals-hd">Breakdown</div>
+          <div class="breakdown-row"><span>Base (RL1)</span><span>10 / 10 / 10 / 10 / 10</span></div>
+          <div class="breakdown-row"><span>Rune of the First King</span><span>+5 STR · +5 DEX · +5 INT · +5 FTH · +5 ARC</span></div>
+          <div class="breakdown-row"><span>Tear of Vigor</span><span>+10 STR</span></div>
+          <div class="breakdown-row"><span>Bull-Sigil Charm</span><span>+5 STR</span></div>
+          <div class="breakdown-row breakdown-mult"><span>Two-handing</span><span>STR × 1.5</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WEAPON PICKER ──────────────────────────────────────── -->
+    <section class="comp" id="weapon-picker">
+      <div class="comp-hd"><h2>Weapon header / picker</h2><span class="comp-id">.weapon-picker · .weapon-bar</span></div>
+      <p class="comp-desc">A single underlined line: small mono category label, large serif name, dropdown caret. The simplest possible "select" pattern, with a popover dropdown that includes search and a 3-column row layout.</p>
+      <div class="comp-stage">
+        <div style="max-width:520px">
+          <div class="weapon-bar-eyebrow">Weapon under audit</div>
+          <div class="weapon-picker">
+            <button class="weapon-picker-btn">
+              <div class="weapon-picker-cat">Greatsword</div>
+              <div class="weapon-picker-name">Two-Hander</div>
+              <div class="weapon-picker-caret">▾</div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PICKER MODAL ───────────────────────────────────────── -->
+    <section class="comp" id="picker-modal">
+      <div class="comp-hd"><h2>Picker modal</h2><span class="comp-id">.picker (inline preview)</span></div>
+      <p class="comp-desc">A list-of-items modal used for slot equipping. Each row is a self-contained mini-card: name, stat delta, italic flavor. Shown here inline (not as an overlay) so the structure is visible.</p>
+      <div class="comp-stage">
+        <div class="picker" style="position:static;box-shadow:none;max-width:560px">
+          <div class="picker-hd">
+            <div class="picker-title">Equip Talisman</div>
+            <button class="picker-x">✕</button>
+          </div>
+          <div class="picker-body" style="max-height:none">
+            <button class="picker-item">
+              <div class="picker-item-name">Bull-Sigil Charm</div>
+              <div class="picker-item-bonus">+5 STR</div>
+              <div class="picker-item-flavor">A bronze sigil cast in the shape of a horned beast.</div>
+            </button>
+            <button class="picker-item">
+              <div class="picker-item-name">Wing-Quill Token</div>
+              <div class="picker-item-bonus">+5 DEX</div>
+              <div class="picker-item-flavor">A pinion sealed in resin. Fingers move quicker around it.</div>
+            </button>
+            <button class="picker-item">
+              <div class="picker-item-name">Twin-Edge Locket</div>
+              <div class="picker-item-bonus">+3 STR · +3 DEX</div>
+              <div class="picker-item-flavor">A locket forged with two thorned halves.</div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // theme switch
+    const ts = document.getElementById('themeSwitch');
+    ts.addEventListener('click', (e) => {
+      const b = e.target.closest('button[data-theme]');
+      if (!b) return;
+      document.body.setAttribute('data-theme', b.dataset.theme);
+      [...ts.children].forEach(c => c.dataset.active = c === b ? '1' : '0');
+    });
+
+    // copy buttons
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const code = btn.closest('.comp-code-wrap').querySelector('pre').textContent;
+        navigator.clipboard.writeText(code).then(() => {
+          btn.textContent = 'Copied';
+          btn.dataset.copied = '1';
+          setTimeout(() => { btn.textContent = 'Copy'; btn.dataset.copied = '0'; }, 1400);
+        });
+      });
+    });
+
+    // populate token grid by reading current CSS vars
+    const tokens = [
+      ['--bg', 'page background'],
+      ['--bg-2', 'panel surface'],
+      ['--bg-3', 'raised surface'],
+      ['--ink', 'primary text'],
+      ['--ink-2', 'secondary text'],
+      ['--ink-3', 'tertiary / muted'],
+      ['--gold', 'accent'],
+      ['--gold-2', 'accent hover'],
+      ['--gold-dim', 'accent border'],
+      ['--ok', 'positive state'],
+      ['--no', 'negative state'],
+      ['--line', 'hairline'],
+      ['--line-strong', 'border'],
+    ];
+    function paintTokens() {
+      const cs = getComputedStyle(document.body);
+      const grid = document.getElementById('tokenGrid');
+      grid.innerHTML = '';
+      for (const [k, label] of tokens) {
+        const v = cs.getPropertyValue(k).trim();
+        const card = document.createElement('div');
+        card.className = 'token-card';
+        card.innerHTML = `<div class="token-swatch" style="background:${v}"></div>
+          <div class="token-name">${k}</div>
+          <div class="token-val">${v}</div>
+          <div class="token-val" style="font-style:italic">${label}</div>`;
+        grid.appendChild(card);
+      }
+    }
+    paintTokens();
+    new MutationObserver(paintTokens).observe(document.body, { attributes: true, attributeFilter: ['data-theme'] });
+  </script>
+</body>
+</html>

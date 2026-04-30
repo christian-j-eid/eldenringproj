@@ -1,0 +1,658 @@
+[
+  {
+    "name": "Aged One's Exultation",
+    "effect": "Madness in the vicinity increases attack power"
+  },
+  {
+    "name": "Ailment Talisman",
+    "effect": "Grants resistance to triggered ailments"
+  },
+  {
+    "name": "Ancestral Spirit's Horn",
+    "effect": "Restores FP upon defeating enemies"
+  },
+  {
+    "name": "Arrow's Reach Talisman",
+    "effect": "Increases bow effective range"
+  },
+  {
+    "name": "Arrow's Soaring Sting Talisman",
+    "effect": "Increases the effective range of bows and raises attack power of arrows and bolts"
+  },
+  {
+    "name": "Arrow's Sting Talisman",
+    "effect": "Raises attack power of arrows and bolts"
+  },
+  {
+    "name": "Arsenal Charm",
+    "effect": "Raises maximum equipment load"
+  },
+  {
+    "name": "Arsenal Charm +1",
+    "effect": "Greatly raises maximum equipment load"
+  },
+  {
+    "name": "Assassin's Cerulean Dagger",
+    "effect": "Critical hits restore FP"
+  },
+  {
+    "name": "Assassin's Crimson Dagger",
+    "effect": "Critical hits restore HP"
+  },
+  {
+    "name": "Axe Talisman",
+    "effect": "Enhances charge attacks"
+  },
+  {
+    "name": "Beloved Stardust",
+    "effect": "Shortens casting speed for sorcery and incantations by the utmost, but increases damage taken"
+  },
+  {
+    "name": "Blade of Mercy",
+    "effect": "Raises attack power after each critical hit"
+  },
+  {
+    "name": "Blessed Blue Dew Talisman",
+    "effect": "Slowly restores FP"
+  },
+  {
+    "name": "Blessed Dew Talisman",
+    "effect": "Slowly restores HP"
+  },
+  {
+    "name": "Blue Dancer Charm",
+    "effect": "Raises attack power with lower equipment load"
+  },
+  {
+    "name": "Blue-Feathered Branchsword",
+    "effect": "Raises defense when HP is low"
+  },
+  {
+    "name": "Boltdrake Talisman",
+    "effect": "Boosts lightning damage negation"
+  },
+  {
+    "name": "Boltdrake Talisman +1",
+    "effect": "Greatly boosts lightning damage negation"
+  },
+  {
+    "name": "Boltdrake Talisman +2",
+    "effect": "Vastly boosts lightning damage negation"
+  },
+  {
+    "name": "Boltdrake Talisman +3",
+    "effect": "Reduces lightning damage"
+  },
+  {
+    "name": "Bull-Goat's Talisman",
+    "effect": "Raises Poise"
+  },
+  {
+    "name": "Carian Filigreed Crest",
+    "effect": "Lowers FP consumed by skills"
+  },
+  {
+    "name": "Cerulean Amber Medallion",
+    "effect": "Raises maxiumum FP"
+  },
+  {
+    "name": "Cerulean Amber Medallion +1",
+    "effect": "Greatly raises maximum FP"
+  },
+  {
+    "name": "Cerulean Amber Medallion +2",
+    "effect": "Vastly raises maximum FP"
+  },
+  {
+    "name": "Cerulean Amber Medallion +3",
+    "effect": "Boosts maximum FP by the utmost"
+  },
+  {
+    "name": "Cerulean Seed Talisman",
+    "effect": "Boosts FP restoration from Flask of Cerulean Tears"
+  },
+  {
+    "name": "Cerulean Seed Talisman +1",
+    "effect": "Boosts FP restoration from the Flask of Cerulean Tears"
+  },
+  {
+    "name": "Clarifying Horn Charm",
+    "effect": "Raises focus"
+  },
+  {
+    "name": "Clarifying Horn Charm +1",
+    "effect": "Greatly raises focus"
+  },
+  {
+    "name": "Clarifying Horn Charm +2",
+    "effect": "Raises Focus by +230"
+  },
+  {
+    "name": "Claw Talisman",
+    "effect": "Enhances jump attacks"
+  },
+  {
+    "name": "Companion Jar",
+    "effect": "Raises potency of throwing pots"
+  },
+  {
+    "name": "Concealing Veil",
+    "effect": "Conceals wearer while crouching away from foes"
+  },
+  {
+    "name": "Crepus's Vial",
+    "effect": "Eliminates all sound made by the wearer during movement"
+  },
+  {
+    "name": "Crimson Amber Medallion",
+    "effect": "Raises maximum HP"
+  },
+  {
+    "name": "Crimson Amber Medallion +1",
+    "effect": "Greatly raises maximum HP"
+  },
+  {
+    "name": "Crimson Amber Medallion +2",
+    "effect": "Vastly raises maximum HP"
+  },
+  {
+    "name": "Crimson Amber Medallion +3",
+    "effect": "Vastly raises maximum HP"
+  },
+  {
+    "name": "Crimson Seed Talisman",
+    "effect": "Boosts HP regeneration from Flask of Crimson Tears"
+  },
+  {
+    "name": "Crimson Seed Talisman +1",
+    "effect": "Boosts HP restoration from the Flask of Crimson Tears"
+  },
+  {
+    "name": "Crucible Feather Talisman",
+    "effect": "Improves dodge rolling but increases damage taken"
+  },
+  {
+    "name": "Crucible Knot Talisman",
+    "effect": "Reduces damage and impact of headshots"
+  },
+  {
+    "name": "Crucible Scale Talisman",
+    "effect": "Reduces damage taken from critical hits"
+  },
+  {
+    "name": "Crusade Insignia",
+    "effect": "Raises attack power after defeating an enemy"
+  },
+  {
+    "name": "Curved Sword Talisman",
+    "effect": "Enhances guard counters"
+  },
+  {
+    "name": "Daedicar's Woe",
+    "effect": "Increases damage taken"
+  },
+  {
+    "name": "Dagger Talisman",
+    "effect": "Enhances critical hits"
+  },
+  {
+    "name": "Dragoncrest Greatshield Talisman",
+    "effect": "Enormously boosts physical damage negation"
+  },
+  {
+    "name": "Dragoncrest Shield Talisman",
+    "effect": "Boosts physical damage negation"
+  },
+  {
+    "name": "Dragoncrest Shield Talisman +1",
+    "effect": "Greatly boosts physical damage negation"
+  },
+  {
+    "name": "Dragoncrest Shield Talisman +2",
+    "effect": "Vastly boosts physical damage negation"
+  },
+  {
+    "name": "Dried Bouquet",
+    "effect": "Raises attack power when summoned spirit dies"
+  },
+  {
+    "name": "Elden Ring Talisman Template",
+    "effect": ""
+  },
+  {
+    "name": "Enraged Divine Beast",
+    "effect": "Raises potency of storms by 10%"
+  },
+  {
+    "name": "Erdtree's Favor",
+    "effect": "Slightly raises maximum HP, stamina, and equip load"
+  },
+  {
+    "name": "Erdtree's Favor +1",
+    "effect": "Raises maximum HP, stamina, and equip load"
+  },
+  {
+    "name": "Erdtree's Favor +2",
+    "effect": "Greatly raises maximum HP, stamina, and equip load"
+  },
+  {
+    "name": "Faithful's Canvas Talisman",
+    "effect": "Raises potency of Incantations"
+  },
+  {
+    "name": "Fine Crucible Feather Talisman",
+    "effect": ""
+  },
+  {
+    "name": "Fire Scorpion Charm",
+    "effect": "Raises fire attack, but lowers damage negation"
+  },
+  {
+    "name": "Flamedrake Talisman",
+    "effect": "Boosts fire damage negation"
+  },
+  {
+    "name": "Flamedrake Talisman +1",
+    "effect": "Greatly boosts fire damage negation"
+  },
+  {
+    "name": "Flamedrake Talisman +2",
+    "effect": "Vastly boosts fire damage negation"
+  },
+  {
+    "name": "Flamedrake Talisman +3",
+    "effect": "Boosts fire damage negation by the utmost"
+  },
+  {
+    "name": "Flock's Canvas Talisman",
+    "effect": "Greatly raises potency of Incantations"
+  },
+  {
+    "name": "Furled Finger's Trick-Mirror",
+    "effect": "Take on appearance of a Host of Fingers"
+  },
+  {
+    "name": "Godfrey Icon",
+    "effect": "Enhances charged spells and skills"
+  },
+  {
+    "name": "Godskin Swaddling Cloth",
+    "effect": "Successive attacks restore HP"
+  },
+  {
+    "name": "Gold Scarab",
+    "effect": "Increases runes obtained from defeated enemies"
+  },
+  {
+    "name": "Golden Braid",
+    "effect": "Boosts holy damage negation by the utmost"
+  },
+  {
+    "name": "Graven-Mass Talisman",
+    "effect": "Greatly raises potency of sorceries"
+  },
+  {
+    "name": "Graven-School Talisman",
+    "effect": "Raises potency of sorceries"
+  },
+  {
+    "name": "Great-Jar's Arsenal",
+    "effect": "Vastly raises maximum equipment load"
+  },
+  {
+    "name": "Greatshield Talisman",
+    "effect": "Boosts guarding ability"
+  },
+  {
+    "name": "Green Turtle Talisman",
+    "effect": "Raises stamina recovery speed"
+  },
+  {
+    "name": "Haligdrake Talisman",
+    "effect": "Boosts holy damage negation"
+  },
+  {
+    "name": "Haligdrake Talisman +1",
+    "effect": "Greatly boosts holy damage negation"
+  },
+  {
+    "name": "Haligdrake Talisman +2",
+    "effect": "Vastly boosts holy damage negation"
+  },
+  {
+    "name": "Hammer Talisman",
+    "effect": "Enhances stamina-reducing attacks against blockers"
+  },
+  {
+    "name": "Host's Trick-Mirror",
+    "effect": "Take on appearance of a cooperator"
+  },
+  {
+    "name": "Immunizing Horn Charm",
+    "effect": "Raises Immunity"
+  },
+  {
+    "name": "Immunizing Horn Charm +1",
+    "effect": "Greatly raises Immunity"
+  },
+  {
+    "name": "Immunizing Horn Charm +2",
+    "effect": "Raises Immunity by +180"
+  },
+  {
+    "name": "Kindred of Rot's Exultation",
+    "effect": "Poisoning or rot in vicinity increases attack power"
+  },
+  {
+    "name": "Lacerating Crossed-Tree",
+    "effect": "Enhances dash attacks"
+  },
+  {
+    "name": "Lance Talisman",
+    "effect": "Enhances attacks on horseback"
+  },
+  {
+    "name": "Lightning Scorpion Charm",
+    "effect": "Raises lightning attack, but lowers damage negation"
+  },
+  {
+    "name": "Longtail Cat Talisman",
+    "effect": "Grants immunity to fall damage, but does not prevent death from a high fall."
+  },
+  {
+    "name": "Lord of Blood's Exultation",
+    "effect": "Blood loss in vicinity increases attack power"
+  },
+  {
+    "name": "Magic Scorpion Charm",
+    "effect": "Raises magic attack, but lowers damage negation"
+  },
+  {
+    "name": "Marika's Scarseal",
+    "effect": "Raises attributes, but also increases damage taken",
+    "boosts": {
+      "int": 3,
+      "fai": 3,
+      "arc": 3
+    }
+  },
+  {
+    "name": "Marika's Soreseal",
+    "effect": "Greatly raises attributes, but also increases damage taken",
+    "boosts": {
+      "int": 5,
+      "fai": 5,
+      "arc": 5
+    }
+  },
+  {
+    "name": "Millicent's Prosthesis",
+    "effect": "Boosts dexterity, raises attack power with successive attacks",
+    "boosts": {
+      "dex": 5
+    }
+  },
+  {
+    "name": "Moon of Nokstella",
+    "effect": "Increases memory slots by 2"
+  },
+  {
+    "name": "Mottled Necklace",
+    "effect": "Raises Robustness, Immunity, and Focus"
+  },
+  {
+    "name": "Mottled Necklace +1",
+    "effect": "Greatly raises Robustness, Immunity, and Focus"
+  },
+  {
+    "name": "Mottled Necklace +2",
+    "effect": "Raises Immunity, Robustness, and Focus by +100 each"
+  },
+  {
+    "name": "Old Lord's Talisman",
+    "effect": "Extends spell effect duration"
+  },
+  {
+    "name": "Outer God Heirloom",
+    "effect": "Raises arcane by 5",
+    "boosts": {
+      "arc": 5
+    }
+  },
+  {
+    "name": "Pearl Shield Talisman",
+    "effect": "Boosts all non-physical damage negation by 20% while guarding"
+  },
+  {
+    "name": "Pearldrake Talisman",
+    "effect": "Boosts non-physical damage negation"
+  },
+  {
+    "name": "Pearldrake Talisman +1",
+    "effect": "Greatly boosts non-physical damage negation"
+  },
+  {
+    "name": "Pearldrake Talisman +2",
+    "effect": "Vastly boosts non-physical damage negation"
+  },
+  {
+    "name": "Pearldrake Talisman +3",
+    "effect": "Boosts non-physical damage negation by the utmost"
+  },
+  {
+    "name": "Perfumer's Talisman",
+    "effect": "Raises potency of perfume items"
+  },
+  {
+    "name": "Primal Glintstone Blade",
+    "effect": "Spells consume less FP, but maximum HP is reduced"
+  },
+  {
+    "name": "Prince of Death's Cyst",
+    "effect": "Greatly raises vitality"
+  },
+  {
+    "name": "Prince of Death's Pustule",
+    "effect": "Raises Vitality"
+  },
+  {
+    "name": "Prosthesis-Wearer Heirloom",
+    "effect": "Raises dexterity by 5",
+    "boosts": {
+      "dex": 5
+    }
+  },
+  {
+    "name": "Radagon Icon",
+    "effect": "Shortens spell casting time"
+  },
+  {
+    "name": "Radagon's Scarseal",
+    "effect": "+3 VIG, END, STR, DEX",
+    "boosts": {
+      "str": 3,
+      "dex": 3
+    }
+  },
+  {
+    "name": "Radagon's Soreseal",
+    "effect": "+5 VIG, END, STR, DEX",
+    "boosts": {
+      "str": 5,
+      "dex": 5
+    }
+  },
+  {
+    "name": "Red-Feathered Branchsword",
+    "effect": "Raises attack power when HP is low"
+  },
+  {
+    "name": "Rellana's Cameo",
+    "effect": "Enhances attacks executed after maintaining the same stance for an extended period"
+  },
+  {
+    "name": "Retaliatory Crossed-Tree",
+    "effect": "Enhances attacks executed after rolling or backstepping"
+  },
+  {
+    "name": "Ritual Shield Talisman",
+    "effect": "Raises defense when HP is at maximum"
+  },
+  {
+    "name": "Ritual Sword Talisman",
+    "effect": "Raises attack power when HP is at maximum"
+  },
+  {
+    "name": "Roar Medallion",
+    "effect": "Enhances roars and breath attacks"
+  },
+  {
+    "name": "Rotten Winged Sword Insignia",
+    "effect": "Greatly raises attack power with successive attacks"
+  },
+  {
+    "name": "Sacred Scorpion Charm",
+    "effect": "Raises holy attack, but lowers damage negation"
+  },
+  {
+    "name": "Sacrificial Twig",
+    "effect": "Will be lost on death in place of runes"
+  },
+  {
+    "name": "Shabriri's Woe",
+    "effect": "Constantly attracts enemies' aggression"
+  },
+  {
+    "name": "Shard of Alexander",
+    "effect": "Greatly boosts the attack power of skills"
+  },
+  {
+    "name": "Sharpshot Talisman",
+    "effect": "Boosts attack power of precision-aimed shots"
+  },
+  {
+    "name": "Shattered Stone Talisman",
+    "effect": "Raises potency of kicking and stomping skills"
+  },
+  {
+    "name": "Silver Scarab",
+    "effect": "Raises item discovery"
+  },
+  {
+    "name": "Smithing Talisman",
+    "effect": "Enhances weapon throwing  attacks"
+  },
+  {
+    "name": "Spear Talisman",
+    "effect": "Enhances counterattacks unique to thrusting weapons"
+  },
+  {
+    "name": "Spelldrake Talisman",
+    "effect": "Boosts magical damage negation"
+  },
+  {
+    "name": "Spelldrake Talisman +1",
+    "effect": "Greatly boosts magical damage negation"
+  },
+  {
+    "name": "Spelldrake Talisman +2",
+    "effect": "Vastly boosts magical damage negation"
+  },
+  {
+    "name": "Spelldrake Talisman +3",
+    "effect": "Boosts magical damage negation by the utmost"
+  },
+  {
+    "name": "St. Trina's Smile",
+    "effect": "Sleep in the vicinity increases attack power"
+  },
+  {
+    "name": "Stalwart Horn Charm",
+    "effect": "Raises robustness"
+  },
+  {
+    "name": "Stalwart Horn Charm +1",
+    "effect": "Greatly raises robustness"
+  },
+  {
+    "name": "Stalwart Horn Charm +2",
+    "effect": "Raises Robustness by +180"
+  },
+  {
+    "name": "Stargazer Heirloom",
+    "effect": "Raises intelligence by 5",
+    "boosts": {
+      "int": 5
+    }
+  },
+  {
+    "name": "Starscourge Heirloom",
+    "effect": "Raises strength by 5",
+    "boosts": {
+      "str": 5
+    }
+  },
+  {
+    "name": "Taker's Cameo",
+    "effect": "Restores HP upon defeating enemies"
+  },
+  {
+    "name": "Talisman of All Crucibles",
+    "effect": "Grants effects of all crucible talismans"
+  },
+  {
+    "name": "Talisman of Lord's Bestowal",
+    "effect": "Increases poise after using a Flask of Crimson Tears"
+  },
+  {
+    "name": "Talisman of the Dread",
+    "effect": "Raises potency of magma"
+  },
+  {
+    "name": "Twinblade Talisman",
+    "effect": "Enhances final hit of chain attacks"
+  },
+  {
+    "name": "Two Fingers Heirloom",
+    "effect": "Raises faith by 5",
+    "boosts": {
+      "fai": 5
+    }
+  },
+  {
+    "name": "Two-Handed Sword Talisman",
+    "effect": "Enhances two-handed attacks"
+  },
+  {
+    "name": "Two-Headed Turtle Talisman",
+    "effect": "Greatly raises stamina recovery speed"
+  },
+  {
+    "name": "Verdigris Discus",
+    "effect": "Raises defense with higher equipment load"
+  },
+  {
+    "name": "Viridian Amber Medallion",
+    "effect": "Raises maximum stamina"
+  },
+  {
+    "name": "Viridian Amber Medallion +1",
+    "effect": "Greatly raises maximum stamina"
+  },
+  {
+    "name": "Viridian Amber Medallion +2",
+    "effect": "Vastly raises maximum stamina"
+  },
+  {
+    "name": "Viridian Amber Medallion +3",
+    "effect": "Raises maximum stamina"
+  },
+  {
+    "name": "Warrior Jar Shard",
+    "effect": "Boosts the attack power of skills"
+  },
+  {
+    "name": "Winged Sword Insignia",
+    "effect": "Raises attack power with successive attacks"
+  }
+]

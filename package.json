@@ -1,0 +1,26 @@
+{
+  "name": "eldenring-build-checker",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "scrape": "node scripts/scrape.mjs",
+    "scrape:talismans": "node scripts/scrape-talismans.mjs",
+    "scrape:tears": "node scripts/scrape-crystal-tears.mjs",
+    "scrape:armor": "node scripts/scrape-armor.mjs",
+    "scrape:runes": "node scripts/scrape-great-runes.mjs"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.8"
+  }
+}

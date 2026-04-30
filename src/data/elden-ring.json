@@ -1,0 +1,6114 @@
+{
+  "weapons": [
+    {
+      "name": "Black Knife",
+      "type": "Dagger",
+      "requirements": {
+        "str": 8,
+        "dex": 12,
+        "int": 0,
+        "fai": 18,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Blade of Calling",
+      "type": "Dagger",
+      "requirements": {
+        "str": 6,
+        "dex": 13,
+        "int": 0,
+        "fai": 15,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Bloodstained Dagger",
+      "type": "Dagger",
+      "requirements": {
+        "str": 9,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Celebrant's Sickle",
+      "type": "Dagger",
+      "requirements": {
+        "str": 6,
+        "dex": 11,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Cinquedea",
+      "type": "Dagger",
+      "requirements": {
+        "str": 10,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Crystal Knife",
+      "type": "Dagger",
+      "requirements": {
+        "str": 8,
+        "dex": 12,
+        "int": 9,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Dagger",
+      "type": "Dagger",
+      "requirements": {
+        "str": 5,
+        "dex": 9,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Erdsteel Dagger",
+      "type": "Dagger",
+      "requirements": {
+        "str": 7,
+        "dex": 12,
+        "int": 0,
+        "fai": 14,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Fire Knight's Shortsword",
+      "type": "Dagger",
+      "requirements": {
+        "str": 8,
+        "dex": 13,
+        "int": 0,
+        "fai": 12,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Glintstone Kris",
+      "type": "Dagger",
+      "requirements": {
+        "str": 5,
+        "dex": 12,
+        "int": 16,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Great Knife",
+      "type": "Dagger",
+      "requirements": {
+        "str": 6,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Ivory Sickle",
+      "type": "Dagger",
+      "requirements": {
+        "str": 6,
+        "dex": 11,
+        "int": 13,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Main-gauche",
+      "type": "Dagger",
+      "requirements": {
+        "str": 7,
+        "dex": 15,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Mis\u00e9ricorde",
+      "type": "Dagger",
+      "requirements": {
+        "str": 7,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Parrying Dagger",
+      "type": "Dagger",
+      "requirements": {
+        "str": 5,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Reduvia",
+      "type": "Dagger",
+      "requirements": {
+        "str": 5,
+        "dex": 13,
+        "int": 0,
+        "fai": 0,
+        "arc": 13
+      }
+    },
+    {
+      "name": "Scorpion's Stinger",
+      "type": "Dagger",
+      "requirements": {
+        "str": 6,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Wakizashi",
+      "type": "Dagger",
+      "requirements": {
+        "str": 9,
+        "dex": 13,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Broadsword",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 10,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Cane Sword",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 8,
+        "dex": 11,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Carian Knight's Sword",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 10,
+        "dex": 10,
+        "int": 18,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Coded Sword",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 0,
+        "dex": 0,
+        "int": 0,
+        "fai": 20,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Crystal Sword",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 13,
+        "dex": 10,
+        "int": 15,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Golden Epitaph",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 12,
+        "dex": 10,
+        "int": 0,
+        "fai": 14,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Lazuli Glintstone Sword",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 8,
+        "dex": 9,
+        "int": 13,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Longsword",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 10,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Lordsworn's Straight Sword",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 10,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Miquellan Knight's Sword",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 11,
+        "dex": 11,
+        "int": 0,
+        "fai": 16,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Noble's Slender Sword",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 8,
+        "dex": 11,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Ornamental Straight Sword",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 10,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Regalia of Eochaid",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 12,
+        "dex": 18,
+        "int": 0,
+        "fai": 0,
+        "arc": 15
+      }
+    },
+    {
+      "name": "Rotten Crystal Sword",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 13,
+        "dex": 10,
+        "int": 15,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Short Sword",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 8,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Stone-Sheathed Sword",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 16,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Sword of Darkness",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 14,
+        "dex": 11,
+        "int": 0,
+        "fai": 24,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Sword of Light",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 14,
+        "dex": 11,
+        "int": 0,
+        "fai": 24,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Sword of Night and Flame",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 12,
+        "dex": 12,
+        "int": 24,
+        "fai": 24,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Sword of St. Trina",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 10,
+        "dex": 12,
+        "int": 14,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Velvet Sword of St. Trina",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 10,
+        "dex": 12,
+        "int": 14,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Warhawk's Talon",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 10,
+        "dex": 16,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Weathered Straight Sword",
+      "type": "Straight Sword",
+      "requirements": {
+        "str": 7,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Alabaster Lord's Sword",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 16,
+        "dex": 12,
+        "int": 18,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Banished Knight's Greatsword",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 17,
+        "dex": 9,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Bastard Sword",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 16,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Blasphemous Blade",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 22,
+        "dex": 15,
+        "int": 0,
+        "fai": 21,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Claymore",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 16,
+        "dex": 13,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Dark Moon Greatsword",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 16,
+        "dex": 11,
+        "int": 38,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Death's Poker",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 15,
+        "dex": 17,
+        "int": 11,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Flamberge",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 15,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Forked Greatsword",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 14,
+        "dex": 16,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Gargoyle's Blackblade",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 18,
+        "dex": 10,
+        "int": 0,
+        "fai": 22,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Gargoyle's Greatsword",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 18,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Golden Order Greatsword",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 16,
+        "dex": 21,
+        "int": 0,
+        "fai": 28,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Greatsword of Damnation",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 20,
+        "dex": 15,
+        "int": 0,
+        "fai": 20,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Greatsword of Solitude",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 27,
+        "dex": 13,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Helphen's Steeple",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 19,
+        "dex": 10,
+        "int": 22,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Inseparable Sword",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 18,
+        "dex": 18,
+        "int": 0,
+        "fai": 20,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Iron Greatsword",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 18,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Knight's Greatsword",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 16,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Lizard Greatsword",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 12,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Lordsworn's Greatsword",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 16,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Marais Executioner's Sword",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 24,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 23
+      }
+    },
+    {
+      "name": "Ordovis's Greatsword",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 25,
+        "dex": 13,
+        "int": 0,
+        "fai": 15,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Sacred Relic Sword",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 14,
+        "dex": 24,
+        "int": 0,
+        "fai": 22,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Sword of Milos",
+      "type": "Greatsword",
+      "requirements": {
+        "str": 15,
+        "dex": 19,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Ancient Meteoric Ore Greatsword",
+      "type": "Colossal Sword",
+      "requirements": {
+        "str": 35,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 19
+      }
+    },
+    {
+      "name": "Fire Knight's Greatsword",
+      "type": "Colossal Sword",
+      "requirements": {
+        "str": 22,
+        "dex": 18,
+        "int": 0,
+        "fai": 12,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Godslayer's Greatsword",
+      "type": "Colossal Sword",
+      "requirements": {
+        "str": 20,
+        "dex": 22,
+        "int": 0,
+        "fai": 20,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Grafted Blade Greatsword",
+      "type": "Colossal Sword",
+      "requirements": {
+        "str": 40,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Greatsword",
+      "type": "Colossal Sword",
+      "requirements": {
+        "str": 31,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Greatsword of Radahn (Light)",
+      "type": "Colossal Sword",
+      "requirements": {
+        "str": 32,
+        "dex": 24,
+        "int": 15,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Greatsword of Radahn (Lord)",
+      "type": "Colossal Sword",
+      "requirements": {
+        "str": 32,
+        "dex": 24,
+        "int": 15,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Maliketh's Black Blade",
+      "type": "Colossal Sword",
+      "requirements": {
+        "str": 34,
+        "dex": 12,
+        "int": 0,
+        "fai": 20,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Moonrithyll's Knight Sword",
+      "type": "Colossal Sword",
+      "requirements": {
+        "str": 20,
+        "dex": 14,
+        "int": 18,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Royal Greatsword",
+      "type": "Colossal Sword",
+      "requirements": {
+        "str": 26,
+        "dex": 18,
+        "int": 22,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Ruins Greatsword",
+      "type": "Colossal Sword",
+      "requirements": {
+        "str": 50,
+        "dex": 0,
+        "int": 16,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Starscourge Greatsword",
+      "type": "Colossal Sword",
+      "requirements": {
+        "str": 38,
+        "dex": 12,
+        "int": 15,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Troll Knight's Sword",
+      "type": "Colossal Sword",
+      "requirements": {
+        "str": 20,
+        "dex": 14,
+        "int": 18,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Troll's Golden Sword",
+      "type": "Colossal Sword",
+      "requirements": {
+        "str": 29,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Watchdog's Greatsword",
+      "type": "Colossal Sword",
+      "requirements": {
+        "str": 30,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Zweihander",
+      "type": "Colossal Sword",
+      "requirements": {
+        "str": 19,
+        "dex": 11,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Antspur Rapier",
+      "type": "Thrusting Sword",
+      "requirements": {
+        "str": 10,
+        "dex": 20,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Carian Sorcery Sword",
+      "type": "Thrusting Sword",
+      "requirements": {
+        "str": 10,
+        "dex": 19,
+        "int": 16,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Cleanrot Knight's Sword",
+      "type": "Thrusting Sword",
+      "requirements": {
+        "str": 11,
+        "dex": 13,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Estoc",
+      "type": "Thrusting Sword",
+      "requirements": {
+        "str": 11,
+        "dex": 13,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Frozen Needle",
+      "type": "Thrusting Sword",
+      "requirements": {
+        "str": 11,
+        "dex": 18,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Noble's Estoc",
+      "type": "Thrusting Sword",
+      "requirements": {
+        "str": 9,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Rapier",
+      "type": "Thrusting Sword",
+      "requirements": {
+        "str": 7,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Rogier's Rapier",
+      "type": "Thrusting Sword",
+      "requirements": {
+        "str": 8,
+        "dex": 17,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Bloody Helice",
+      "type": "Heavy Thrusting Sword",
+      "requirements": {
+        "str": 16,
+        "dex": 19,
+        "int": 0,
+        "fai": 0,
+        "arc": 17
+      }
+    },
+    {
+      "name": "Dragon King's Cragblade",
+      "type": "Heavy Thrusting Sword",
+      "requirements": {
+        "str": 18,
+        "dex": 37,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Godskin Stitcher",
+      "type": "Heavy Thrusting Sword",
+      "requirements": {
+        "str": 14,
+        "dex": 17,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Great \u00c9p\u00e9e",
+      "type": "Heavy Thrusting Sword",
+      "requirements": {
+        "str": 15,
+        "dex": 16,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Queelign's Greatsword",
+      "type": "Heavy Thrusting Sword",
+      "requirements": {
+        "str": 14,
+        "dex": 18,
+        "int": 0,
+        "fai": 12,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Sword Lance",
+      "type": "Heavy Thrusting Sword",
+      "requirements": {
+        "str": 21,
+        "dex": 11,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Bandit's Curved Sword",
+      "type": "Curved Sword",
+      "requirements": {
+        "str": 11,
+        "dex": 13,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Beastman's Curved Sword",
+      "type": "Curved Sword",
+      "requirements": {
+        "str": 13,
+        "dex": 11,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Dancing Blade of Ranah",
+      "type": "Curved Sword",
+      "requirements": {
+        "str": 9,
+        "dex": 20,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Eclipse Shotel",
+      "type": "Curved Sword",
+      "requirements": {
+        "str": 10,
+        "dex": 25,
+        "int": 0,
+        "fai": 30,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Falchion",
+      "type": "Curved Sword",
+      "requirements": {
+        "str": 9,
+        "dex": 13,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Falx",
+      "type": "Curved Sword",
+      "requirements": {
+        "str": 12,
+        "dex": 15,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Flowing Curved Sword",
+      "type": "Curved Sword",
+      "requirements": {
+        "str": 9,
+        "dex": 17,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Grossmesser",
+      "type": "Curved Sword",
+      "requirements": {
+        "str": 14,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Horned Warrior's Sword",
+      "type": "Curved Sword",
+      "requirements": {
+        "str": 11,
+        "dex": 14,
+        "int": 0,
+        "fai": 14,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Magma Blade",
+      "type": "Curved Sword",
+      "requirements": {
+        "str": 9,
+        "dex": 15,
+        "int": 0,
+        "fai": 16,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Mantis Blade",
+      "type": "Curved Sword",
+      "requirements": {
+        "str": 10,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Nox Flowing Sword",
+      "type": "Curved Sword",
+      "requirements": {
+        "str": 8,
+        "dex": 15,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Scavenger's Curved Sword",
+      "type": "Curved Sword",
+      "requirements": {
+        "str": 9,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Scimitar",
+      "type": "Curved Sword",
+      "requirements": {
+        "str": 7,
+        "dex": 13,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Serpent-God's Curved Sword",
+      "type": "Curved Sword",
+      "requirements": {
+        "str": 13,
+        "dex": 9,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Shamshir",
+      "type": "Curved Sword",
+      "requirements": {
+        "str": 7,
+        "dex": 13,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Shotel",
+      "type": "Curved Sword",
+      "requirements": {
+        "str": 9,
+        "dex": 19,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Spirit Sword",
+      "type": "Curved Sword",
+      "requirements": {
+        "str": 8,
+        "dex": 16,
+        "int": 16,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Wing of Astel",
+      "type": "Curved Sword",
+      "requirements": {
+        "str": 7,
+        "dex": 17,
+        "int": 20,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Beastman's Cleaver",
+      "type": "Curved Greatsword",
+      "requirements": {
+        "str": 25,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Bloodhound's Fang",
+      "type": "Curved Greatsword",
+      "requirements": {
+        "str": 18,
+        "dex": 17,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Dismounter",
+      "type": "Curved Greatsword",
+      "requirements": {
+        "str": 19,
+        "dex": 16,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Freyja's Greatsword",
+      "type": "Curved Greatsword",
+      "requirements": {
+        "str": 25,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Horned Warrior's Greatsword",
+      "type": "Curved Greatsword",
+      "requirements": {
+        "str": 19,
+        "dex": 16,
+        "int": 0,
+        "fai": 13,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Magma Wyrm's Scalesword",
+      "type": "Curved Greatsword",
+      "requirements": {
+        "str": 24,
+        "dex": 15,
+        "int": 0,
+        "fai": 18,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Monk's Flameblade",
+      "type": "Curved Greatsword",
+      "requirements": {
+        "str": 18,
+        "dex": 18,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Morgott's Cursed Sword",
+      "type": "Curved Greatsword",
+      "requirements": {
+        "str": 14,
+        "dex": 35,
+        "int": 0,
+        "fai": 0,
+        "arc": 17
+      }
+    },
+    {
+      "name": "Omen Cleaver",
+      "type": "Curved Greatsword",
+      "requirements": {
+        "str": 19,
+        "dex": 16,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Onyx Lord's Greatsword",
+      "type": "Curved Greatsword",
+      "requirements": {
+        "str": 20,
+        "dex": 16,
+        "int": 16,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Zamor Curved Sword",
+      "type": "Curved Greatsword",
+      "requirements": {
+        "str": 16,
+        "dex": 18,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Dragonscale Blade",
+      "type": "Katana",
+      "requirements": {
+        "str": 12,
+        "dex": 20,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Hand of Malenia",
+      "type": "Katana",
+      "requirements": {
+        "str": 16,
+        "dex": 48,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Meteoric Ore Blade",
+      "type": "Katana",
+      "requirements": {
+        "str": 15,
+        "dex": 14,
+        "int": 18,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Moonveil",
+      "type": "Katana",
+      "requirements": {
+        "str": 12,
+        "dex": 18,
+        "int": 23,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Nagakiba",
+      "type": "Katana",
+      "requirements": {
+        "str": 18,
+        "dex": 22,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Rivers of Blood",
+      "type": "Katana",
+      "requirements": {
+        "str": 12,
+        "dex": 18,
+        "int": 0,
+        "fai": 0,
+        "arc": 20
+      }
+    },
+    {
+      "name": "Serpentbone Blade",
+      "type": "Katana",
+      "requirements": {
+        "str": 11,
+        "dex": 22,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Star-Lined Sword",
+      "type": "Katana",
+      "requirements": {
+        "str": 10,
+        "dex": 23,
+        "int": 21,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Sword of Night",
+      "type": "Katana",
+      "requirements": {
+        "str": 11,
+        "dex": 20,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Uchigatana",
+      "type": "Katana",
+      "requirements": {
+        "str": 11,
+        "dex": 15,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Black Steel Twinblade",
+      "type": "Twinblade",
+      "requirements": {
+        "str": 18,
+        "dex": 15,
+        "int": 0,
+        "fai": 13,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Eleonora's Poleblade",
+      "type": "Twinblade",
+      "requirements": {
+        "str": 12,
+        "dex": 21,
+        "int": 0,
+        "fai": 0,
+        "arc": 19
+      }
+    },
+    {
+      "name": "Euporia",
+      "type": "Twinblade",
+      "requirements": {
+        "str": 16,
+        "dex": 16,
+        "int": 0,
+        "fai": 24,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Gargoyle's Black Blades",
+      "type": "Twinblade",
+      "requirements": {
+        "str": 18,
+        "dex": 15,
+        "int": 0,
+        "fai": 22,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Gargoyle's Twinblade",
+      "type": "Twinblade",
+      "requirements": {
+        "str": 18,
+        "dex": 15,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Godskin Peeler",
+      "type": "Twinblade",
+      "requirements": {
+        "str": 17,
+        "dex": 22,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Twinblade",
+      "type": "Twinblade",
+      "requirements": {
+        "str": 10,
+        "dex": 18,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Twinned Knight Swords",
+      "type": "Twinblade",
+      "requirements": {
+        "str": 16,
+        "dex": 18,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Dragon-Hunter's Great Katana",
+      "type": "Great Katana",
+      "requirements": {
+        "str": 15,
+        "dex": 20,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Great Katana",
+      "type": "Great Katana",
+      "requirements": {
+        "str": 14,
+        "dex": 18,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Rakshasa's Great Katana",
+      "type": "Great Katana",
+      "requirements": {
+        "str": 12,
+        "dex": 27,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Battle Axe",
+      "type": "Axe",
+      "requirements": {
+        "str": 12,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Celebrant's Cleaver",
+      "type": "Axe",
+      "requirements": {
+        "str": 12,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Death Knight's Twin Axes",
+      "type": "Axe",
+      "requirements": {
+        "str": 14,
+        "dex": 12,
+        "int": 0,
+        "fai": 16,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Forked Hatchet",
+      "type": "Axe",
+      "requirements": {
+        "str": 9,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Forked-Tongue Hatchet",
+      "type": "Axe",
+      "requirements": {
+        "str": 10,
+        "dex": 13,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Hand Axe",
+      "type": "Axe",
+      "requirements": {
+        "str": 9,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Highland Axe",
+      "type": "Axe",
+      "requirements": {
+        "str": 12,
+        "dex": 9,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Icerind Hatchet",
+      "type": "Axe",
+      "requirements": {
+        "str": 11,
+        "dex": 16,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Iron Cleaver",
+      "type": "Axe",
+      "requirements": {
+        "str": 15,
+        "dex": 7,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Jawbone Axe",
+      "type": "Axe",
+      "requirements": {
+        "str": 14,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Messmer Soldier's Axe",
+      "type": "Axe",
+      "requirements": {
+        "str": 14,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Ripple Blade",
+      "type": "Axe",
+      "requirements": {
+        "str": 11,
+        "dex": 11,
+        "int": 0,
+        "fai": 0,
+        "arc": 20
+      }
+    },
+    {
+      "name": "Rosus' Axe",
+      "type": "Axe",
+      "requirements": {
+        "str": 18,
+        "dex": 10,
+        "int": 18,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Sacrificial Axe",
+      "type": "Axe",
+      "requirements": {
+        "str": 16,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Smithscript Axe",
+      "type": "Axe",
+      "requirements": {
+        "str": 13,
+        "dex": 10,
+        "int": 11,
+        "fai": 11,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Stormhawk Axe",
+      "type": "Axe",
+      "requirements": {
+        "str": 19,
+        "dex": 15,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Warped Axe",
+      "type": "Axe",
+      "requirements": {
+        "str": 24,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Axe of Godrick",
+      "type": "Greataxe",
+      "requirements": {
+        "str": 34,
+        "dex": 22,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Bonny Butchering Knife",
+      "type": "Greataxe",
+      "requirements": {
+        "str": 16,
+        "dex": 20,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Butchering Knife",
+      "type": "Greataxe",
+      "requirements": {
+        "str": 16,
+        "dex": 20,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Crescent Moon Axe",
+      "type": "Greataxe",
+      "requirements": {
+        "str": 25,
+        "dex": 15,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Death Knight's Longhaft Axe",
+      "type": "Greataxe",
+      "requirements": {
+        "str": 23,
+        "dex": 10,
+        "int": 0,
+        "fai": 18,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Executioner's Greataxe",
+      "type": "Greataxe",
+      "requirements": {
+        "str": 34,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Gargoyle's Black Axe",
+      "type": "Greataxe",
+      "requirements": {
+        "str": 24,
+        "dex": 8,
+        "int": 0,
+        "fai": 22,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Gargoyle's Great Axe",
+      "type": "Greataxe",
+      "requirements": {
+        "str": 24,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Great Omenkiller Cleaver",
+      "type": "Greataxe",
+      "requirements": {
+        "str": 23,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Greataxe",
+      "type": "Greataxe",
+      "requirements": {
+        "str": 30,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Longhaft Axe",
+      "type": "Greataxe",
+      "requirements": {
+        "str": 24,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Putrescence Cleaver",
+      "type": "Greataxe",
+      "requirements": {
+        "str": 28,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 15
+      }
+    },
+    {
+      "name": "Rusted Anchor",
+      "type": "Greataxe",
+      "requirements": {
+        "str": 26,
+        "dex": 9,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Winged Greathorn",
+      "type": "Greataxe",
+      "requirements": {
+        "str": 30,
+        "dex": 20,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Club",
+      "type": "Hammer",
+      "requirements": {
+        "str": 10,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Curved Club",
+      "type": "Hammer",
+      "requirements": {
+        "str": 11,
+        "dex": 7,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Envoy's Horn",
+      "type": "Hammer",
+      "requirements": {
+        "str": 10,
+        "dex": 12,
+        "int": 0,
+        "fai": 16,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Flowerstone Gavel",
+      "type": "Hammer",
+      "requirements": {
+        "str": 14,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 15
+      }
+    },
+    {
+      "name": "Hammer",
+      "type": "Hammer",
+      "requirements": {
+        "str": 14,
+        "dex": 7,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Mace",
+      "type": "Hammer",
+      "requirements": {
+        "str": 12,
+        "dex": 7,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Marika's Hammer",
+      "type": "Hammer",
+      "requirements": {
+        "str": 20,
+        "dex": 12,
+        "int": 0,
+        "fai": 19,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Monk's Flamemace",
+      "type": "Hammer",
+      "requirements": {
+        "str": 13,
+        "dex": 13,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Morning Star",
+      "type": "Hammer",
+      "requirements": {
+        "str": 12,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Nox Flowing Hammer",
+      "type": "Hammer",
+      "requirements": {
+        "str": 17,
+        "dex": 7,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Ringed Finger",
+      "type": "Hammer",
+      "requirements": {
+        "str": 15,
+        "dex": 9,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Scepter of the All-Knowing",
+      "type": "Hammer",
+      "requirements": {
+        "str": 12,
+        "dex": 18,
+        "int": 21,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Spiked Club",
+      "type": "Hammer",
+      "requirements": {
+        "str": 12,
+        "dex": 7,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Stone Club",
+      "type": "Hammer",
+      "requirements": {
+        "str": 16,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Varr\u00e9's Bouquet",
+      "type": "Hammer",
+      "requirements": {
+        "str": 8,
+        "dex": 16,
+        "int": 0,
+        "fai": 0,
+        "arc": 24
+      }
+    },
+    {
+      "name": "Warpick",
+      "type": "Hammer",
+      "requirements": {
+        "str": 11,
+        "dex": 9,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Bastard's Stars",
+      "type": "Flail",
+      "requirements": {
+        "str": 8,
+        "dex": 22,
+        "int": 22,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Chainlink Flail",
+      "type": "Flail",
+      "requirements": {
+        "str": 18,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Family Heads",
+      "type": "Flail",
+      "requirements": {
+        "str": 8,
+        "dex": 18,
+        "int": 16,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Flail",
+      "type": "Flail",
+      "requirements": {
+        "str": 10,
+        "dex": 18,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Nightrider Flail",
+      "type": "Flail",
+      "requirements": {
+        "str": 10,
+        "dex": 24,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Serpent Flail",
+      "type": "Flail",
+      "requirements": {
+        "str": 10,
+        "dex": 24,
+        "int": 0,
+        "fai": 21,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Battle Hammer",
+      "type": "Great Hammer",
+      "requirements": {
+        "str": 26,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Beastclaw Greathammer",
+      "type": "Great Hammer",
+      "requirements": {
+        "str": 20,
+        "dex": 10,
+        "int": 0,
+        "fai": 18,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Black Steel Greathammer",
+      "type": "Great Hammer",
+      "requirements": {
+        "str": 25,
+        "dex": 11,
+        "int": 0,
+        "fai": 17,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Brick Hammer",
+      "type": "Great Hammer",
+      "requirements": {
+        "str": 31,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Celebrant's Skull",
+      "type": "Great Hammer",
+      "requirements": {
+        "str": 18,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Cranial Vessel Candlestand",
+      "type": "Great Hammer",
+      "requirements": {
+        "str": 26,
+        "dex": 8,
+        "int": 0,
+        "fai": 22,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Curved Great Club",
+      "type": "Great Hammer",
+      "requirements": {
+        "str": 24,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Devourer's Scepter",
+      "type": "Great Hammer",
+      "requirements": {
+        "str": 24,
+        "dex": 20,
+        "int": 0,
+        "fai": 25,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Envoy's Long Horn",
+      "type": "Great Hammer",
+      "requirements": {
+        "str": 23,
+        "dex": 11,
+        "int": 0,
+        "fai": 18,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Great Mace",
+      "type": "Great Hammer",
+      "requirements": {
+        "str": 28,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Great Stars",
+      "type": "Great Hammer",
+      "requirements": {
+        "str": 22,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Greathorn Hammer",
+      "type": "Great Hammer",
+      "requirements": {
+        "str": 22,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Large Club",
+      "type": "Great Hammer",
+      "requirements": {
+        "str": 22,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Pickaxe",
+      "type": "Great Hammer",
+      "requirements": {
+        "str": 22,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Rotten Battle Hammer",
+      "type": "Great Hammer",
+      "requirements": {
+        "str": 26,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Smithscript Greathammer",
+      "type": "Great Hammer",
+      "requirements": {
+        "str": 20,
+        "dex": 10,
+        "int": 11,
+        "fai": 11,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Anvil Hammer",
+      "type": "Colossal Weapon",
+      "requirements": {
+        "str": 39,
+        "dex": 10,
+        "int": 11,
+        "fai": 20,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Axe of Godfrey",
+      "type": "Colossal Weapon",
+      "requirements": {
+        "str": 42,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Bloodfiend's Arm",
+      "type": "Colossal Weapon",
+      "requirements": {
+        "str": 28,
+        "dex": 11,
+        "int": 0,
+        "fai": 0,
+        "arc": 16
+      }
+    },
+    {
+      "name": "Devonia's Hammer",
+      "type": "Colossal Weapon",
+      "requirements": {
+        "str": 30,
+        "dex": 13,
+        "int": 0,
+        "fai": 19,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Dragon Greatclaw",
+      "type": "Colossal Weapon",
+      "requirements": {
+        "str": 30,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Duelist Greataxe",
+      "type": "Colossal Weapon",
+      "requirements": {
+        "str": 30,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Envoy's Greathorn",
+      "type": "Colossal Weapon",
+      "requirements": {
+        "str": 28,
+        "dex": 12,
+        "int": 0,
+        "fai": 24,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Fallingstar Beast Jaw",
+      "type": "Colossal Weapon",
+      "requirements": {
+        "str": 34,
+        "dex": 12,
+        "int": 20,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Gazing Finger",
+      "type": "Colossal Weapon",
+      "requirements": {
+        "str": 20,
+        "dex": 8,
+        "int": 20,
+        "fai": 14,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Ghiza's Wheel",
+      "type": "Colossal Weapon",
+      "requirements": {
+        "str": 28,
+        "dex": 18,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Giant-Crusher",
+      "type": "Colossal Weapon",
+      "requirements": {
+        "str": 60,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Golem's Halberd",
+      "type": "Colossal Weapon",
+      "requirements": {
+        "str": 36,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Great Club",
+      "type": "Colossal Weapon",
+      "requirements": {
+        "str": 35,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Prelate's Inferno Crozier",
+      "type": "Colossal Weapon",
+      "requirements": {
+        "str": 45,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Rotten Greataxe",
+      "type": "Colossal Weapon",
+      "requirements": {
+        "str": 30,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Rotten Staff",
+      "type": "Colossal Weapon",
+      "requirements": {
+        "str": 34,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Shadow Sunflower Blossom",
+      "type": "Colossal Weapon",
+      "requirements": {
+        "str": 24,
+        "dex": 8,
+        "int": 0,
+        "fai": 25,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Staff of the Avatar",
+      "type": "Colossal Weapon",
+      "requirements": {
+        "str": 34,
+        "dex": 8,
+        "int": 0,
+        "fai": 24,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Troll's Hammer",
+      "type": "Colossal Weapon",
+      "requirements": {
+        "str": 28,
+        "dex": 8,
+        "int": 0,
+        "fai": 10,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Watchdog's Staff",
+      "type": "Colossal Weapon",
+      "requirements": {
+        "str": 34,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Bloodfiend's Fork",
+      "type": "Spear",
+      "requirements": {
+        "str": 14,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 13
+      }
+    },
+    {
+      "name": "Bolt of Gransax",
+      "type": "Spear",
+      "requirements": {
+        "str": 20,
+        "dex": 40,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Celebrant's Rib-Rake",
+      "type": "Spear",
+      "requirements": {
+        "str": 8,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Clayman's Harpoon",
+      "type": "Spear",
+      "requirements": {
+        "str": 12,
+        "dex": 10,
+        "int": 12,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Cleanrot Spear",
+      "type": "Spear",
+      "requirements": {
+        "str": 16,
+        "dex": 16,
+        "int": 0,
+        "fai": 14,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Cross-Naginata",
+      "type": "Spear",
+      "requirements": {
+        "str": 16,
+        "dex": 20,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Crystal Spear",
+      "type": "Spear",
+      "requirements": {
+        "str": 10,
+        "dex": 16,
+        "int": 16,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Death Ritual Spear",
+      "type": "Spear",
+      "requirements": {
+        "str": 14,
+        "dex": 20,
+        "int": 18,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Inquisitor's Girandole",
+      "type": "Spear",
+      "requirements": {
+        "str": 18,
+        "dex": 15,
+        "int": 0,
+        "fai": 16,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Iron Spear",
+      "type": "Spear",
+      "requirements": {
+        "str": 13,
+        "dex": 11,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Partisan",
+      "type": "Spear",
+      "requirements": {
+        "str": 15,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Pike",
+      "type": "Spear",
+      "requirements": {
+        "str": 20,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Rotten Crystal Spear",
+      "type": "Spear",
+      "requirements": {
+        "str": 10,
+        "dex": 16,
+        "int": 16,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Short Spear",
+      "type": "Spear",
+      "requirements": {
+        "str": 10,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Smithscript Spear",
+      "type": "Spear",
+      "requirements": {
+        "str": 9,
+        "dex": 12,
+        "int": 11,
+        "fai": 11,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Spear",
+      "type": "Spear",
+      "requirements": {
+        "str": 12,
+        "dex": 15,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Spiked Spear",
+      "type": "Spear",
+      "requirements": {
+        "str": 14,
+        "dex": 16,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Swift Spear",
+      "type": "Spear",
+      "requirements": {
+        "str": 10,
+        "dex": 26,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Torchpole",
+      "type": "Spear",
+      "requirements": {
+        "str": 14,
+        "dex": 15,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Barbed Staff-Spear",
+      "type": "Great Spear",
+      "requirements": {
+        "str": 14,
+        "dex": 18,
+        "int": 0,
+        "fai": 22,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Bloodfiend's Sacred Spear",
+      "type": "Great Spear",
+      "requirements": {
+        "str": 22,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 13
+      }
+    },
+    {
+      "name": "Lance",
+      "type": "Great Spear",
+      "requirements": {
+        "str": 20,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Messmer Soldier's Spear",
+      "type": "Great Spear",
+      "requirements": {
+        "str": 19,
+        "dex": 16,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Mohgwyn's Sacred Spear",
+      "type": "Great Spear",
+      "requirements": {
+        "str": 24,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 27
+      }
+    },
+    {
+      "name": "Siluria's Tree",
+      "type": "Great Spear",
+      "requirements": {
+        "str": 27,
+        "dex": 13,
+        "int": 0,
+        "fai": 20,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Spear of the Impaler",
+      "type": "Great Spear",
+      "requirements": {
+        "str": 14,
+        "dex": 35,
+        "int": 0,
+        "fai": 18,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Treespear",
+      "type": "Great Spear",
+      "requirements": {
+        "str": 15,
+        "dex": 22,
+        "int": 0,
+        "fai": 18,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Vyke's War Spear",
+      "type": "Great Spear",
+      "requirements": {
+        "str": 16,
+        "dex": 20,
+        "int": 0,
+        "fai": 18,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Serpent-Hunter",
+      "type": "Great Spear",
+      "requirements": {
+        "str": 0,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Banished Knight's Halberd",
+      "type": "Halberd",
+      "requirements": {
+        "str": 14,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Commander's Standard",
+      "type": "Halberd",
+      "requirements": {
+        "str": 24,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Dragon Halberd",
+      "type": "Halberd",
+      "requirements": {
+        "str": 22,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Gargoyle's Black Halberd",
+      "type": "Halberd",
+      "requirements": {
+        "str": 26,
+        "dex": 10,
+        "int": 0,
+        "fai": 22,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Gargoyle's Halberd",
+      "type": "Halberd",
+      "requirements": {
+        "str": 26,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Glaive",
+      "type": "Halberd",
+      "requirements": {
+        "str": 18,
+        "dex": 15,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Golden Halberd",
+      "type": "Halberd",
+      "requirements": {
+        "str": 30,
+        "dex": 14,
+        "int": 0,
+        "fai": 12,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Guardian's Swordspear",
+      "type": "Halberd",
+      "requirements": {
+        "str": 17,
+        "dex": 16,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Halberd",
+      "type": "Halberd",
+      "requirements": {
+        "str": 14,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Loretta's War Sickle",
+      "type": "Halberd",
+      "requirements": {
+        "str": 20,
+        "dex": 15,
+        "int": 20,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Lucerne",
+      "type": "Halberd",
+      "requirements": {
+        "str": 15,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Nightrider Glaive",
+      "type": "Halberd",
+      "requirements": {
+        "str": 26,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Pest's Glaive",
+      "type": "Halberd",
+      "requirements": {
+        "str": 13,
+        "dex": 13,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Poleblade of the Bud",
+      "type": "Halberd",
+      "requirements": {
+        "str": 14,
+        "dex": 22,
+        "int": 0,
+        "fai": 0,
+        "arc": 20
+      }
+    },
+    {
+      "name": "Ripple Crescent Halberd",
+      "type": "Halberd",
+      "requirements": {
+        "str": 12,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 20
+      }
+    },
+    {
+      "name": "Spirit Glaive",
+      "type": "Halberd",
+      "requirements": {
+        "str": 14,
+        "dex": 17,
+        "int": 16,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Vulgar Militia Saw",
+      "type": "Halberd",
+      "requirements": {
+        "str": 15,
+        "dex": 13,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Vulgar Militia Shotel",
+      "type": "Halberd",
+      "requirements": {
+        "str": 14,
+        "dex": 16,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Grave Scythe",
+      "type": "Reaper",
+      "requirements": {
+        "str": 17,
+        "dex": 13,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Halo Scythe",
+      "type": "Reaper",
+      "requirements": {
+        "str": 13,
+        "dex": 16,
+        "int": 0,
+        "fai": 15,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Obsidian Lamina",
+      "type": "Reaper",
+      "requirements": {
+        "str": 12,
+        "dex": 25,
+        "int": 0,
+        "fai": 0,
+        "arc": 17
+      }
+    },
+    {
+      "name": "Scythe",
+      "type": "Reaper",
+      "requirements": {
+        "str": 14,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Winged Scythe",
+      "type": "Reaper",
+      "requirements": {
+        "str": 16,
+        "dex": 16,
+        "int": 0,
+        "fai": 24,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Giant's Red Braid",
+      "type": "Whip",
+      "requirements": {
+        "str": 18,
+        "dex": 12,
+        "int": 0,
+        "fai": 21,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Hoslow's Petal Whip",
+      "type": "Whip",
+      "requirements": {
+        "str": 10,
+        "dex": 20,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Magma Whip Candlestick",
+      "type": "Whip",
+      "requirements": {
+        "str": 8,
+        "dex": 16,
+        "int": 0,
+        "fai": 18,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Thorned Whip",
+      "type": "Whip",
+      "requirements": {
+        "str": 8,
+        "dex": 16,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Tooth Whip",
+      "type": "Whip",
+      "requirements": {
+        "str": 10,
+        "dex": 24,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Urumi",
+      "type": "Whip",
+      "requirements": {
+        "str": 10,
+        "dex": 19,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Whip",
+      "type": "Whip",
+      "requirements": {
+        "str": 8,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Caestus",
+      "type": "Fist",
+      "requirements": {
+        "str": 8,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Cipher Pata",
+      "type": "Fist",
+      "requirements": {
+        "str": 0,
+        "dex": 0,
+        "int": 0,
+        "fai": 30,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Clinging Bone",
+      "type": "Fist",
+      "requirements": {
+        "str": 8,
+        "dex": 22,
+        "int": 0,
+        "fai": 0,
+        "arc": 16
+      }
+    },
+    {
+      "name": "Golem Fist",
+      "type": "Fist",
+      "requirements": {
+        "str": 24,
+        "dex": 8,
+        "int": 11,
+        "fai": 11,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Grafted Dragon",
+      "type": "Fist",
+      "requirements": {
+        "str": 20,
+        "dex": 14,
+        "int": 0,
+        "fai": 16,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Iron Ball",
+      "type": "Fist",
+      "requirements": {
+        "str": 11,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Katar",
+      "type": "Fist",
+      "requirements": {
+        "str": 8,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Madding Hand (weapon)",
+      "type": "Fist",
+      "requirements": {
+        "str": 8,
+        "dex": 8,
+        "int": 13,
+        "fai": 13,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Pata",
+      "type": "Fist",
+      "requirements": {
+        "str": 11,
+        "dex": 15,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Poisoned Hand",
+      "type": "Fist",
+      "requirements": {
+        "str": 8,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 28
+      }
+    },
+    {
+      "name": "Spiked Caestus",
+      "type": "Fist",
+      "requirements": {
+        "str": 8,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Star Fist",
+      "type": "Fist",
+      "requirements": {
+        "str": 12,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Thiollier's Hidden Needle",
+      "type": "Fist",
+      "requirements": {
+        "str": 10,
+        "dex": 22,
+        "int": 15,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Veteran's Prosthesis",
+      "type": "Fist",
+      "requirements": {
+        "str": 15,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Bloodhound Claws",
+      "type": "Claw",
+      "requirements": {
+        "str": 10,
+        "dex": 15,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Claws of Night",
+      "type": "Claw",
+      "requirements": {
+        "str": 8,
+        "dex": 20,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Hookclaws",
+      "type": "Claw",
+      "requirements": {
+        "str": 8,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Raptor Talons",
+      "type": "Claw",
+      "requirements": {
+        "str": 6,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Venomous Fang",
+      "type": "Claw",
+      "requirements": {
+        "str": 9,
+        "dex": 9,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Bone Bow",
+      "type": "Light Bow",
+      "requirements": {
+        "str": 8,
+        "dex": 11,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Composite Bow",
+      "type": "Light Bow",
+      "requirements": {
+        "str": 15,
+        "dex": 15,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Harp Bow",
+      "type": "Light Bow",
+      "requirements": {
+        "str": 9,
+        "dex": 9,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Misbegotten Shortbow",
+      "type": "Light Bow",
+      "requirements": {
+        "str": 16,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Red Branch Shortbow",
+      "type": "Light Bow",
+      "requirements": {
+        "str": 8,
+        "dex": 16,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Shortbow",
+      "type": "Light Bow",
+      "requirements": {
+        "str": 8,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Albinauric Bow",
+      "type": "Bow",
+      "requirements": {
+        "str": 7,
+        "dex": 18,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Ansbach's Longbow",
+      "type": "Bow",
+      "requirements": {
+        "str": 9,
+        "dex": 43,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Black Bow",
+      "type": "Bow",
+      "requirements": {
+        "str": 9,
+        "dex": 20,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Erdtree Bow",
+      "type": "Bow",
+      "requirements": {
+        "str": 8,
+        "dex": 12,
+        "int": 0,
+        "fai": 14,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Horn Bow",
+      "type": "Bow",
+      "requirements": {
+        "str": 10,
+        "dex": 14,
+        "int": 12,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Longbow",
+      "type": "Bow",
+      "requirements": {
+        "str": 9,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Pulley Bow",
+      "type": "Bow",
+      "requirements": {
+        "str": 9,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Serpent Bow",
+      "type": "Bow",
+      "requirements": {
+        "str": 8,
+        "dex": 15,
+        "int": 0,
+        "fai": 0,
+        "arc": 11
+      }
+    },
+    {
+      "name": "Erdtree Greatbow",
+      "type": "Greatbow",
+      "requirements": {
+        "str": 20,
+        "dex": 14,
+        "int": 0,
+        "fai": 14,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Golem Greatbow",
+      "type": "Greatbow",
+      "requirements": {
+        "str": 24,
+        "dex": 18,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Greatbow",
+      "type": "Greatbow",
+      "requirements": {
+        "str": 20,
+        "dex": 20,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Igon's Greatbow",
+      "type": "Greatbow",
+      "requirements": {
+        "str": 23,
+        "dex": 16,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Lion Greatbow",
+      "type": "Greatbow",
+      "requirements": {
+        "str": 22,
+        "dex": 18,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Arbalest",
+      "type": "Crossbow",
+      "requirements": {
+        "str": 18,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Crepus's Black-Key Crossbow",
+      "type": "Crossbow",
+      "requirements": {
+        "str": 14,
+        "dex": 16,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Full Moon Crossbow",
+      "type": "Crossbow",
+      "requirements": {
+        "str": 10,
+        "dex": 10,
+        "int": 14,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Heavy Crossbow",
+      "type": "Crossbow",
+      "requirements": {
+        "str": 14,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Light Crossbow",
+      "type": "Crossbow",
+      "requirements": {
+        "str": 12,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Pulley Crossbow",
+      "type": "Crossbow",
+      "requirements": {
+        "str": 16,
+        "dex": 16,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Repeating Crossbow",
+      "type": "Crossbow",
+      "requirements": {
+        "str": 13,
+        "dex": 15,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Soldier's Crossbow",
+      "type": "Crossbow",
+      "requirements": {
+        "str": 10,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Spread Crossbow",
+      "type": "Crossbow",
+      "requirements": {
+        "str": 11,
+        "dex": 17,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Hand Ballista",
+      "type": "Ballista",
+      "requirements": {
+        "str": 30,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Jar Cannon",
+      "type": "Ballista",
+      "requirements": {
+        "str": 34,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Rabbath's Cannon",
+      "type": "Ballista",
+      "requirements": {
+        "str": 28,
+        "dex": 16,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Academy Glintstone Staff",
+      "type": "Glintstone Staff",
+      "requirements": {
+        "str": 6,
+        "dex": 0,
+        "int": 28,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Albinauric Staff",
+      "type": "Glintstone Staff",
+      "requirements": {
+        "str": 6,
+        "dex": 0,
+        "int": 10,
+        "fai": 0,
+        "arc": 12
+      }
+    },
+    {
+      "name": "Astrologer's Staff",
+      "type": "Glintstone Staff",
+      "requirements": {
+        "str": 7,
+        "dex": 0,
+        "int": 16,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Azur's Glintstone Staff",
+      "type": "Glintstone Staff",
+      "requirements": {
+        "str": 10,
+        "dex": 0,
+        "int": 52,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Carian Glintblade Staff",
+      "type": "Glintstone Staff",
+      "requirements": {
+        "str": 6,
+        "dex": 12,
+        "int": 22,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Carian Glintstone Staff",
+      "type": "Glintstone Staff",
+      "requirements": {
+        "str": 6,
+        "dex": 8,
+        "int": 24,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Carian Regal Scepter",
+      "type": "Glintstone Staff",
+      "requirements": {
+        "str": 8,
+        "dex": 10,
+        "int": 60,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Crystal Staff",
+      "type": "Glintstone Staff",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 48,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Demi-Human Queen's Staff",
+      "type": "Glintstone Staff",
+      "requirements": {
+        "str": 6,
+        "dex": 0,
+        "int": 10,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Digger's Staff",
+      "type": "Glintstone Staff",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 12,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Gelmir Glintstone Staff",
+      "type": "Glintstone Staff",
+      "requirements": {
+        "str": 6,
+        "dex": 0,
+        "int": 14,
+        "fai": 14,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Glintstone Staff",
+      "type": "Glintstone Staff",
+      "requirements": {
+        "str": 6,
+        "dex": 0,
+        "int": 10,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Lusat's Glintstone Staff",
+      "type": "Glintstone Staff",
+      "requirements": {
+        "str": 10,
+        "dex": 0,
+        "int": 52,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Maternal Staff",
+      "type": "Glintstone Staff",
+      "requirements": {
+        "str": 7,
+        "dex": 0,
+        "int": 21,
+        "fai": 0,
+        "arc": 21
+      }
+    },
+    {
+      "name": "Meteorite Staff",
+      "type": "Glintstone Staff",
+      "requirements": {
+        "str": 6,
+        "dex": 0,
+        "int": 18,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Prince of Death's Staff",
+      "type": "Glintstone Staff",
+      "requirements": {
+        "str": 6,
+        "dex": 0,
+        "int": 18,
+        "fai": 18,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Rotten Crystal Staff",
+      "type": "Glintstone Staff",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 48,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Staff of Loss",
+      "type": "Glintstone Staff",
+      "requirements": {
+        "str": 6,
+        "dex": 12,
+        "int": 14,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Staff of the Great Beyond",
+      "type": "Glintstone Staff",
+      "requirements": {
+        "str": 7,
+        "dex": 0,
+        "int": 25,
+        "fai": 25,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Staff of the Guilty",
+      "type": "Glintstone Staff",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 12,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Clawmark Seal",
+      "type": "Sacred Seal",
+      "requirements": {
+        "str": 4,
+        "dex": 0,
+        "int": 0,
+        "fai": 10,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Dragon Communion Seal",
+      "type": "Sacred Seal",
+      "requirements": {
+        "str": 0,
+        "dex": 0,
+        "int": 0,
+        "fai": 10,
+        "arc": 10
+      }
+    },
+    {
+      "name": "Dryleaf Seal",
+      "type": "Sacred Seal",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 27,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Erdtree Seal",
+      "type": "Sacred Seal",
+      "requirements": {
+        "str": 0,
+        "dex": 0,
+        "int": 0,
+        "fai": 40,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Finger Seal",
+      "type": "Sacred Seal",
+      "requirements": {
+        "str": 4,
+        "dex": 0,
+        "int": 0,
+        "fai": 10,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Fire Knight's Seal",
+      "type": "Sacred Seal",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 23,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Giant's Seal",
+      "type": "Sacred Seal",
+      "requirements": {
+        "str": 4,
+        "dex": 0,
+        "int": 0,
+        "fai": 14,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Godslayer's Seal",
+      "type": "Sacred Seal",
+      "requirements": {
+        "str": 4,
+        "dex": 0,
+        "int": 0,
+        "fai": 27,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Golden Order Seal",
+      "type": "Sacred Seal",
+      "requirements": {
+        "str": 0,
+        "dex": 0,
+        "int": 17,
+        "fai": 17,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Gravel Stone Seal",
+      "type": "Sacred Seal",
+      "requirements": {
+        "str": 4,
+        "dex": 0,
+        "int": 0,
+        "fai": 18,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Spiraltree Seal",
+      "type": "Sacred Seal",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 17,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Blue-White Wooden Shield",
+      "type": "Small Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Buckler",
+      "type": "Small Shield",
+      "requirements": {
+        "str": 7,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Coil Shield",
+      "type": "Small Shield",
+      "requirements": {
+        "str": 10,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Gilded Iron Shield",
+      "type": "Small Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Ice Crest Shield",
+      "type": "Small Shield",
+      "requirements": {
+        "str": 9,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Iron Roundshield",
+      "type": "Small Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Man-Serpent's Shield",
+      "type": "Small Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Perfumer's Shield",
+      "type": "Small Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Pillory Shield",
+      "type": "Small Shield",
+      "requirements": {
+        "str": 10,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Red Thorn Roundshield",
+      "type": "Small Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Rickety Shield",
+      "type": "Small Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Rift Shield",
+      "type": "Small Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Riveted Wooden Shield",
+      "type": "Small Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Scripture Wooden Shield",
+      "type": "Small Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Shield of Night",
+      "type": "Small Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 15,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Shield of the Guilty",
+      "type": "Small Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Smithscript Shield",
+      "type": "Small Shield",
+      "requirements": {
+        "str": 10,
+        "dex": 15,
+        "int": 11,
+        "fai": 11,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Smoldering Shield",
+      "type": "Small Shield",
+      "requirements": {
+        "str": 10,
+        "dex": 9,
+        "int": 0,
+        "fai": 12,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Spiralhorn Shield",
+      "type": "Small Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Albinauric Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 11,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Banished Knight's Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 14,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Beast Crest Heater Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 10,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Beastman's Jar-Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 10,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Black Leather Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 10,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Blue Crest Heater Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 10,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Blue-Gold Kite Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 12,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Brass Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 16,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Candletree Wooden Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Carian Knight's Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 10,
+        "dex": 10,
+        "int": 15,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Eclipse Crest Heater Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 10,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Flame Crest Wooden Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Golden Lion Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 11,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Great Turtle Shell",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 14,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Hawk Crest Wooden Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Heater Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 10,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Horse Crest Wooden Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Inverted Hawk Heater Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 10,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Kite Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 12,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Large Leather Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Marred Leather Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Marred Wooden Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Messmer Soldier Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 10,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Red Crest Heater Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 10,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Round Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Scorpion Kite Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 12,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Serpent Crest Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 12,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Silver Mirrorshield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 12,
+        "dex": 10,
+        "int": 10,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Sun Realm Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 8,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Twinbird Kite Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 12,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Wolf Crest Shield",
+      "type": "Medium Shield",
+      "requirements": {
+        "str": 12,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Ant's Skull Plate",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 28,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Black Steel Greatshield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 35,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Briar Greatshield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 21,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Crossed-Tree Towershield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 30,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Crucible Hornshield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 26,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Cuckoo Greatshield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 32,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Distinguished Greatshield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 32,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Dragon Towershield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 30,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Dragonclaw Shield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 28,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Eclipse Crest Greatshield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 32,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Erdtree Greatshield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 30,
+        "dex": 0,
+        "int": 0,
+        "fai": 12,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Fingerprint Stone Shield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 48,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Gilded Greatshield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 36,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Golden Beast Crest Shield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 24,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Golden Greatshield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 34,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Haligtree Crest Greatshield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 36,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Icon Shield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 22,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Inverted Hawk Towershield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 30,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Jellyfish Shield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 20,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Lordsworn's Shield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 16,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Manor Towershield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 30,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "One-Eyed Shield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 36,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Redmane Greatshield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 30,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Spiked Palisade Shield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 20,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Verdigris Greatshield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 49,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Visage Shield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 24,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Wooden Greatshield",
+      "type": "Greatshield",
+      "requirements": {
+        "str": 14,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Beast-Repellent Torch",
+      "type": "Torch",
+      "requirements": {
+        "str": 12,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Ghostflame Torch",
+      "type": "Torch",
+      "requirements": {
+        "str": 10,
+        "dex": 10,
+        "int": 14,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Lamenting Visage",
+      "type": "Torch",
+      "requirements": {
+        "str": 9,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Nanaya's Torch",
+      "type": "Torch",
+      "requirements": {
+        "str": 10,
+        "dex": 10,
+        "int": 14,
+        "fai": 16,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Sentry's Torch",
+      "type": "Torch",
+      "requirements": {
+        "str": 15,
+        "dex": 8,
+        "int": 0,
+        "fai": 15,
+        "arc": 0
+      }
+    },
+    {
+      "name": "St. Trina's Torch",
+      "type": "Torch",
+      "requirements": {
+        "str": 10,
+        "dex": 10,
+        "int": 0,
+        "fai": 14,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Steel-Wire Torch",
+      "type": "Torch",
+      "requirements": {
+        "str": 10,
+        "dex": 8,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Torch",
+      "type": "Torch",
+      "requirements": {
+        "str": 5,
+        "dex": 5,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    }
+  ],
+  "talismans": [
+    {
+      "name": "Aged One's Exultation",
+      "effect": "Madness in the vicinity increases attack power"
+    },
+    {
+      "name": "Ailment Talisman",
+      "effect": "Grants resistance to triggered ailments"
+    },
+    {
+      "name": "Ancestral Spirit's Horn",
+      "effect": "Restores FP upon defeating enemies"
+    },
+    {
+      "name": "Arrow's Reach Talisman",
+      "effect": "Increases bow effective range"
+    },
+    {
+      "name": "Arrow's Soaring Sting Talisman",
+      "effect": "Increases the effective range of bows and raises attack power of arrows and bolts"
+    },
+    {
+      "name": "Arrow's Sting Talisman",
+      "effect": "Raises attack power of arrows and bolts"
+    },
+    {
+      "name": "Arsenal Charm",
+      "effect": "Raises maximum equipment load"
+    },
+    {
+      "name": "Arsenal Charm +1",
+      "effect": "Greatly raises maximum equipment load"
+    },
+    {
+      "name": "Assassin's Cerulean Dagger",
+      "effect": "Critical hits restore FP"
+    },
+    {
+      "name": "Assassin's Crimson Dagger",
+      "effect": "Critical hits restore HP"
+    },
+    {
+      "name": "Axe Talisman",
+      "effect": "Enhances charge attacks"
+    },
+    {
+      "name": "Beloved Stardust",
+      "effect": "Shortens casting speed for sorcery and incantations by the utmost, but increases damage taken"
+    },
+    {
+      "name": "Blade of Mercy",
+      "effect": "Raises attack power after each critical hit"
+    },
+    {
+      "name": "Blessed Blue Dew Talisman",
+      "effect": "Slowly restores FP"
+    },
+    {
+      "name": "Blessed Dew Talisman",
+      "effect": "Slowly restores HP"
+    },
+    {
+      "name": "Blue Dancer Charm",
+      "effect": "Raises attack power with lower equipment load"
+    },
+    {
+      "name": "Blue-Feathered Branchsword",
+      "effect": "Raises defense when HP is low"
+    },
+    {
+      "name": "Boltdrake Talisman",
+      "effect": "Boosts lightning damage negation"
+    },
+    {
+      "name": "Boltdrake Talisman +1",
+      "effect": "Greatly boosts lightning damage negation"
+    },
+    {
+      "name": "Boltdrake Talisman +2",
+      "effect": "Vastly boosts lightning damage negation"
+    },
+    {
+      "name": "Boltdrake Talisman +3",
+      "effect": "Reduces lightning damage"
+    },
+    {
+      "name": "Bull-Goat's Talisman",
+      "effect": "Raises Poise"
+    },
+    {
+      "name": "Carian Filigreed Crest",
+      "effect": "Lowers FP consumed by skills"
+    },
+    {
+      "name": "Cerulean Amber Medallion",
+      "effect": "Raises maxiumum FP"
+    },
+    {
+      "name": "Cerulean Amber Medallion +1",
+      "effect": "Greatly raises maximum FP"
+    },
+    {
+      "name": "Cerulean Amber Medallion +2",
+      "effect": "Vastly raises maximum FP"
+    },
+    {
+      "name": "Cerulean Amber Medallion +3",
+      "effect": "Boosts maximum FP by the utmost"
+    },
+    {
+      "name": "Cerulean Seed Talisman",
+      "effect": "Boosts FP restoration from Flask of Cerulean Tears"
+    },
+    {
+      "name": "Cerulean Seed Talisman +1",
+      "effect": "Boosts FP restoration from the Flask of Cerulean Tears"
+    },
+    {
+      "name": "Clarifying Horn Charm",
+      "effect": "Raises focus"
+    },
+    {
+      "name": "Clarifying Horn Charm +1",
+      "effect": "Greatly raises focus"
+    },
+    {
+      "name": "Clarifying Horn Charm +2",
+      "effect": "Raises Focus by +230"
+    },
+    {
+      "name": "Claw Talisman",
+      "effect": "Enhances jump attacks"
+    },
+    {
+      "name": "Companion Jar",
+      "effect": "Raises potency of throwing pots"
+    },
+    {
+      "name": "Concealing Veil",
+      "effect": "Conceals wearer while crouching away from foes"
+    },
+    {
+      "name": "Crepus's Vial",
+      "effect": "Eliminates all sound made by the wearer during movement"
+    },
+    {
+      "name": "Crimson Amber Medallion",
+      "effect": "Raises maximum HP"
+    },
+    {
+      "name": "Crimson Amber Medallion +1",
+      "effect": "Greatly raises maximum HP"
+    },
+    {
+      "name": "Crimson Amber Medallion +2",
+      "effect": "Vastly raises maximum HP"
+    },
+    {
+      "name": "Crimson Amber Medallion +3",
+      "effect": "Vastly raises maximum HP"
+    },
+    {
+      "name": "Crimson Seed Talisman",
+      "effect": "Boosts HP regeneration from Flask of Crimson Tears"
+    },
+    {
+      "name": "Crimson Seed Talisman +1",
+      "effect": "Boosts HP restoration from the Flask of Crimson Tears"
+    },
+    {
+      "name": "Crucible Feather Talisman",
+      "effect": "Improves dodge rolling but increases damage taken"
+    },
+    {
+      "name": "Crucible Knot Talisman",
+      "effect": "Reduces damage and impact of headshots"
+    },
+    {
+      "name": "Crucible Scale Talisman",
+      "effect": "Reduces damage taken from critical hits"
+    },
+    {
+      "name": "Crusade Insignia",
+      "effect": "Raises attack power after defeating an enemy"
+    },
+    {
+      "name": "Curved Sword Talisman",
+      "effect": "Enhances guard counters"
+    },
+    {
+      "name": "Daedicar's Woe",
+      "effect": "Increases damage taken"
+    },
+    {
+      "name": "Dagger Talisman",
+      "effect": "Enhances critical hits"
+    },
+    {
+      "name": "Dragoncrest Greatshield Talisman",
+      "effect": "Enormously boosts physical damage negation"
+    },
+    {
+      "name": "Dragoncrest Shield Talisman",
+      "effect": "Boosts physical damage negation"
+    },
+    {
+      "name": "Dragoncrest Shield Talisman +1",
+      "effect": "Greatly boosts physical damage negation"
+    },
+    {
+      "name": "Dragoncrest Shield Talisman +2",
+      "effect": "Vastly boosts physical damage negation"
+    },
+    {
+      "name": "Dried Bouquet",
+      "effect": "Raises attack power when summoned spirit dies"
+    },
+    {
+      "name": "Elden Ring Talisman Template",
+      "effect": ""
+    },
+    {
+      "name": "Enraged Divine Beast",
+      "effect": "Raises potency of storms by 10%"
+    },
+    {
+      "name": "Erdtree's Favor",
+      "effect": "Slightly raises maximum HP, stamina, and equip load"
+    },
+    {
+      "name": "Erdtree's Favor +1",
+      "effect": "Raises maximum HP, stamina, and equip load"
+    },
+    {
+      "name": "Erdtree's Favor +2",
+      "effect": "Greatly raises maximum HP, stamina, and equip load"
+    },
+    {
+      "name": "Faithful's Canvas Talisman",
+      "effect": "Raises potency of Incantations"
+    },
+    {
+      "name": "Fine Crucible Feather Talisman",
+      "effect": ""
+    },
+    {
+      "name": "Fire Scorpion Charm",
+      "effect": "Raises fire attack, but lowers damage negation"
+    },
+    {
+      "name": "Flamedrake Talisman",
+      "effect": "Boosts fire damage negation"
+    },
+    {
+      "name": "Flamedrake Talisman +1",
+      "effect": "Greatly boosts fire damage negation"
+    },
+    {
+      "name": "Flamedrake Talisman +2",
+      "effect": "Vastly boosts fire damage negation"
+    },
+    {
+      "name": "Flamedrake Talisman +3",
+      "effect": "Boosts fire damage negation by the utmost"
+    },
+    {
+      "name": "Flock's Canvas Talisman",
+      "effect": "Greatly raises potency of Incantations"
+    },
+    {
+      "name": "Furled Finger's Trick-Mirror",
+      "effect": "Take on appearance of a Host of Fingers"
+    },
+    {
+      "name": "Godfrey Icon",
+      "effect": "Enhances charged spells and skills"
+    },
+    {
+      "name": "Godskin Swaddling Cloth",
+      "effect": "Successive attacks restore HP"
+    },
+    {
+      "name": "Gold Scarab",
+      "effect": "Increases runes obtained from defeated enemies"
+    },
+    {
+      "name": "Golden Braid",
+      "effect": "Boosts holy damage negation by the utmost"
+    },
+    {
+      "name": "Graven-Mass Talisman",
+      "effect": "Greatly raises potency of sorceries"
+    },
+    {
+      "name": "Graven-School Talisman",
+      "effect": "Raises potency of sorceries"
+    },
+    {
+      "name": "Great-Jar's Arsenal",
+      "effect": "Vastly raises maximum equipment load"
+    },
+    {
+      "name": "Greatshield Talisman",
+      "effect": "Boosts guarding ability"
+    },
+    {
+      "name": "Green Turtle Talisman",
+      "effect": "Raises stamina recovery speed"
+    },
+    {
+      "name": "Haligdrake Talisman",
+      "effect": "Boosts holy damage negation"
+    },
+    {
+      "name": "Haligdrake Talisman +1",
+      "effect": "Greatly boosts holy damage negation"
+    },
+    {
+      "name": "Haligdrake Talisman +2",
+      "effect": "Vastly boosts holy damage negation"
+    },
+    {
+      "name": "Hammer Talisman",
+      "effect": "Enhances stamina-reducing attacks against blockers"
+    },
+    {
+      "name": "Host's Trick-Mirror",
+      "effect": "Take on appearance of a cooperator"
+    },
+    {
+      "name": "Immunizing Horn Charm",
+      "effect": "Raises Immunity"
+    },
+    {
+      "name": "Immunizing Horn Charm +1",
+      "effect": "Greatly raises Immunity"
+    },
+    {
+      "name": "Immunizing Horn Charm +2",
+      "effect": "Raises Immunity by +180"
+    },
+    {
+      "name": "Kindred of Rot's Exultation",
+      "effect": "Poisoning or rot in vicinity increases attack power"
+    },
+    {
+      "name": "Lacerating Crossed-Tree",
+      "effect": "Enhances dash attacks"
+    },
+    {
+      "name": "Lance Talisman",
+      "effect": "Enhances attacks on horseback"
+    },
+    {
+      "name": "Lightning Scorpion Charm",
+      "effect": "Raises lightning attack, but lowers damage negation"
+    },
+    {
+      "name": "Longtail Cat Talisman",
+      "effect": "Grants immunity to fall damage, but does not prevent death from a high fall."
+    },
+    {
+      "name": "Lord of Blood's Exultation",
+      "effect": "Blood loss in vicinity increases attack power"
+    },
+    {
+      "name": "Magic Scorpion Charm",
+      "effect": "Raises magic attack, but lowers damage negation"
+    },
+    {
+      "name": "Marika's Scarseal",
+      "effect": "Raises attributes, but also increases damage taken",
+      "boosts": {
+        "int": 3,
+        "fai": 3,
+        "arc": 3
+      }
+    },
+    {
+      "name": "Marika's Soreseal",
+      "effect": "Greatly raises attributes, but also increases damage taken",
+      "boosts": {
+        "int": 5,
+        "fai": 5,
+        "arc": 5
+      }
+    },
+    {
+      "name": "Millicent's Prosthesis",
+      "effect": "Boosts dexterity, raises attack power with successive attacks",
+      "boosts": {
+        "dex": 5
+      }
+    },
+    {
+      "name": "Moon of Nokstella",
+      "effect": "Increases memory slots by 2"
+    },
+    {
+      "name": "Mottled Necklace",
+      "effect": "Raises Robustness, Immunity, and Focus"
+    },
+    {
+      "name": "Mottled Necklace +1",
+      "effect": "Greatly raises Robustness, Immunity, and Focus"
+    },
+    {
+      "name": "Mottled Necklace +2",
+      "effect": "Raises Immunity, Robustness, and Focus by +100 each"
+    },
+    {
+      "name": "Old Lord's Talisman",
+      "effect": "Extends spell effect duration"
+    },
+    {
+      "name": "Outer God Heirloom",
+      "effect": "Raises arcane by 5",
+      "boosts": {
+        "arc": 5
+      }
+    },
+    {
+      "name": "Pearl Shield Talisman",
+      "effect": "Boosts all non-physical damage negation by 20% while guarding"
+    },
+    {
+      "name": "Pearldrake Talisman",
+      "effect": "Boosts non-physical damage negation"
+    },
+    {
+      "name": "Pearldrake Talisman +1",
+      "effect": "Greatly boosts non-physical damage negation"
+    },
+    {
+      "name": "Pearldrake Talisman +2",
+      "effect": "Vastly boosts non-physical damage negation"
+    },
+    {
+      "name": "Pearldrake Talisman +3",
+      "effect": "Boosts non-physical damage negation by the utmost"
+    },
+    {
+      "name": "Perfumer's Talisman",
+      "effect": "Raises potency of perfume items"
+    },
+    {
+      "name": "Primal Glintstone Blade",
+      "effect": "Spells consume less FP, but maximum HP is reduced"
+    },
+    {
+      "name": "Prince of Death's Cyst",
+      "effect": "Greatly raises vitality"
+    },
+    {
+      "name": "Prince of Death's Pustule",
+      "effect": "Raises Vitality"
+    },
+    {
+      "name": "Prosthesis-Wearer Heirloom",
+      "effect": "Raises dexterity by 5",
+      "boosts": {
+        "dex": 5
+      }
+    },
+    {
+      "name": "Radagon Icon",
+      "effect": "Shortens spell casting time"
+    },
+    {
+      "name": "Radagon's Scarseal",
+      "effect": "+3 VIG, END, STR, DEX",
+      "boosts": {
+        "str": 3,
+        "dex": 3
+      }
+    },
+    {
+      "name": "Radagon's Soreseal",
+      "effect": "+5 VIG, END, STR, DEX",
+      "boosts": {
+        "str": 5,
+        "dex": 5
+      }
+    },
+    {
+      "name": "Red-Feathered Branchsword",
+      "effect": "Raises attack power when HP is low"
+    },
+    {
+      "name": "Rellana's Cameo",
+      "effect": "Enhances attacks executed after maintaining the same stance for an extended period"
+    },
+    {
+      "name": "Retaliatory Crossed-Tree",
+      "effect": "Enhances attacks executed after rolling or backstepping"
+    },
+    {
+      "name": "Ritual Shield Talisman",
+      "effect": "Raises defense when HP is at maximum"
+    },
+    {
+      "name": "Ritual Sword Talisman",
+      "effect": "Raises attack power when HP is at maximum"
+    },
+    {
+      "name": "Roar Medallion",
+      "effect": "Enhances roars and breath attacks"
+    },
+    {
+      "name": "Rotten Winged Sword Insignia",
+      "effect": "Greatly raises attack power with successive attacks"
+    },
+    {
+      "name": "Sacred Scorpion Charm",
+      "effect": "Raises holy attack, but lowers damage negation"
+    },
+    {
+      "name": "Sacrificial Twig",
+      "effect": "Will be lost on death in place of runes"
+    },
+    {
+      "name": "Shabriri's Woe",
+      "effect": "Constantly attracts enemies' aggression"
+    },
+    {
+      "name": "Shard of Alexander",
+      "effect": "Greatly boosts the attack power of skills"
+    },
+    {
+      "name": "Sharpshot Talisman",
+      "effect": "Boosts attack power of precision-aimed shots"
+    },
+    {
+      "name": "Shattered Stone Talisman",
+      "effect": "Raises potency of kicking and stomping skills"
+    },
+    {
+      "name": "Silver Scarab",
+      "effect": "Raises item discovery"
+    },
+    {
+      "name": "Smithing Talisman",
+      "effect": "Enhances weapon throwing  attacks"
+    },
+    {
+      "name": "Spear Talisman",
+      "effect": "Enhances counterattacks unique to thrusting weapons"
+    },
+    {
+      "name": "Spelldrake Talisman",
+      "effect": "Boosts magical damage negation"
+    },
+    {
+      "name": "Spelldrake Talisman +1",
+      "effect": "Greatly boosts magical damage negation"
+    },
+    {
+      "name": "Spelldrake Talisman +2",
+      "effect": "Vastly boosts magical damage negation"
+    },
+    {
+      "name": "Spelldrake Talisman +3",
+      "effect": "Boosts magical damage negation by the utmost"
+    },
+    {
+      "name": "St. Trina's Smile",
+      "effect": "Sleep in the vicinity increases attack power"
+    },
+    {
+      "name": "Stalwart Horn Charm",
+      "effect": "Raises robustness"
+    },
+    {
+      "name": "Stalwart Horn Charm +1",
+      "effect": "Greatly raises robustness"
+    },
+    {
+      "name": "Stalwart Horn Charm +2",
+      "effect": "Raises Robustness by +180"
+    },
+    {
+      "name": "Stargazer Heirloom",
+      "effect": "Raises intelligence by 5",
+      "boosts": {
+        "int": 5
+      }
+    },
+    {
+      "name": "Starscourge Heirloom",
+      "effect": "Raises strength by 5",
+      "boosts": {
+        "str": 5
+      }
+    },
+    {
+      "name": "Taker's Cameo",
+      "effect": "Restores HP upon defeating enemies"
+    },
+    {
+      "name": "Talisman of All Crucibles",
+      "effect": "Grants effects of all crucible talismans"
+    },
+    {
+      "name": "Talisman of Lord's Bestowal",
+      "effect": "Increases poise after using a Flask of Crimson Tears"
+    },
+    {
+      "name": "Talisman of the Dread",
+      "effect": "Raises potency of magma"
+    },
+    {
+      "name": "Twinblade Talisman",
+      "effect": "Enhances final hit of chain attacks"
+    },
+    {
+      "name": "Two Fingers Heirloom",
+      "effect": "Raises faith by 5",
+      "boosts": {
+        "fai": 5
+      }
+    },
+    {
+      "name": "Two-Handed Sword Talisman",
+      "effect": "Enhances two-handed attacks"
+    },
+    {
+      "name": "Two-Headed Turtle Talisman",
+      "effect": "Greatly raises stamina recovery speed"
+    },
+    {
+      "name": "Verdigris Discus",
+      "effect": "Raises defense with higher equipment load"
+    },
+    {
+      "name": "Viridian Amber Medallion",
+      "effect": "Raises maximum stamina"
+    },
+    {
+      "name": "Viridian Amber Medallion +1",
+      "effect": "Greatly raises maximum stamina"
+    },
+    {
+      "name": "Viridian Amber Medallion +2",
+      "effect": "Vastly raises maximum stamina"
+    },
+    {
+      "name": "Viridian Amber Medallion +3",
+      "effect": "Raises maximum stamina"
+    },
+    {
+      "name": "Warrior Jar Shard",
+      "effect": "Boosts the attack power of skills"
+    },
+    {
+      "name": "Winged Sword Insignia",
+      "effect": "Raises attack power with successive attacks"
+    }
+  ],
+  "crystalTears": [
+    {
+      "name": "Bloodsucking Cracked Tear",
+      "effect": "Enhances attacks at the cost of HP in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Cerulean Crystal Tear",
+      "effect": "Restores half of total FP in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Cerulean Hidden Tear",
+      "effect": "Eliminates all FP consumption in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Cerulean-Sapping Cracked Tear",
+      "effect": "Grants attacks FP-restoring effect in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Crimson Crystal Tear",
+      "effect": "Restores half of total HP in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Crimson-Sapping Cracked Tear",
+      "effect": "Grants attacks HP-restoring effect in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Crimsonburst Crystal Tear",
+      "effect": "Steadily restores HP for a time in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Crimsonburst Dried Tear",
+      "effect": "Steadily restores HP of nearby allies for a time in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Crimsonspill Crystal Tear",
+      "effect": "Temporarily boosts max HP in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Crimsonwhorl Bubbletear",
+      "effect": "Converts damage received into HP in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Deflecting Hardtear",
+      "effect": "Enhances spontaneous guard in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Dexterity-knot Crystal Tear",
+      "effect": "Temporarily boosts dexterity in mixed physick",
+      "temporary": true,
+      "boosts": {
+        "dex": 10
+      }
+    },
+    {
+      "name": "Faith-knot Crystal Tear",
+      "effect": "Temporarily boosts faith in mixed physick",
+      "temporary": true,
+      "boosts": {
+        "fai": 10
+      }
+    },
+    {
+      "name": "Glovewort Crystal Tear",
+      "effect": "Enhances attacks of spirits in mixed physick.",
+      "temporary": true
+    },
+    {
+      "name": "Greenburst Crystal Tear",
+      "effect": "Temporarily boosts stamina recovery speed in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Greenspill Crystal Tear",
+      "effect": "Temporarily boosts stamina in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Holy-Shrouding Cracked Tear",
+      "effect": "Temporarily boosts holy attacks in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Intelligence-knot Crystal Tear",
+      "effect": "Temporarily boosts intelligence in mixed physick",
+      "temporary": true,
+      "boosts": {
+        "int": 10
+      }
+    },
+    {
+      "name": "Lightning-Shrouding   Cracked Tear",
+      "effect": "Temporarily boosts lightning attacks in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Magic-Shrouding Cracked Tear",
+      "effect": "Temporarily boosts magic attacks in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Oil-Soaked Tear",
+      "effect": "Coats nearby enemies with oil in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Opaline Bubbletear",
+      "effect": "Significantly negates damage in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Purifying Crystal Tear",
+      "effect": "Cures the curse of Mohg, Lord of Blood",
+      "temporary": true
+    },
+    {
+      "name": "Ruptured Crystal Tear",
+      "effect": "Causes concoction to explode in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Ruptured Crystal Tear",
+      "effect": "Causes concoction to explode in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Speckled Hardtear",
+      "effect": "Boosts resistance and heals status in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Spiked Cracked Tear",
+      "effect": "Enhances charged attacks for a time in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Strength-knot Crystal Tear",
+      "effect": "Temporarily boosts strength in mixed physick",
+      "temporary": true,
+      "boosts": {
+        "str": 10
+      }
+    },
+    {
+      "name": "Viridian Hidden Tear",
+      "effect": "Eliminates all stamina consumption in mixed physick",
+      "temporary": true
+    },
+    {
+      "name": "Windy Crystal Tear",
+      "effect": "Enhances dodge rolls for a time in mixed physick",
+      "temporary": true
+    }
+  ],
+  "armor": [
+    {
+      "name": "Commoner's Garb",
+      "slot": "Chest",
+      "boosts": {
+        "fai": 1
+      }
+    },
+    {
+      "name": "Commoner's Garb  (altered)",
+      "slot": "Chest",
+      "boosts": {
+        "fai": 1
+      }
+    },
+    {
+      "name": "Thiollier's Garb",
+      "slot": "Chest",
+      "boosts": {
+        "arc": 2
+      }
+    },
+    {
+      "name": "Circlet of Light",
+      "slot": "Head",
+      "boosts": {
+        "int": 1,
+        "fai": 1,
+        "arc": 1
+      }
+    },
+    {
+      "name": "Curseblade Mask",
+      "slot": "Head",
+      "boosts": {
+        "dex": 5
+      }
+    },
+    {
+      "name": "Divine Beast Head",
+      "slot": "Head",
+      "boosts": {
+        "str": 4,
+        "dex": 4
+      }
+    },
+    {
+      "name": "Divine Beast Helm",
+      "slot": "Head",
+      "boosts": {
+        "str": 3,
+        "dex": 3
+      }
+    },
+    {
+      "name": "Divine Bird Helm",
+      "slot": "Head",
+      "boosts": {
+        "str": 3,
+        "dex": 4
+      }
+    },
+    {
+      "name": "Greathood",
+      "slot": "Head",
+      "boosts": {
+        "int": 2,
+        "fai": 2
+      }
+    },
+    {
+      "name": "High Priest Hat",
+      "slot": "Head",
+      "boosts": {
+        "int": 1,
+        "arc": 1
+      }
+    },
+    {
+      "name": "Horned Warrior Helm",
+      "slot": "Head",
+      "boosts": {
+        "str": 5
+      }
+    },
+    {
+      "name": "Imp Head (Cat)",
+      "slot": "Head",
+      "boosts": {
+        "int": 2
+      }
+    },
+    {
+      "name": "Imp Head (Corpse)",
+      "slot": "Head",
+      "boosts": {
+        "fai": 2
+      }
+    },
+    {
+      "name": "Imp Head (Elder)",
+      "slot": "Head",
+      "boosts": {
+        "arc": 2
+      }
+    },
+    {
+      "name": "Imp Head (Fanged)",
+      "slot": "Head",
+      "boosts": {
+        "str": 2
+      }
+    },
+    {
+      "name": "Imp Head (Long-Tongued)",
+      "slot": "Head",
+      "boosts": {
+        "dex": 2
+      }
+    },
+    {
+      "name": "Karolos Glintstone Crown",
+      "slot": "Head",
+      "boosts": {
+        "int": 3
+      }
+    },
+    {
+      "name": "Mask of Confidence",
+      "slot": "Head",
+      "boosts": {
+        "arc": 3
+      }
+    },
+    {
+      "name": "Olivinus Glintstone Crown",
+      "slot": "Head",
+      "boosts": {
+        "int": 3
+      }
+    },
+    {
+      "name": "Omensmirk Mask",
+      "slot": "Head",
+      "boosts": {
+        "str": 2
+      }
+    },
+    {
+      "name": "Queen's Crescent Crown",
+      "slot": "Head",
+      "boosts": {
+        "int": 3
+      }
+    },
+    {
+      "name": "Sacred Crown Helm",
+      "slot": "Head",
+      "boosts": {
+        "fai": 1
+      }
+    },
+    {
+      "name": "Salza's Hood",
+      "slot": "Head",
+      "boosts": {
+        "int": 2
+      }
+    },
+    {
+      "name": "Thiollier's Mask",
+      "slot": "Head",
+      "boosts": {
+        "arc": 3
+      }
+    },
+    {
+      "name": "Twinsage Glintstone Crown",
+      "slot": "Head",
+      "boosts": {
+        "int": 6
+      }
+    }
+  ],
+  "greatRunes": [
+    {
+      "name": "Godrick's Great Rune",
+      "effect": "Boosts all stats by +5.",
+      "note": "Requires Rune Arc to activate",
+      "boosts": {
+        "str": 5,
+        "dex": 5,
+        "int": 5,
+        "fai": 5,
+        "arc": 5
+      }
+    },
+    {
+      "name": "Radahn's Great Rune",
+      "effect": "Raises maximum HP, FP, and Stamina",
+      "note": "Requires Rune Arc to activate"
+    },
+    {
+      "name": "Rykard's Great Rune",
+      "effect": "Restores HP upon kill.",
+      "note": "Requires Rune Arc to activate"
+    },
+    {
+      "name": "Morgott's Great Rune",
+      "effect": "Greatly raises maximum HP",
+      "note": "Requires Rune Arc to activate"
+    },
+    {
+      "name": "Malenia's Great Rune",
+      "effect": "HP is recovered with each successive hit",
+      "note": "Requires Rune Arc to activate"
+    },
+    {
+      "name": "Mohg's Great Rune",
+      "effect": "Grants a blessing of blood upon a phantom's death",
+      "note": "Requires Rune Arc to activate"
+    },
+    {
+      "name": "Miquella's Great Rune",
+      "effect": "Dissipates Miquella's charm",
+      "note": "Requires Rune Arc to activate"
+    }
+  ]
+}
