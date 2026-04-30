@@ -99,12 +99,16 @@ function scoreCost(loadout) {
   return s
 }
 
-function solve(weapon) {
+function solve(weapon, { allowTwoHand = true, allowGreatRune = true, allowTear = true } = {}) {
   const req = weapon.req
   let best = null
+  let bestAttempt = null
 
-  for (const rune of RUNES) {
-    for (const th of [false, true]) {
+  const runePool = allowGreatRune ? RUNES : [RUNES[0]]
+  const thOptions = allowTwoHand ? [false, true] : [false]
+
+  for (const rune of runePool) {
+    for (const th of thOptions) {
       if (th && (!req.STR || req.STR <= BASE_STATS.STR)) continue
 
       const haveBase = sumBonus([{ bonus: BASE_STATS }, { bonus: rune.bonus }])
@@ -129,7 +133,7 @@ function solve(weapon) {
       }
 
       const usedTears = new Set()
-      for (let i = 0; i < 2 && stillNeed(); i++) {
+      if (allowTear) for (let i = 0; i < 2 && stillNeed(); i++) {
         const it = pickBest(TEARS, usedTears)
         if (!it) break
         usedTears.add(it.id)
@@ -159,10 +163,18 @@ function solve(weapon) {
       const ok = STATS.every(k => finalEff[k] >= (req[k] || 0))
       const sc = scoreCost(chosen)
       if (ok && (!best || sc < best.score)) best = { ...chosen, score: sc }
+      if (!ok) {
+        const remaining = Object.values(shortfall(have, req, th)).reduce((a, b) => a + b, 0)
+        if (!bestAttempt || remaining < bestAttempt.remaining ||
+            (remaining === bestAttempt.remaining && sc < bestAttempt.score)) {
+          bestAttempt = { ...chosen, score: sc, remaining }
+        }
+      }
     }
   }
 
-  return best ? { solvable: true, loadout: best } : { solvable: false, loadout: null }
+  if (best) return { solvable: true, loadout: best }
+  return { solvable: false, loadout: null, bestAttempt: bestAttempt ?? null }
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -352,6 +364,9 @@ export default function App() {
   const [tears, setTears] = useState([null, null])
   const [armor, setArmor] = useState({ head: null, chest: null, arms: null, legs: null })
   const [picker, setPicker] = useState(null)
+  const [solveAllowTwoHand, setSolveAllowTwoHand] = useState(true)
+  const [solveAllowRune, setSolveAllowRune] = useState(true)
+  const [solveAllowTear, setSolveAllowTear] = useState(true)
 
   const equippedItems = [
     ...talismans.filter(Boolean),
@@ -406,11 +421,12 @@ export default function App() {
     setTwoHand(false)
   }
 
-  const solveResult = useMemo(() => solve(weapon), [weapon])
+  const solveResult = useMemo(
+    () => solve(weapon, { allowTwoHand: solveAllowTwoHand, allowGreatRune: solveAllowRune, allowTear: solveAllowTear }),
+    [weapon, solveAllowTwoHand, solveAllowRune, solveAllowTear]
+  )
 
-  const handleSolve = () => {
-    if (!solveResult.solvable) return
-    const lo = solveResult.loadout
+  const applyLoadout = (lo) => {
     setRune(lo.rune)
     setTwoHand(lo.twoHand)
     const tals = [null, null, null, null]
@@ -422,6 +438,14 @@ export default function App() {
     const arm = { head: null, chest: null, arms: null, legs: null }
     lo.armor.forEach(it => { arm[it.slot] = it })
     setArmor(arm)
+  }
+
+  const handleSolve = () => {
+    if (solveResult.solvable) {
+      applyLoadout(solveResult.loadout)
+    } else if (solveResult.bestAttempt) {
+      applyLoadout(solveResult.bestAttempt)
+    }
   }
 
   const hasModifiers = equippedItems.length > 0 || twoHand || rune.id !== 'rune_none'
@@ -438,6 +462,18 @@ export default function App() {
           </div>
         </div>
         <div className="topbar-actions">
+          <button className="btn-ghost" data-on={solveAllowTwoHand ? '1' : '0'}
+                  onClick={() => setSolveAllowTwoHand(v => !v)}>
+            Two-hand
+          </button>
+          <button className="btn-ghost" data-on={solveAllowRune ? '1' : '0'}
+                  onClick={() => setSolveAllowRune(v => !v)}>
+            Great Rune
+          </button>
+          <button className="btn-ghost" data-on={solveAllowTear ? '1' : '0'}
+                  onClick={() => setSolveAllowTear(v => !v)}>
+            Crystal Tear
+          </button>
           <button className="btn-ghost" onClick={clearAll}>Clear</button>
           <button className="btn-primary" onClick={handleSolve} disabled={!solveResult.solvable}>
             {solveResult.solvable ? 'Auto-solve' : 'No solution'}

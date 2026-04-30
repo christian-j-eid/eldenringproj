@@ -114,6 +114,8 @@ body {
   cursor: pointer; transition: all 0.15s;
 }
 .btn-ghost:hover { color: var(--ink); border-color: var(--gold-dim); }
+.btn-ghost[data-on="1"] { color: var(--gold); border-color: var(--gold-dim); }
+.btn-ghost[data-on="0"] { opacity: 0.5; }
 .btn-primary {
   background: linear-gradient(180deg, var(--gold-2), var(--gold));
   color: #1a1408; border-color: var(--gold);
