@@ -198,7 +198,7 @@ function StatPip({ stat, have, need, twoHand }) {
 
 // ── SlotCard ──────────────────────────────────────────────────────────────────
 
-function SlotCard({ kind, item, onClear, onClick, locked, showFlavor }) {
+function SlotCard({ kind, item, onClear, onClick, locked, showFlavor, active }) {
   const empty = !item
   const slotLabel = kind === 'talisman' ? 'Talisman'
     : kind === 'tear' ? 'Crystal Tear'
@@ -206,7 +206,7 @@ function SlotCard({ kind, item, onClear, onClick, locked, showFlavor }) {
     : `Armor · ${locked || 'any'}`
   const bonusText = item ? fmtBonus(item.bonus) : ''
   return (
-    <button className="slot" data-empty={empty ? '1' : '0'} data-kind={kind} onClick={onClick}>
+    <button className="slot" data-empty={empty ? '1' : '0'} data-active={active ? '1' : '0'} data-kind={kind} onClick={onClick}>
       <div className="slot-frame">
         <div className="slot-corner tl" /><div className="slot-corner tr" />
         <div className="slot-corner bl" /><div className="slot-corner br" />
@@ -534,6 +534,7 @@ export default function App() {
                 <div className="mod-card-state">{twoHand ? 'On' : 'Off'}</div>
               </button>
               <SlotCard kind="rune" item={rune.id === 'rune_none' ? null : rune} showFlavor={true}
+                        active={rune.id !== 'rune_none'}
                         onClick={() => openPicker('rune', null, null)}
                         onClear={() => setRune(RUNES[0])} />
             </div>
@@ -547,17 +548,26 @@ export default function App() {
             <button className="solve-toggle" data-on={solveAllowRune ? '1' : '0'}
                     onClick={() => setSolveAllowRune(v => !v)}>
               <span>Use Great Rune</span>
-              <span className="solve-toggle-state">{solveAllowRune ? 'On' : 'Off'}</span>
+              <span className="solve-toggle-state">
+                <span className="solve-toggle-label">Off</span>
+                <span className="solve-toggle-label">On</span>
+              </span>
             </button>
             <button className="solve-toggle" data-on={solveAllowTear ? '1' : '0'}
                     onClick={() => setSolveAllowTear(v => !v)}>
               <span>Drink Mixed Physick</span>
-              <span className="solve-toggle-state">{solveAllowTear ? 'On' : 'Off'}</span>
+              <span className="solve-toggle-state">
+                <span className="solve-toggle-label">Off</span>
+                <span className="solve-toggle-label">On</span>
+              </span>
             </button>
             <button className="solve-toggle" data-on={solveAllowTwoHand ? '1' : '0'}
                     onClick={() => setSolveAllowTwoHand(v => !v)}>
               <span>Two-Hand Weapon</span>
-              <span className="solve-toggle-state">{solveAllowTwoHand ? 'On' : 'Off'}</span>
+              <span className="solve-toggle-state">
+                <span className="solve-toggle-label">Off</span>
+                <span className="solve-toggle-label">On</span>
+              </span>
             </button>
           </div>
           <button className="btn-primary" style={{ width: '100%' }} onClick={handleSolve} disabled={!solveResult.solvable}>

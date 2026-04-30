@@ -274,8 +274,11 @@ async function main() {
     'Whips', 'Fists', 'Claws',
     'Light Bows', 'Bows', 'Greatbows', 'Crossbows', 'Ballistas',
     'Glintstone Staves', 'Sacred Seals',
-    'Small Shields', 'Medium Shields', 'Greatshields',
+    'Small Shields', 'Medium Shields', 'Greatshields', 'Thrusting Shields',
     'Torches',
+    // Shadow of the Erdtree additions
+    'Light Greatswords', 'Backhand Blades', 'Throwing Blades',
+    'Beast Claws', 'Perfume Bottles',
   ];
 
   const weaponsSeen = new Set();

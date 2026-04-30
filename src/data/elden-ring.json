@@ -144,7 +144,7 @@
       }
     },
     {
-      "name": "Mis\u00e9ricorde",
+      "name": "Miséricorde",
       "type": "Dagger",
       "requirements": {
         "str": 7,
@@ -1013,7 +1013,7 @@
       }
     },
     {
-      "name": "Great \u00c9p\u00e9e",
+      "name": "Great Épée",
       "type": "Heavy Thrusting Sword",
       "requirements": {
         "str": 15,
@@ -2102,7 +2102,7 @@
       }
     },
     {
-      "name": "Varr\u00e9's Bouquet",
+      "name": "Varré's Bouquet",
       "type": "Hammer",
       "requirements": {
         "str": 8,
@@ -5055,6 +5055,182 @@
       "requirements": {
         "str": 5,
         "dex": 5,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Leda's Sword",
+      "type": "Light Greatsword",
+      "requirements": {
+        "str": 11,
+        "dex": 22,
+        "int": 0,
+        "fai": 19,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Milady",
+      "type": "Light Greatsword",
+      "requirements": {
+        "str": 12,
+        "dex": 17,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Rellana's Twin Blades",
+      "type": "Light Greatsword",
+      "requirements": {
+        "str": 13,
+        "dex": 16,
+        "int": 16,
+        "fai": 16,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Backhand Blade",
+      "type": "Backhand Blade",
+      "requirements": {
+        "str": 10,
+        "dex": 13,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Curseblade's Cirque",
+      "type": "Backhand Blade",
+      "requirements": {
+        "str": 9,
+        "dex": 22,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Smithscript Cirque",
+      "type": "Backhand Blade",
+      "requirements": {
+        "str": 9,
+        "dex": 14,
+        "int": 11,
+        "fai": 11,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Smithscript Dagger",
+      "type": "Throwing Blade",
+      "requirements": {
+        "str": 5,
+        "dex": 11,
+        "int": 16,
+        "fai": 11,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Beast Claw",
+      "type": "Beast Claw",
+      "requirements": {
+        "str": 13,
+        "dex": 11,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Red Bear's Claw",
+      "type": "Beast Claw",
+      "requirements": {
+        "str": 20,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Chilling Perfume Bottle",
+      "type": "Perfume Bottle",
+      "requirements": {
+        "str": 3,
+        "dex": 13,
+        "int": 13,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Deadly Poison Perfume Bottle",
+      "type": "Perfume Bottle",
+      "requirements": {
+        "str": 3,
+        "dex": 13,
+        "int": 0,
+        "fai": 0,
+        "arc": 18
+      }
+    },
+    {
+      "name": "Firespark Perfume Bottle",
+      "type": "Perfume Bottle",
+      "requirements": {
+        "str": 3,
+        "dex": 14,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Frenzyflame Perfume Bottle",
+      "type": "Perfume Bottle",
+      "requirements": {
+        "str": 3,
+        "dex": 10,
+        "int": 12,
+        "fai": 12,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Lightning Perfume Bottle",
+      "type": "Perfume Bottle",
+      "requirements": {
+        "str": 3,
+        "dex": 16,
+        "int": 0,
+        "fai": 14,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Carian Thrusting Shield",
+      "type": "Thrusting Shield",
+      "requirements": {
+        "str": 17,
+        "dex": 13,
+        "int": 15,
+        "fai": 0,
+        "arc": 0
+      }
+    },
+    {
+      "name": "Dueling Shield",
+      "type": "Thrusting Shield",
+      "requirements": {
+        "str": 15,
+        "dex": 14,
         "int": 0,
         "fai": 0,
         "arc": 0
