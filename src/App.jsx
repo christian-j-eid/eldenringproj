@@ -8,6 +8,9 @@ const STAT_HUE = { STR: 28, DEX: 145, INT: 220, FTH: 50, ARC: 305 }
 const BASE_STATS = { STR: 10, DEX: 10, INT: 10, FTH: 10, ARC: 10 }
 // data uses fai; UI uses FTH
 const STAT_KEY_IN = { str: 'STR', dex: 'DEX', int: 'INT', fai: 'FTH', arc: 'ARC' }
+const ATK_ORDER = ['phy', 'mag', 'fir', 'lit', 'hol']
+const ATK_LABEL = { phy: 'Phys', mag: 'Magic', fir: 'Fire', lit: 'Ltng', hol: 'Holy' }
+const ATK_HUE = { mag: 220, fir: 22, lit: 80, hol: 50 }
 
 // ── Data normalization ────────────────────────────────────────────────────────
 
@@ -29,6 +32,16 @@ const WEAPONS = rawData.weapons.map(w => ({
   name: w.name,
   cat: w.type,
   req: normStats(w.requirements),
+  scaling: w.scaling
+    ? Object.fromEntries(
+        Object.entries(w.scaling)
+          .filter(([, v]) => v && v !== '-')
+          .map(([k, v]) => [STAT_KEY_IN[k] || k, v])
+      )
+    : {},
+  attackType: w.attackType || null,
+  dlc: !!w.dlc,
+  stats: w.stats || {},
 }))
 
 const TALISMANS = rawData.talismans.map(t => ({
@@ -369,6 +382,7 @@ export default function App() {
   const [tears, setTears] = useState([null, null])
   const [armor, setArmor] = useState({ head: null, chest: null, arms: null, legs: null })
   const [picker, setPicker] = useState(null)
+  const [infoOpen, setInfoOpen] = useState(false)
   const [solveAllowTwoHand, setSolveAllowTwoHand] = useState(true)
   const [solveAllowRune, setSolveAllowRune] = useState(true)
   const [solveAllowTear, setSolveAllowTear] = useState(true)
@@ -468,7 +482,7 @@ export default function App() {
         <div className="brand">
           <div className="brand-mark">◇</div>
           <div className="brand-text">
-            <div className="brand-title">RL1 Weapon Audit</div>
+            <div className="brand-title">Elden Ring RL1 Weapon Audit</div>
             <div className="brand-sub">Rune Level 1 · base stats 10/10/10/10/10</div>
           </div>
         </div>
@@ -492,18 +506,69 @@ export default function App() {
         </div>
         <div className="weapon-bar-right">
           <div className="weapon-bar-eyebrow">Requirements</div>
-          <div className="req-row">
-            {hasReqs
-              ? STATS.map(k => weapon.req[k] ? (
-                  <div key={k} className="req-chip" style={{ '--hue': STAT_HUE[k] }}>
-                    <span className="req-chip-stat">{k}</span>
-                    <span className="req-chip-num">{weapon.req[k]}</span>
-                  </div>
-                ) : null)
-              : <span style={{ color: 'var(--ink-3)', fontStyle: 'italic' }}>No stat requirements</span>
-            }
+          <div className="req-row-wrap">
+            <div className="req-row">
+              {hasReqs
+                ? STATS.map(k => weapon.req[k] ? (
+                    <div key={k} className="req-chip" style={{ '--hue': STAT_HUE[k] }}>
+                      <span className="req-chip-stat">{k}</span>
+                      <span className="req-chip-num">{weapon.req[k]}</span>
+                    </div>
+                  ) : null)
+                : <span style={{ color: 'var(--ink-3)', fontStyle: 'italic' }}>No stat requirements</span>
+              }
+            </div>
+            <button
+              className="weapon-info-toggle"
+              data-on={infoOpen ? '1' : '0'}
+              onClick={() => setInfoOpen(v => !v)}
+              title="Weapon details"
+            >
+              Details {infoOpen ? '▴' : '▾'}
+            </button>
           </div>
         </div>
+        {infoOpen && (
+          <div className="weapon-info-panel">
+            {weapon.dlc && (
+              <>
+                <span className="weapon-sote-badge">SOTE</span>
+                <div className="weapon-info-sep" style={{ marginLeft: 20 }} />
+              </>
+            )}
+            <div className="weapon-info-block">
+              <div className="weapon-info-label">Attack Type</div>
+              <div className="weapon-info-value">{weapon.attackType || '—'}</div>
+            </div>
+            <div className="weapon-info-sep" />
+            <div className="weapon-info-block">
+              <div className="weapon-info-label">Scaling</div>
+              <div className="weapon-scaling-chips">
+                {STATS.filter(k => weapon.scaling[k]).map(k => (
+                  <span key={k} className="weapon-scaling-chip" style={{ '--hue': STAT_HUE[k] }}>
+                    <span className="scaling-stat">{k}</span>
+                    <span className="scaling-grade" data-grade={weapon.scaling[k]}>{weapon.scaling[k]}</span>
+                  </span>
+                ))}
+                {!STATS.some(k => weapon.scaling[k]) && (
+                  <span style={{ color: 'var(--ink-3)', fontStyle: 'italic' }}>None</span>
+                )}
+              </div>
+            </div>
+            <div className="weapon-info-sep" />
+            <div className="weapon-info-block">
+              <div className="weapon-info-label">Base Attack</div>
+              <div className="weapon-atk-chips">
+                {ATK_ORDER.filter(k => weapon.stats[k] > 0).map(k => (
+                  <span key={k} className="weapon-atk-chip" data-type={k} style={ATK_HUE[k] ? { '--hue': ATK_HUE[k] } : {}}>
+                    <span className="atk-val">{weapon.stats[k]}</span>
+                    <span className="atk-type">{ATK_LABEL[k]}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
       <main className="main-grid">
