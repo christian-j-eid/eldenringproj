@@ -498,6 +498,40 @@ function WeaponPicker({ weapon, onChange }) {
   )
 }
 
+// ── ExclSection ───────────────────────────────────────────────────────────────
+
+function ExclSection({ title, items, excludedIds, onToggle }) {
+  const [filter, setFilter] = useState('')
+  const visible = filter.trim()
+    ? items.filter(it => it.name.toLowerCase().includes(filter.toLowerCase()))
+    : items
+  return (
+    <div className="excl-section">
+      <div className="advanced-group-title">{title}</div>
+      <input
+        className="excl-filter"
+        placeholder="Filter…"
+        value={filter}
+        onChange={e => setFilter(e.target.value)}
+      />
+      <div className="excl-list">
+        {visible.map(it => {
+          const excluded = excludedIds.has(it.id)
+          return (
+            <button key={it.id} className="excl-list-item" data-excluded={excluded ? '1' : '0'} onClick={() => onToggle(it.id)}>
+              <span className="excl-list-name">
+                {it.name}
+                {it.dlc && <span className="wp-sote">SOTE</span>}
+              </span>
+              {excluded && <span className="excl-list-x">✕</span>}
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 // ── SolutionsList ─────────────────────────────────────────────────────────────
 
 function SolutionsList({ solutions, onApply }) {
@@ -559,7 +593,6 @@ export default function App() {
   const [advancedOpen, setAdvancedOpen] = useState(false)
   const [includeDLC, setIncludeDLC] = useState(true)
   const [excludedIds, setExcludedIds] = useState(new Set())
-  const [excludeQuery, setExcludeQuery] = useState('')
 
   const equippedItems = [
     ...talismans.filter(Boolean),
@@ -632,25 +665,6 @@ export default function App() {
   const activeRunes = useMemo(
     () => RUNES.filter(r => r.id === 'rune_none' || !excludedIds.has(r.id)),
     [excludedIds]
-  )
-
-  const allSearchableItems = useMemo(() => [
-    ...TALISMANS.map(t => ({ ...t, category: 'Talisman' })),
-    ...TEARS.map(t => ({ ...t, category: 'Tear' })),
-    ...RUNES.filter(r => r.id !== 'rune_none').map(r => ({ ...r, category: 'Rune' })),
-  ], [])
-
-  const excludeResults = useMemo(() => {
-    const q = excludeQuery.trim().toLowerCase()
-    if (!q) return []
-    return allSearchableItems
-      .filter(it => it.name.toLowerCase().includes(q) && !excludedIds.has(it.id))
-      .slice(0, 8)
-  }, [excludeQuery, excludedIds, allSearchableItems])
-
-  const allExcludedItems = useMemo(
-    () => allSearchableItems.filter(it => excludedIds.has(it.id)),
-    [excludedIds, allSearchableItems]
   )
 
   const addExcluded = id => setExcludedIds(prev => new Set([...prev, id]))
@@ -804,37 +818,18 @@ export default function App() {
               </button>
             </div>
 
-            <div className="advanced-group">
-              <div className="advanced-group-title">Exclude from Solutions</div>
-              <div className="excl-search-wrap">
-                <input
-                  className="excl-input"
-                  placeholder="Search talismans, tears, runes…"
-                  value={excludeQuery}
-                  onChange={e => setExcludeQuery(e.target.value)}
-                />
-                {excludeResults.length > 0 && (
-                  <div className="excl-results">
-                    {excludeResults.map(it => (
-                      <button key={it.id} className="excl-result-row" onClick={() => { addExcluded(it.id); setExcludeQuery('') }}>
-                        <span className="excl-result-name">{it.name}</span>
-                        <span className="excl-result-cat">{it.category}</span>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-              {allExcludedItems.length > 0 && (
-                <div className="excl-chips">
-                  {allExcludedItems.map(it => (
-                    <span key={it.id} className="excl-chip">
-                      {it.name}
-                      <button className="excl-chip-x" onClick={() => removeExcluded(it.id)}>×</button>
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
+            <ExclSection
+              title="Exclude Talismans"
+              items={TALISMANS}
+              excludedIds={excludedIds}
+              onToggle={id => excludedIds.has(id) ? removeExcluded(id) : addExcluded(id)}
+            />
+            <ExclSection
+              title="Exclude Crystal Tears"
+              items={TEARS}
+              excludedIds={excludedIds}
+              onToggle={id => excludedIds.has(id) ? removeExcluded(id) : addExcluded(id)}
+            />
 
           </div>
         </section>
