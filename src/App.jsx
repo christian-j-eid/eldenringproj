@@ -228,7 +228,7 @@ function solveAll(weapon, { allowGreatRune = true, allowArmor = true, allowTwoHa
     }
   }
 
-  return results.sort((a, b) => a.score - b.score).slice(0, 50)
+  return results.sort((a, b) => a.score - b.score)
 }
 
 function solve(weapon, { allowTwoHand = true, allowGreatRune = true, allowTear = true } = {}) {
@@ -499,7 +499,6 @@ function SolutionsList({ solutions, onApply }) {
       <button className="solutions-hd" onClick={() => setOpen(v => !v)}>
         <span>{solutions.length} solution{solutions.length !== 1 ? 's' : ''} found</span>
         <span className="solutions-hd-right">
-          {solutions.length === 50 && <span className="solutions-cap">first 50</span>}
           <span className="solutions-caret">{open ? '▴' : '▾'}</span>
         </span>
       </button>
@@ -544,9 +543,9 @@ export default function App() {
   const [armor, setArmor] = useState({ head: null, chest: null, arms: null, legs: null })
   const [picker, setPicker] = useState(null)
   const [infoOpen, setInfoOpen] = useState(false)
-  const [solveAllowTwoHand, setSolveAllowTwoHand] = useState(true)
   const [solveAllowRune, setSolveAllowRune] = useState(true)
   const [solveAllowTear, setSolveAllowTear] = useState(true)
+  const [solveAllowTwoHand, setSolveAllowTwoHand] = useState(true)
 
   const equippedItems = [
     ...talismans.filter(Boolean),
@@ -603,7 +602,6 @@ export default function App() {
     setTwoHand(false)
   }
 
-  useEffect(() => { if (twoHand) setSolveAllowTwoHand(true) }, [twoHand])
 
   const allSolutions = useMemo(
     () => solveAll(weapon, { allowGreatRune: solveAllowRune, allowArmor: false, allowTwoHand: solveAllowTwoHand, allowTear: solveAllowTear }),
@@ -739,7 +737,9 @@ export default function App() {
 
       <main className="main-grid">
         <div className="slot-region">
-          <div className="slot-region-title">Equipment</div>
+          <div className="slot-region-title">
+            <span>Equipment</span>
+          </div>
 
           <div className="region">
             <div className="region-hd">
@@ -805,7 +805,7 @@ export default function App() {
             <div className="solve-options-hd">Modifiers</div>
             <button className="solve-toggle" data-on={solveAllowRune ? '1' : '0'}
                     onClick={() => setSolveAllowRune(v => !v)}>
-              <span>Use Great Rune</span>
+              <span>Allow Godrick's Great Rune</span>
               <span className="solve-toggle-state">
                 <span className="solve-toggle-label">Off</span>
                 <span className="solve-toggle-label">On</span>
@@ -813,7 +813,7 @@ export default function App() {
             </button>
             <button className="solve-toggle" data-on={solveAllowTear ? '1' : '0'}
                     onClick={() => setSolveAllowTear(v => !v)}>
-              <span>Drink Mixed Physick</span>
+              <span>Allow Mixed Physick</span>
               <span className="solve-toggle-state">
                 <span className="solve-toggle-label">Off</span>
                 <span className="solve-toggle-label">On</span>
@@ -821,7 +821,7 @@ export default function App() {
             </button>
             <button className="solve-toggle" data-on={solveAllowTwoHand ? '1' : '0'}
                     onClick={() => setSolveAllowTwoHand(v => !v)}>
-              <span>Two-Hand Weapon</span>
+              <span>Allow Two-Handing</span>
               <span className="solve-toggle-state">
                 <span className="solve-toggle-label">Off</span>
                 <span className="solve-toggle-label">On</span>
