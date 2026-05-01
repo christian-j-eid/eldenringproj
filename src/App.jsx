@@ -149,14 +149,12 @@ function armorSubsets(armorPool) {
 function solveAll(weapon, { allowGreatRune = true, allowArmor = true, allowTwoHand = true, allowTear = true } = {}) {
   const req = weapon.req
   const results = []
-  const MAX = 50
 
   const runePool = allowGreatRune
     ? RUNES.filter(r => r.id === 'rune_none' || Object.keys(r.bonus).length > 0)
     : [RUNES[0]]
   const thOptions = allowTwoHand ? [false, true] : [false]
 
-  outer:
   for (const rune of runePool) {
     for (const th of thOptions) {
       if (th && (!req.STR || req.STR <= BASE_STATS.STR)) continue
@@ -167,7 +165,6 @@ function solveAll(weapon, { allowGreatRune = true, allowArmor = true, allowTwoHa
       if (Object.keys(baseNeed).length === 0) {
         const lo = { tears: [], talismans: [], armor: [], rune, twoHand: th }
         results.push({ ...lo, score: scoreCost(lo) })
-        if (results.length >= MAX) break outer
         continue
       }
 
@@ -188,8 +185,7 @@ function solveAll(weapon, { allowGreatRune = true, allowArmor = true, allowTwoHa
         if (Object.keys(needT).length === 0) {
           const lo = { tears, talismans: [], armor: [], rune, twoHand: th }
           results.push({ ...lo, score: scoreCost(lo) })
-          if (results.length >= MAX) break outer
-          continue
+            continue
         }
 
         // Feasibility: can talismans + armor possibly cover remaining need?
@@ -212,8 +208,7 @@ function solveAll(weapon, { allowGreatRune = true, allowArmor = true, allowTwoHa
           if (Object.keys(needTT).length === 0) {
             const lo = { tears, talismans, armor: [], rune, twoHand: th }
             results.push({ ...lo, score: scoreCost(lo) })
-            if (results.length >= MAX) break outer
-            continue
+                continue
           }
 
           for (const armor of armorCombos) {
@@ -226,15 +221,14 @@ function solveAll(weapon, { allowGreatRune = true, allowArmor = true, allowTwoHa
             if (ok) {
               const lo = { tears, talismans, armor, rune, twoHand: th }
               results.push({ ...lo, score: scoreCost(lo) })
-              if (results.length >= MAX) break outer
-            }
+                  }
           }
         }
       }
     }
   }
 
-  return results.sort((a, b) => a.score - b.score)
+  return results.sort((a, b) => a.score - b.score).slice(0, 50)
 }
 
 function solve(weapon, { allowTwoHand = true, allowGreatRune = true, allowTear = true } = {}) {
@@ -498,35 +492,41 @@ function WeaponPicker({ weapon, onChange }) {
 // ── SolutionsList ─────────────────────────────────────────────────────────────
 
 function SolutionsList({ solutions, onApply }) {
+  const [open, setOpen] = useState(false)
   if (solutions.length === 0) return null
   return (
     <div className="solutions-list">
-      <div className="solutions-hd">
+      <button className="solutions-hd" onClick={() => setOpen(v => !v)}>
         <span>{solutions.length} solution{solutions.length !== 1 ? 's' : ''} found</span>
-        {solutions.length === 50 && <span className="solutions-cap">showing first 50</span>}
-      </div>
-      <div className="solutions-scroll">
-        {solutions.map((lo, i) => {
-          const tags = []
-          if (lo.twoHand) tags.push({ key: 'th', label: 'Two-hand', kind: 'mod' })
-          if (lo.rune.id !== 'rune_none') tags.push({ key: lo.rune.id, label: lo.rune.name, kind: 'rune' })
-          lo.tears.forEach(t => tags.push({ key: t.id, label: t.name, kind: 'tear' }))
-          lo.talismans.forEach(t => tags.push({ key: t.id, label: t.name, kind: 'tal' }))
-          lo.armor.forEach(a => tags.push({ key: a.id, label: a.name, kind: 'armor' }))
-          return (
-            <div key={i} className="solution-row">
-              <span className="solution-rank">#{i + 1}</span>
-              <div className="solution-tags">
-                {tags.length === 0
-                  ? <span className="solution-none">No items needed</span>
-                  : tags.map(t => <span key={t.key} className="solution-tag" data-kind={t.kind}>{t.label}</span>)
-                }
+        <span className="solutions-hd-right">
+          {solutions.length === 50 && <span className="solutions-cap">first 50</span>}
+          <span className="solutions-caret">{open ? '▴' : '▾'}</span>
+        </span>
+      </button>
+      {open && (
+        <div className="solutions-scroll">
+          {solutions.map((lo, i) => {
+            const tags = []
+            if (lo.twoHand) tags.push({ key: 'th', label: 'Two-hand', kind: 'mod' })
+            if (lo.rune.id !== 'rune_none') tags.push({ key: lo.rune.id, label: lo.rune.name, kind: 'rune' })
+            lo.tears.forEach(t => tags.push({ key: t.id, label: t.name, kind: 'tear' }))
+            lo.talismans.forEach(t => tags.push({ key: t.id, label: t.name, kind: 'tal' }))
+            lo.armor.forEach(a => tags.push({ key: a.id, label: a.name, kind: 'armor' }))
+            return (
+              <div key={i} className="solution-row">
+                <span className="solution-rank">#{i + 1}</span>
+                <div className="solution-tags">
+                  {tags.length === 0
+                    ? <span className="solution-none">No items needed</span>
+                    : tags.map(t => <span key={t.key} className="solution-tag" data-kind={t.kind}>{t.label}</span>)
+                  }
+                </div>
+                <button className="solution-apply" onClick={() => onApply(lo)}>Apply</button>
               </div>
-              <button className="solution-apply" onClick={() => onApply(lo)}>Apply</button>
-            </div>
-          )
-        })}
-      </div>
+            )
+          })}
+        </div>
+      )}
     </div>
   )
 }
