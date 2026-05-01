@@ -112,6 +112,132 @@ function scoreCost(loadout) {
   return s
 }
 
+function subsetsUpTo(pool, maxSize) {
+  const result = [[]]
+  function dfs(start, chosen) {
+    if (chosen.length >= maxSize) return
+    for (let i = start; i < pool.length; i++) {
+      chosen.push(pool[i])
+      result.push([...chosen])
+      dfs(i + 1, chosen)
+      chosen.pop()
+    }
+  }
+  dfs(0, [])
+  return result
+}
+
+function armorSubsets(armorPool) {
+  const bySlot = {}
+  for (const a of armorPool) {
+    if (!bySlot[a.slot]) bySlot[a.slot] = []
+    bySlot[a.slot].push(a)
+  }
+  const slots = Object.keys(bySlot)
+  const result = []
+  function dfs(si, chosen) {
+    if (si === slots.length) { result.push([...chosen]); return }
+    dfs(si + 1, chosen)
+    for (const a of bySlot[slots[si]]) {
+      chosen.push(a); dfs(si + 1, chosen); chosen.pop()
+    }
+  }
+  dfs(0, [])
+  return result
+}
+
+function solveAll(weapon, { allowGreatRune = true, allowArmor = true, allowTwoHand = true, allowTear = true } = {}) {
+  const req = weapon.req
+  const results = []
+  const MAX = 50
+
+  // Only stat-boosting runes (or no rune)
+  const runePool = allowGreatRune
+    ? RUNES.filter(r => r.id === 'rune_none' || Object.keys(r.bonus).length > 0)
+    : [RUNES[0]]
+  const thOptions = allowTwoHand ? [false, true] : [false]
+
+  outer:
+  for (const rune of runePool) {
+    for (const th of thOptions) {
+      if (th && (!req.STR || req.STR <= BASE_STATS.STR)) continue
+
+      const haveBase = sumBonus([{ bonus: BASE_STATS }, { bonus: rune.bonus }])
+      const baseNeed = shortfall(haveBase, req, th)
+
+      if (Object.keys(baseNeed).length === 0) {
+        const lo = { tears: [], talismans: [], armor: [], rune, twoHand: th }
+        results.push({ ...lo, score: scoreCost(lo) })
+        if (results.length >= MAX) break outer
+        continue
+      }
+
+      const neededStats = new Set(Object.keys(baseNeed))
+      const relTears = allowTear
+        ? TEARS.filter(t => STATS.some(k => neededStats.has(k) && t.bonus[k] > 0))
+        : []
+      const relTals = TALISMANS.filter(t => STATS.some(k => neededStats.has(k) && t.bonus[k] > 0))
+      const relArmor = ARMOR.filter(a => STATS.some(k => neededStats.has(k) && a.bonus[k] > 0))
+
+      const tearCombos = subsetsUpTo(relTears, 2)
+      const armorCombos = allowArmor ? armorSubsets(relArmor) : [[]]
+
+      for (const tears of tearCombos) {
+        const haveT = sumBonus([{ bonus: haveBase }, ...tears])
+        const needT = shortfall(haveT, req, th)
+
+        if (Object.keys(needT).length === 0) {
+          const lo = { tears, talismans: [], armor: [], rune, twoHand: th }
+          results.push({ ...lo, score: scoreCost(lo) })
+          if (results.length >= MAX) break outer
+          continue
+        }
+
+        // Feasibility: can talismans + armor possibly cover remaining need?
+        const feasible = STATS.every(k => {
+          const need = needT[k] || 0
+          if (!need) return true
+          const talMax = relTals.map(t => t.bonus[k] || 0).sort((a, b) => b - a).slice(0, 4).reduce((s, v) => s + v, 0)
+          const armMax = ['head', 'chest', 'arms', 'legs'].reduce((s, slot) => {
+            return s + Math.max(0, ...relArmor.filter(a => a.slot === slot).map(a => a.bonus[k] || 0), 0)
+          }, 0)
+          return talMax + armMax >= need
+        })
+        if (!feasible) continue
+
+        const talCombos = subsetsUpTo(relTals, 4)
+        for (const talismans of talCombos) {
+          const haveTT = sumBonus([{ bonus: haveT }, ...talismans])
+          const needTT = shortfall(haveTT, req, th)
+
+          if (Object.keys(needTT).length === 0) {
+            const lo = { tears, talismans, armor: [], rune, twoHand: th }
+            results.push({ ...lo, score: scoreCost(lo) })
+            if (results.length >= MAX) break outer
+            continue
+          }
+
+          for (const armor of armorCombos) {
+            if (!armor.length) continue
+            const haveAll = sumBonus([{ bonus: haveTT }, ...armor])
+            const ok = STATS.every(k => {
+              const eff = k === 'STR' && th ? Math.floor(haveAll[k] * 1.5) : haveAll[k]
+              return eff >= (req[k] || 0)
+            })
+            if (ok) {
+              const lo = { tears, talismans, armor, rune, twoHand: th }
+              results.push({ ...lo, score: scoreCost(lo) })
+              if (results.length >= MAX) break outer
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return results.sort((a, b) => a.score - b.score)
+}
+
 function solve(weapon, { allowTwoHand = true, allowGreatRune = true, allowTear = true } = {}) {
   const req = weapon.req
   let best = null
@@ -370,6 +496,42 @@ function WeaponPicker({ weapon, onChange }) {
   )
 }
 
+// ── SolutionsList ─────────────────────────────────────────────────────────────
+
+function SolutionsList({ solutions, onApply }) {
+  if (solutions.length === 0) return null
+  return (
+    <div className="solutions-list">
+      <div className="solutions-hd">
+        <span>{solutions.length} solution{solutions.length !== 1 ? 's' : ''} found</span>
+        {solutions.length === 50 && <span className="solutions-cap">showing first 50</span>}
+      </div>
+      <div className="solutions-scroll">
+        {solutions.map((lo, i) => {
+          const tags = []
+          if (lo.twoHand) tags.push({ key: 'th', label: 'Two-hand', kind: 'mod' })
+          if (lo.rune.id !== 'rune_none') tags.push({ key: lo.rune.id, label: lo.rune.name, kind: 'rune' })
+          lo.tears.forEach(t => tags.push({ key: t.id, label: t.name, kind: 'tear' }))
+          lo.talismans.forEach(t => tags.push({ key: t.id, label: t.name, kind: 'tal' }))
+          lo.armor.forEach(a => tags.push({ key: a.id, label: a.name, kind: 'armor' }))
+          return (
+            <div key={i} className="solution-row">
+              <span className="solution-rank">#{i + 1}</span>
+              <div className="solution-tags">
+                {tags.length === 0
+                  ? <span className="solution-none">No items needed</span>
+                  : tags.map(t => <span key={t.key} className="solution-tag" data-kind={t.kind}>{t.label}</span>)
+                }
+              </div>
+              <button className="solution-apply" onClick={() => onApply(lo)}>Apply</button>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 // ── App ───────────────────────────────────────────────────────────────────────
 
 const DEFAULT_WEAPON = WEAPONS.find(w => w.name === 'Greatsword') || WEAPONS[0]
@@ -444,9 +606,14 @@ export default function App() {
 
   useEffect(() => { if (twoHand) setSolveAllowTwoHand(true) }, [twoHand])
 
-  const solveResult = useMemo(
-    () => solve(weapon, { allowTwoHand: solveAllowTwoHand, allowGreatRune: solveAllowRune, allowTear: solveAllowTear }),
-    [weapon, solveAllowTwoHand, solveAllowRune, solveAllowTear]
+  const allSolutions = useMemo(
+    () => solveAll(weapon, { allowGreatRune: solveAllowRune, allowArmor: false, allowTwoHand: solveAllowTwoHand, allowTear: solveAllowTear }),
+    [weapon, solveAllowRune, solveAllowTwoHand, solveAllowTear]
+  )
+  const solvable = allSolutions.length > 0
+  const closestAttempt = useMemo(
+    () => solvable ? null : solve(weapon, { allowTwoHand: solveAllowTwoHand, allowGreatRune: solveAllowRune, allowTear: solveAllowTear }).bestAttempt,
+    [weapon, solvable, solveAllowTwoHand, solveAllowRune, solveAllowTear]
   )
 
   const applyLoadout = (lo) => {
@@ -464,13 +631,13 @@ export default function App() {
   }
 
   const handleSolve = () => {
-    if (!solveResult.solvable) return
-    applyLoadout(solveResult.loadout)
+    if (!solvable) return
+    applyLoadout(allSolutions[0])
   }
 
   const handleSolveClosest = () => {
-    if (solveResult.solvable) applyLoadout(solveResult.loadout)
-    else if (solveResult.bestAttempt) applyLoadout(solveResult.bestAttempt)
+    if (solvable) applyLoadout(allSolutions[0])
+    else if (closestAttempt) applyLoadout(closestAttempt)
   }
 
   const hasModifiers = equippedItems.length > 0 || twoHand || rune.id !== 'rune_none'
@@ -488,8 +655,8 @@ export default function App() {
         </div>
         <div className="topbar-actions">
           <button className="btn-ghost" onClick={clearAll} style={{ fontSize: '11px', letterSpacing: '0.1em', fontWeight: 600, textTransform: 'uppercase' }}>Clear</button>
-          <button className="btn-primary" onClick={handleSolve} disabled={!solveResult.solvable}>
-            {solveResult.solvable ? (
+          <button className="btn-primary" onClick={handleSolve} disabled={!solvable}>
+            {solvable ? (
               <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1px' }}>
                 <span>Solution Found</span>
                 <span style={{ fontSize: '6px', letterSpacing: '0.12em', opacity: 0.7, lineHeight: 1 }}>VIEW</span>
@@ -664,6 +831,7 @@ export default function App() {
           <button className="btn-primary" style={{ width: '100%' }} onClick={handleSolveClosest}>
             Auto-solve
           </button>
+          <SolutionsList solutions={allSolutions} onApply={applyLoadout} />
           <div className={`verdict ${meetsAll ? 'verdict-ok' : 'verdict-no'}`}>
             <div className="verdict-mark">{meetsAll ? '✓' : '✕'}</div>
             <div className="verdict-text">
@@ -725,8 +893,8 @@ export default function App() {
           </div>
 
           <div className="totals-foot">
-            {solveResult.solvable
-              ? <span>A valid loadout exists for this weapon at RL1.</span>
+            {solvable
+              ? <span>{allSolutions.length} valid loadout{allSolutions.length !== 1 ? 's' : ''} found for this weapon at RL1.</span>
               : <span className="totals-foot-no">No combination of slots can meet this weapon's requirements at RL1.</span>}
           </div>
         </aside>
