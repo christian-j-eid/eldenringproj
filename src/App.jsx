@@ -739,6 +739,7 @@ export default function App() {
 
       <main className="main-grid">
         <div className="slot-region">
+          <div className="slot-region-title">Equipment</div>
 
           <div className="region">
             <div className="region-hd">

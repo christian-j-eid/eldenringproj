@@ -299,7 +299,18 @@ body {
 }
 
 /* ── slot regions ──────────────────────────────────────────────── */
-.slot-region { display: flex; flex-direction: column; gap: 28px; }
+.slot-region {
+  display: flex; flex-direction: column; gap: 28px;
+  border: 1px solid var(--line-strong); padding: 28px;
+  background: linear-gradient(180deg, var(--bg-2), var(--bg));
+}
+.slot-region-title {
+  font-family: var(--serif); font-size: 13px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3);
+  margin: -28px -28px 0; padding: 10px 28px;
+  border-bottom: 1px solid var(--line-strong);
+  background: linear-gradient(180deg, var(--bg-3), var(--bg-2));
+}
 .region-hd {
   display: flex; align-items: baseline; justify-content: space-between;
   padding-bottom: 10px; margin-bottom: 14px;
