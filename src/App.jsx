@@ -574,6 +574,64 @@ function SolutionsList({ solutions, onApply }) {
   )
 }
 
+// ── WeaponList ────────────────────────────────────────────────────────────────
+
+function WeaponList({ haveStats, twoHand, includeDLC }) {
+  const [q, setQ] = useState('')
+
+  const usable = useMemo(() => {
+    return WEAPONS.filter(w => {
+      if (!includeDLC && w.dlc) return false
+      return STATS.every(k => {
+        const eff = k === 'STR' && twoHand ? Math.floor(haveStats[k] * 1.5) : haveStats[k]
+        return eff >= (w.req[k] || 0)
+      })
+    })
+  }, [haveStats, twoHand, includeDLC])
+
+  const filtered = q.trim()
+    ? usable.filter(w => (w.name + ' ' + w.cat).toLowerCase().includes(q.toLowerCase()))
+    : usable
+
+  return (
+    <div className="weapon-list">
+      <div className="weapon-list-hd">
+        <span className="weapon-list-count">
+          {usable.length} weapon{usable.length !== 1 ? 's' : ''} usable
+        </span>
+        <input
+          className="weapon-list-search"
+          placeholder="Filter…"
+          value={q}
+          onChange={e => setQ(e.target.value)}
+        />
+      </div>
+      <div className="weapon-list-scroll">
+        {filtered.length === 0
+          ? <div className="weapon-list-empty">No weapons match.</div>
+          : filtered.map(w => (
+            <div key={w.id} className="weapon-list-row">
+              <div className="wl-left">
+                <span className="wl-name">{w.name}</span>
+                {w.dlc && <span className="wp-sote">SOTE</span>}
+              </div>
+              <div className="wl-cat">{w.cat}</div>
+              <div className="wl-req">
+                {STATS.filter(k => w.req[k]).map(k => (
+                  <span key={k} className="wp-req-pill" style={{ '--hue': STAT_HUE[k] }}>
+                    {w.req[k]} {k}
+                  </span>
+                ))}
+                {!STATS.some(k => w.req[k]) && <span className="wl-no-req">—</span>}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  )
+}
+
 // ── App ───────────────────────────────────────────────────────────────────────
 
 const DEFAULT_WEAPON = WEAPONS.find(w => w.name === 'Greatsword') || WEAPONS[0]
@@ -594,6 +652,8 @@ export default function App() {
   const [advancedOpen, setAdvancedOpen] = useState(false)
   const [includeDLC, setIncludeDLC] = useState(true)
   const [excludedIds, setExcludedIds] = useState(new Set())
+
+  const [mode, setMode] = useState('find-loadout')
 
   const equippedItems = [
     ...talismans.filter(Boolean),
@@ -721,88 +781,104 @@ export default function App() {
         <div className="topbar-actions">
           <button className="btn-ghost" onClick={() => setAdvancedOpen(v => !v)} data-on={advancedOpen ? '1' : '0'} style={{ fontSize: '11px', letterSpacing: '0.1em', fontWeight: 600, textTransform: 'uppercase' }}>Advanced</button>
           <button className="btn-ghost" onClick={clearAll} style={{ fontSize: '11px', letterSpacing: '0.1em', fontWeight: 600, textTransform: 'uppercase' }}>Clear</button>
-          <button className="btn-primary" onClick={handleSolve} disabled={!solvable}>
-            {solvable ? (
-              <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1px' }}>
-                <span>Solution Found</span>
-                <span style={{ fontSize: '6px', letterSpacing: '0.12em', opacity: 0.7, lineHeight: 1 }}>VIEW</span>
-              </span>
-            ) : 'No Solution'}
-          </button>
+          {mode === 'find-loadout' && (
+            <button className="btn-primary" onClick={handleSolve} disabled={!solvable}>
+              {solvable ? (
+                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1px' }}>
+                  <span>Solution Found</span>
+                  <span style={{ fontSize: '6px', letterSpacing: '0.12em', opacity: 0.7, lineHeight: 1 }}>VIEW</span>
+                </span>
+              ) : 'No Solution'}
+            </button>
+          )}
         </div>
       </header>
 
-      <section className="weapon-bar">
-        <div className="weapon-bar-left">
-          <div className="weapon-bar-eyebrow">Weapon under audit</div>
-          <WeaponPicker weapon={weapon} onChange={setWeapon} />
+      <div className="mode-bar">
+        <button className="mode-tab" data-active={mode === 'find-loadout' ? '1' : '0'} onClick={() => setMode('find-loadout')}>Weapon Audit</button>
+        <button className="mode-tab" data-active={mode === 'find-weapons' ? '1' : '0'} onClick={() => setMode('find-weapons')}>Loadout Check</button>
+      </div>
+
+      {mode === 'find-weapons' && (
+        <div className="mode-desc">
+          <span className="mode-desc-eyebrow">Loadout Check</span>
+          Build your loadout on the left — talismans, tears, armor, and modifiers. Every weapon whose stat requirements your current build meets at RL1 will appear on the right.
         </div>
-        <div className="weapon-bar-right">
-          <div className="weapon-bar-eyebrow">Requirements</div>
-          <div className="req-row-wrap">
-            <div className="req-row">
-              {hasReqs
-                ? STATS.map(k => weapon.req[k] ? (
-                    <div key={k} className="req-chip" style={{ '--hue': STAT_HUE[k] }}>
-                      <span className="req-chip-stat">{k}</span>
-                      <span className="req-chip-num">{weapon.req[k]}</span>
-                    </div>
-                  ) : null)
-                : <span style={{ color: 'var(--ink-3)', fontStyle: 'italic' }}>No stat requirements</span>
-              }
-            </div>
-            <button
-              className="weapon-info-toggle"
-              data-on={infoOpen ? '1' : '0'}
-              onClick={() => setInfoOpen(v => !v)}
-              title="Weapon details"
-            >
-              Details {infoOpen ? '▴' : '▾'}
-            </button>
+      )}
+
+      {mode === 'find-loadout' && (
+        <section className="weapon-bar">
+          <div className="weapon-bar-left">
+            <div className="weapon-bar-eyebrow">Weapon under audit</div>
+            <WeaponPicker weapon={weapon} onChange={setWeapon} />
           </div>
-        </div>
-        {infoOpen && (
-          <div className="weapon-info-panel">
-            {weapon.dlc && (
-              <>
-                <span className="weapon-sote-badge">SOTE</span>
-                <div className="weapon-info-sep" style={{ marginLeft: 20 }} />
-              </>
-            )}
-            <div className="weapon-info-block">
-              <div className="weapon-info-label">Attack Type</div>
-              <div className="weapon-info-value">{weapon.attackType || '—'}</div>
-            </div>
-            <div className="weapon-info-sep" />
-            <div className="weapon-info-block">
-              <div className="weapon-info-label">Scaling</div>
-              <div className="weapon-scaling-chips">
-                {STATS.filter(k => weapon.scaling[k]).map(k => (
-                  <span key={k} className="weapon-scaling-chip" style={{ '--hue': STAT_HUE[k] }}>
-                    <span className="scaling-stat">{k}</span>
-                    <span className="scaling-grade" data-grade={weapon.scaling[k]}>{weapon.scaling[k]}</span>
-                  </span>
-                ))}
-                {!STATS.some(k => weapon.scaling[k]) && (
-                  <span style={{ color: 'var(--ink-3)', fontStyle: 'italic' }}>None</span>
-                )}
+          <div className="weapon-bar-right">
+            <div className="weapon-bar-eyebrow">Requirements</div>
+            <div className="req-row-wrap">
+              <div className="req-row">
+                {hasReqs
+                  ? STATS.map(k => weapon.req[k] ? (
+                      <div key={k} className="req-chip" style={{ '--hue': STAT_HUE[k] }}>
+                        <span className="req-chip-stat">{k}</span>
+                        <span className="req-chip-num">{weapon.req[k]}</span>
+                      </div>
+                    ) : null)
+                  : <span style={{ color: 'var(--ink-3)', fontStyle: 'italic' }}>No stat requirements</span>
+                }
               </div>
-            </div>
-            <div className="weapon-info-sep" />
-            <div className="weapon-info-block">
-              <div className="weapon-info-label">Base Attack</div>
-              <div className="weapon-atk-chips">
-                {ATK_ORDER.filter(k => weapon.stats[k] > 0).map(k => (
-                  <span key={k} className="weapon-atk-chip" data-type={k} style={ATK_HUE[k] ? { '--hue': ATK_HUE[k] } : {}}>
-                    <span className="atk-val">{weapon.stats[k]}</span>
-                    <span className="atk-type">{ATK_LABEL[k]}</span>
-                  </span>
-                ))}
-              </div>
+              <button
+                className="weapon-info-toggle"
+                data-on={infoOpen ? '1' : '0'}
+                onClick={() => setInfoOpen(v => !v)}
+                title="Weapon details"
+              >
+                Details {infoOpen ? '▴' : '▾'}
+              </button>
             </div>
           </div>
-        )}
-      </section>
+          {infoOpen && (
+            <div className="weapon-info-panel">
+              {weapon.dlc && (
+                <>
+                  <span className="weapon-sote-badge">SOTE</span>
+                  <div className="weapon-info-sep" style={{ marginLeft: 20 }} />
+                </>
+              )}
+              <div className="weapon-info-block">
+                <div className="weapon-info-label">Attack Type</div>
+                <div className="weapon-info-value">{weapon.attackType || '—'}</div>
+              </div>
+              <div className="weapon-info-sep" />
+              <div className="weapon-info-block">
+                <div className="weapon-info-label">Scaling</div>
+                <div className="weapon-scaling-chips">
+                  {STATS.filter(k => weapon.scaling[k]).map(k => (
+                    <span key={k} className="weapon-scaling-chip" style={{ '--hue': STAT_HUE[k] }}>
+                      <span className="scaling-stat">{k}</span>
+                      <span className="scaling-grade" data-grade={weapon.scaling[k]}>{weapon.scaling[k]}</span>
+                    </span>
+                  ))}
+                  {!STATS.some(k => weapon.scaling[k]) && (
+                    <span style={{ color: 'var(--ink-3)', fontStyle: 'italic' }}>None</span>
+                  )}
+                </div>
+              </div>
+              <div className="weapon-info-sep" />
+              <div className="weapon-info-block">
+                <div className="weapon-info-label">Base Attack</div>
+                <div className="weapon-atk-chips">
+                  {ATK_ORDER.filter(k => weapon.stats[k] > 0).map(k => (
+                    <span key={k} className="weapon-atk-chip" data-type={k} style={ATK_HUE[k] ? { '--hue': ATK_HUE[k] } : {}}>
+                      <span className="atk-val">{weapon.stats[k]}</span>
+                      <span className="atk-type">{ATK_LABEL[k]}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </section>
+      )}
 
       {advancedOpen && (
         <section className="advanced-panel">
@@ -902,102 +978,118 @@ export default function App() {
         </div>
 
         <aside className="totals">
-          <div className="solve-options">
-            <div className="solve-options-hd">Modifiers</div>
-            <button className="solve-toggle" data-on={solveAllowRune ? '1' : '0'}
-                    onClick={() => setSolveAllowRune(v => !v)}>
-              <span>Allow Godrick's Great Rune</span>
-              <span className="solve-toggle-state">
-                <span className="solve-toggle-label">Off</span>
-                <span className="solve-toggle-label">On</span>
-              </span>
-            </button>
-            <button className="solve-toggle" data-on={solveAllowTear ? '1' : '0'}
-                    onClick={() => setSolveAllowTear(v => !v)}>
-              <span>Allow Mixed Physick</span>
-              <span className="solve-toggle-state">
-                <span className="solve-toggle-label">Off</span>
-                <span className="solve-toggle-label">On</span>
-              </span>
-            </button>
-            <button className="solve-toggle" data-on={solveAllowTwoHand ? '1' : '0'}
-                    onClick={() => setSolveAllowTwoHand(v => !v)}>
-              <span>Allow Two-Handing</span>
-              <span className="solve-toggle-state">
-                <span className="solve-toggle-label">Off</span>
-                <span className="solve-toggle-label">On</span>
-              </span>
-            </button>
-          </div>
-          <button className="btn-primary" style={{ width: '100%' }} onClick={handleSolveClosest}>
-            Auto-solve
-          </button>
-          <SolutionsList solutions={allSolutions} onApply={applyLoadout} />
-          <div className={`verdict ${meetsAll ? 'verdict-ok' : 'verdict-no'}`}>
-            <div className="verdict-mark">{meetsAll ? '✓' : '✕'}</div>
-            <div className="verdict-text">
-              <div className="verdict-line1">{meetsAll ? 'Wieldable' : 'Cannot wield'}</div>
-              <div className="verdict-line2">
-                {meetsAll
-                  ? 'All requirements met with current loadout.'
-                  : shortfallStats.length > 0
-                    ? `Short on ${shortfallStats.join(', ')}.`
-                    : 'Equip items or use Auto-solve.'}
+          {mode === 'find-loadout' ? (
+            <>
+              <div className="solve-options">
+                <div className="solve-options-hd">Modifiers</div>
+                <button className="solve-toggle" data-on={solveAllowRune ? '1' : '0'}
+                        onClick={() => setSolveAllowRune(v => !v)}>
+                  <span>Allow Godrick's Great Rune</span>
+                  <span className="solve-toggle-state">
+                    <span className="solve-toggle-label">Off</span>
+                    <span className="solve-toggle-label">On</span>
+                  </span>
+                </button>
+                <button className="solve-toggle" data-on={solveAllowTear ? '1' : '0'}
+                        onClick={() => setSolveAllowTear(v => !v)}>
+                  <span>Allow Mixed Physick</span>
+                  <span className="solve-toggle-state">
+                    <span className="solve-toggle-label">Off</span>
+                    <span className="solve-toggle-label">On</span>
+                  </span>
+                </button>
+                <button className="solve-toggle" data-on={solveAllowTwoHand ? '1' : '0'}
+                        onClick={() => setSolveAllowTwoHand(v => !v)}>
+                  <span>Allow Two-Handing</span>
+                  <span className="solve-toggle-state">
+                    <span className="solve-toggle-label">Off</span>
+                    <span className="solve-toggle-label">On</span>
+                  </span>
+                </button>
               </div>
-            </div>
-          </div>
+              <button className="btn-primary" style={{ width: '100%' }} onClick={handleSolveClosest}>
+                Auto-solve
+              </button>
+              <SolutionsList solutions={allSolutions} onApply={applyLoadout} />
+              <div className={`verdict ${meetsAll ? 'verdict-ok' : 'verdict-no'}`}>
+                <div className="verdict-mark">{meetsAll ? '✓' : '✕'}</div>
+                <div className="verdict-text">
+                  <div className="verdict-line1">{meetsAll ? 'Wieldable' : 'Cannot wield'}</div>
+                  <div className="verdict-line2">
+                    {meetsAll
+                      ? 'All requirements met with current loadout.'
+                      : shortfallStats.length > 0
+                        ? `Short on ${shortfallStats.join(', ')}.`
+                        : 'Equip items or use Auto-solve.'}
+                  </div>
+                </div>
+              </div>
 
-          <div className="totals-block">
-            <div className="totals-hd">Effective stats</div>
-            <div className="stat-pips">
-              {STATS.map(k => (
-                <StatPip key={k} stat={k} have={haveStats[k]} need={weapon.req[k] || 0} twoHand={twoHand} />
-              ))}
-            </div>
-          </div>
+              <div className="totals-block">
+                <div className="totals-hd">Effective stats</div>
+                <div className="stat-pips">
+                  {STATS.map(k => (
+                    <StatPip key={k} stat={k} have={haveStats[k]} need={weapon.req[k] || 0} twoHand={twoHand} />
+                  ))}
+                </div>
+              </div>
 
-          <div className="totals-block breakdown">
-            <div className="totals-hd">Breakdown</div>
-            <div className="breakdown-row">
-              <span>Base (RL1)</span><span>10 / 10 / 10 / 10 / 10</span>
-            </div>
-            {rune.bonus && Object.keys(rune.bonus).length > 0 && (
-              <div className="breakdown-row">
-                <span>{rune.name}</span><span>{fmtBonus(rune.bonus)}</span>
+              <div className="totals-block breakdown">
+                <div className="totals-hd">Breakdown</div>
+                <div className="breakdown-row">
+                  <span>Base (RL1)</span><span>10 / 10 / 10 / 10 / 10</span>
+                </div>
+                {rune.bonus && Object.keys(rune.bonus).length > 0 && (
+                  <div className="breakdown-row">
+                    <span>{rune.name}</span><span>{fmtBonus(rune.bonus)}</span>
+                  </div>
+                )}
+                {tears.filter(Boolean).map((it, i) => (
+                  <div key={'t' + i} className="breakdown-row">
+                    <span>{it.name}</span><span>{fmtBonus(it.bonus)}</span>
+                  </div>
+                ))}
+                {talismans.filter(Boolean).map((it, i) => (
+                  <div key={'tl' + i} className="breakdown-row">
+                    <span>{it.name}</span><span>{fmtBonus(it.bonus)}</span>
+                  </div>
+                ))}
+                {Object.values(armor).filter(Boolean).map((it, i) => (
+                  <div key={'a' + i} className="breakdown-row">
+                    <span>{it.name}</span><span>{fmtBonus(it.bonus)}</span>
+                  </div>
+                ))}
+                {twoHand && weapon.req.STR > 0 && (
+                  <div className="breakdown-row breakdown-mult">
+                    <span>Two-handing</span><span>STR × 1.5</span>
+                  </div>
+                )}
+                {!hasModifiers && (
+                  <div className="breakdown-row breakdown-empty">
+                    <span>No modifiers active</span><span>—</span>
+                  </div>
+                )}
               </div>
-            )}
-            {tears.filter(Boolean).map((it, i) => (
-              <div key={'t' + i} className="breakdown-row">
-                <span>{it.name}</span><span>{fmtBonus(it.bonus)}</span>
-              </div>
-            ))}
-            {talismans.filter(Boolean).map((it, i) => (
-              <div key={'tl' + i} className="breakdown-row">
-                <span>{it.name}</span><span>{fmtBonus(it.bonus)}</span>
-              </div>
-            ))}
-            {Object.values(armor).filter(Boolean).map((it, i) => (
-              <div key={'a' + i} className="breakdown-row">
-                <span>{it.name}</span><span>{fmtBonus(it.bonus)}</span>
-              </div>
-            ))}
-            {twoHand && weapon.req.STR > 0 && (
-              <div className="breakdown-row breakdown-mult">
-                <span>Two-handing</span><span>STR × 1.5</span>
-              </div>
-            )}
-            {!hasModifiers && (
-              <div className="breakdown-row breakdown-empty">
-                <span>No modifiers active</span><span>—</span>
-              </div>
-            )}
-          </div>
 
-          <div className="totals-foot">
-            {solvable
-              ? <span>{allSolutions.length} valid loadout{allSolutions.length !== 1 ? 's' : ''} found for this weapon at RL1.</span>
-              : <span className="totals-foot-no">No combination of slots can meet this weapon's requirements at RL1.</span>}
-          </div>
+              <div className="totals-foot">
+                {solvable
+                  ? <span>{allSolutions.length} valid loadout{allSolutions.length !== 1 ? 's' : ''} found for this weapon at RL1.</span>
+                  : <span className="totals-foot-no">No combination of slots can meet this weapon's requirements at RL1.</span>}
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="totals-block">
+                <div className="totals-hd">Effective stats</div>
+                <div className="stat-pips">
+                  {STATS.map(k => (
+                    <StatPip key={k} stat={k} have={haveStats[k]} need={0} twoHand={twoHand} />
+                  ))}
+                </div>
+              </div>
+              <WeaponList haveStats={haveStats} twoHand={twoHand} includeDLC={includeDLC} />
+            </>
+          )}
         </aside>
       </main>
 

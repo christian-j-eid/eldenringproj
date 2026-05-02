@@ -767,6 +767,92 @@ body {
 }
 .totals-foot-no { color: var(--no); }
 
+/* ── mode bar ───────────────────────────────────────────────────── */
+.mode-bar {
+  display: flex;
+  padding: 0 36px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--bg-2), var(--bg));
+}
+.mode-tab {
+  appearance: none; background: none; border: 0;
+  border-bottom: 2px solid transparent;
+  color: var(--ink-3); font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 12px 20px; cursor: pointer; margin-bottom: -1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.mode-tab:hover { color: var(--ink); }
+.mode-tab[data-active="1"] { color: var(--gold); border-bottom-color: var(--gold); }
+
+.mode-desc {
+  padding: 14px 36px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--bg-2), transparent 40%), transparent);
+  font-family: var(--serif); font-size: 15px; color: var(--ink-3);
+  font-style: italic; line-height: 1.6;
+  animation: fadein 0.15s ease;
+}
+.mode-desc-eyebrow {
+  display: block;
+  font-family: var(--mono); font-size: 10px; font-style: normal;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--gold); margin-bottom: 4px;
+}
+
+/* ── weapon list (loadout-check mode) ──────────────────────────── */
+.weapon-list {
+  border: 1px solid var(--line); background: var(--bg-2);
+  display: flex; flex-direction: column;
+}
+.weapon-list-hd {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 14px; border-bottom: 1px solid var(--line); flex-shrink: 0;
+}
+.weapon-list-count {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink-3); flex-shrink: 0;
+}
+.weapon-list-search {
+  background: var(--bg); border: 1px solid var(--line);
+  color: var(--ink); font: inherit; font-size: 12px;
+  padding: 4px 9px; outline: none; flex: 1; min-width: 0;
+}
+.weapon-list-search::placeholder { color: var(--ink-4); }
+.weapon-list-search:focus { border-color: var(--gold-dim); }
+.weapon-list-scroll {
+  overflow-y: auto; max-height: 440px;
+  scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent;
+}
+.weapon-list-scroll::-webkit-scrollbar { width: 4px; }
+.weapon-list-scroll::-webkit-scrollbar-track { background: transparent; }
+.weapon-list-scroll::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 2px; }
+.weapon-list-row {
+  display: grid; grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  gap: 1px 8px; padding: 8px 14px;
+  border-bottom: 1px solid var(--line); align-items: center;
+}
+.weapon-list-row:last-child { border-bottom: 0; }
+.wl-left {
+  display: flex; align-items: center; gap: 7px;
+  grid-column: 1; grid-row: 1;
+}
+.wl-name { font-family: var(--serif); font-size: 15px; color: var(--ink); }
+.wl-cat {
+  font-family: var(--mono); font-size: 10px; color: var(--ink-3);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  grid-column: 1; grid-row: 2;
+}
+.wl-req {
+  display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end;
+  grid-column: 2; grid-row: 1 / 3; align-self: center;
+}
+.wl-no-req { font-family: var(--mono); font-size: 10px; color: var(--ink-4); }
+.weapon-list-empty {
+  padding: 28px; text-align: center; color: var(--ink-3); font-style: italic;
+}
+
 /* ── picker modal ──────────────────────────────────────────────── */
 .picker-backdrop {
   position: fixed; inset: 0; background: rgba(0,0,0,0.55);
