@@ -55,6 +55,15 @@ const TALISMANS = rawData.talismans.map(t => ({
   dlc: !!t.dlc,
 }))
 
+const TALISMAN_MUTEX_PAIRS = [
+  ["Marika's Scarseal", "Marika's Soreseal"],
+  ["Radagon's Scarseal", "Radagon's Soreseal"],
+]
+const TALISMAN_BY_NAME = Object.fromEntries(TALISMANS.map(t => [t.name, t.id]))
+const TALISMAN_COUNTERPART = Object.fromEntries(
+  TALISMAN_MUTEX_PAIRS.flatMap(([a, b]) => [[a, b], [b, a]])
+)
+
 const TEARS = rawData.crystalTears.map(t => ({
   id: uid('cr'),
   name: t.name,
@@ -207,7 +216,9 @@ function solveAll(weapon, { allowGreatRune = true, allowArmor = true, allowTwoHa
         })
         if (!feasible) continue
 
-        const talCombos = subsetsUpTo(relTals, 4)
+        const talCombos = subsetsUpTo(relTals, 4).filter(combo =>
+          !TALISMAN_MUTEX_PAIRS.some(([a, b]) => combo.some(t => t.name === a) && combo.some(t => t.name === b))
+        )
         for (const talismans of talCombos) {
           const haveTT = sumBonus([{ bonus: haveT }, ...talismans])
           const needTT = shortfall(haveTT, req, th)
@@ -285,6 +296,8 @@ function solve(weapon, { allowTwoHand = true, allowGreatRune = true, allowTear =
         const it = pickBest(talismanPool, usedTal)
         if (!it) break
         usedTal.add(it.id)
+        const cpName = TALISMAN_COUNTERPART[it.name]
+        if (cpName && TALISMAN_BY_NAME[cpName]) usedTal.add(TALISMAN_BY_NAME[cpName])
         chosen.talismans.push(it)
         have = sumBonus([{ bonus: haveBase }, ...chosen.tears, ...chosen.talismans, ...chosen.armor])
       }
@@ -686,7 +699,14 @@ export default function App() {
     return eff < (weapon.req[k] || 0)
   })
 
-  const usedTalismanIds = useMemo(() => new Set(talismans.filter(Boolean).map(x => x.id)), [talismans])
+  const usedTalismanIds = useMemo(() => {
+    const ids = new Set(talismans.filter(Boolean).map(x => x.id))
+    for (const t of talismans.filter(Boolean)) {
+      const counterpart = TALISMAN_COUNTERPART[t.name]
+      if (counterpart) ids.add(TALISMAN_BY_NAME[counterpart])
+    }
+    return ids
+  }, [talismans])
   const usedTearIds = useMemo(() => new Set(tears.filter(Boolean).map(x => x.id)), [tears])
 
   const openPicker = (kind, slot, idx) => setPicker({ kind, slot, idx })
