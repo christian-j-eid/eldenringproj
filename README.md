@@ -1,6 +1,6 @@
 # Elden Ring RL1 Weapon Audit
 
-An open-source tool for RL1 runs — check what equipment is needed to use any weapon at rl1. Includes an alternative Loadout Check mode that lists all usable weapons with a given loadout. 
+An open-source tool for RL1 runs. Check what equipment is needed to use any weapon at rl1. Includes an alternative _Loadout Check_ mode that lists all usable weapons with a given loadout. 
 
 **[→ Open the tool](https://christian-j-eid.github.io/EldenRing-RL1-Weapon-Audit/)**
 
