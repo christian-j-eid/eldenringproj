@@ -4,7 +4,6 @@ An open-source tool for RL1 runs — check what equipment is needed to use any w
 
 **[→ Open the tool](https://christian-j-eid.github.io/EldenRing-RL1-Weapon-Audit/)**
 
-* Rune Level 1 · Base stats 10/10/10/10/10*
 
 ---
 
